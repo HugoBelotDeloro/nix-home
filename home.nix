@@ -94,6 +94,7 @@
     networkmanagerapplet
     pavucontrol
     lxappearance
+    arandr
     breeze-qt5
   ];
 
