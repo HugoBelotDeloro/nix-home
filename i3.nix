@@ -161,7 +161,10 @@
           statusCommand = "${pkgs.i3status}/bin/i3status";
           position = "bottom";
 
-          fonts = [ "JetBrains Mono" ];
+          fonts = {
+            names = [ "JetBrains Mono" ];
+            size = 11.0;
+          };
 
           colors = {
             activeWorkspace = {
