@@ -17,6 +17,7 @@
 
       startup = [
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet"; notification = false; }
+        { command = "${pkgs.pasystray}/bin/pasystray --volume-max=100 --volume-inc=1 --notify=all"; notification = false; }
       ];
 
       gaps = {
@@ -28,7 +29,6 @@
 
       keybindings = let
         pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
-        audio_notify = "${pkgs.dunst}/bin/dunstify 'Volume: ' -h int:value:`pamixer --get-volume`";
       in lib.mkOptionDefault {
         "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${mod}+Shift+q" = "kill";
@@ -40,10 +40,10 @@
         "${mod}+9" = "exec --no-startup-id ${i3lock}";
         "${mod}+0" = ''mode "${mode_system}"'';
 
-        "XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 5"}; exec ${audio_notify}";
-        "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 1"}; exec ${audio_notify}";
-        "XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 5"}; exec ${audio_notify}";
-        "Shift+XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 1"}; exec ${audio_notify}";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 5"}";
+        "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 1"}";
+        "XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 5"}";
+        "Shift+XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 1"}";
         "XF86AudioMute" = "exec --no-startup-id ${pamixer "--toggle-mute"}";
 
         "${mod}+Ctrl+Right" = "workspace next";

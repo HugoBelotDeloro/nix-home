@@ -71,7 +71,6 @@
   gtk.theme.package = pkgs.gnome.gnome_themes_standard;
   gtk.theme.name = "Adwaita-dark";
 
-  services.pasystray.enable = true;
   services.screen-locker = {
     enable = true;
     lockCmd = "${pkgs.i3lock}/bin/i3lock -c 000000";
