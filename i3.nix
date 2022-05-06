@@ -5,6 +5,7 @@
   let
     mod = "Mod4";
     mode_system = "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown";
+    i3lock = "${pkgs.i3lock}/bin/i3lock -c 000000";
   in {
     enable = true;
 
@@ -25,7 +26,10 @@
         smartGaps = true;
       };
 
-      keybindings = lib.mkOptionDefault {
+      keybindings = let
+        pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
+        audio_notify = "${pkgs.dunst}/bin/dunstify 'Volume: ' -h int:value:`pamixer --get-volume`";
+      in lib.mkOptionDefault {
         "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
@@ -33,12 +37,14 @@
         "${mod}+f" = "fullscreen toggle";
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+e" =  ''exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
-        "${mod}+9" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -c 000000";
+        "${mod}+9" = "exec --no-startup-id ${i3lock}";
         "${mod}+0" = ''mode "${mode_system}"'';
 
-        # "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-input-volume 0 +5%";
-        # "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-input-volume 0 -5%";
-        # "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-input-mute 0 toggle";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 5"}; exec ${audio_notify}";
+        "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer "--increase 1"}; exec ${audio_notify}";
+        "XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 5"}; exec ${audio_notify}";
+        "Shift+XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 1"}; exec ${audio_notify}";
+        "XF86AudioMute" = "exec --no-startup-id ${pamixer "--toggle-mute"}";
 
         "${mod}+Ctrl+Right" = "workspace next";
         "${mod}+Ctrl+Left" = "workspace prev";
@@ -92,7 +98,6 @@
       };
 
       modes = let
-        i3lock = "${pkgs.i3lock}/bin/i3lock -c 000000";
         systemctl = "${pkgs.systemd}/bin/systemctl";
       in lib.mkOptionDefault {
 

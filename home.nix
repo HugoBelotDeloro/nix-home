@@ -95,6 +95,7 @@
 
     networkmanagerapplet
     pavucontrol
+    pamixer
     libnotify
     lxappearance
     arandr
