@@ -14,6 +14,7 @@
     ./i3.nix
     ./i3status.nix
     ./fish/fish.nix
+    ./dunst.nix
   ];
 
   home.file = {
@@ -94,6 +95,7 @@
 
     networkmanagerapplet
     pavucontrol
+    libnotify
     lxappearance
     arandr
     breeze-qt5
