@@ -70,6 +70,7 @@
   gtk.enable = true;
   gtk.theme.package = pkgs.gnome.gnome-themes-extra;
   gtk.theme.name = "Adwaita-dark";
+  gtk.iconTheme.name = "Tela"; # Worth trying: "Papirus-Adapta-Nokto-Maia" "Arc" "Pop"
 
   services.screen-locker = {
     enable = true;
@@ -101,6 +102,8 @@
     lxappearance
     arandr
     breeze-qt5
+
+    tela-icon-theme
   ];
 
   # This value determines the Home Manager release that your
