@@ -26,6 +26,10 @@
       clangpp = "clang++ -Wextra -Wall -Werror -std=c++17 -pedantic";
       icat = "kitty +kitten icat";
 
+      untargz = "tar zxvf";
+      targz = "tar zcvf";
+      targz-list = "tar ztvf";
+
       # Git
       gs = "git status";
       ga = "git add";
