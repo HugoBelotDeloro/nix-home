@@ -92,6 +92,8 @@
     discord
     keepassxc
 
+    jetbrains.webstorm
+
     networkmanagerapplet
     pavucontrol
     pamixer
