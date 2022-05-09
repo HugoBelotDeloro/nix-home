@@ -95,6 +95,7 @@
 
     jetbrains.webstorm
 
+    pcmanfm
     networkmanagerapplet
     pavucontrol
     pamixer
