@@ -1,4 +1,4 @@
-function nix-shell-init
+function nix-shell-init --description 'Creates basic shell.nix and .envrc'
   echo "\
   { pkgs ? import <nixpkgs> {} }:
 
@@ -6,5 +6,5 @@ function nix-shell-init
     packages = with pkgs; [
     ];
   }" > shell.nix
-  echo 'use_nix' > .envrc
+  echo 'use_nix' >> .envrc
 end
