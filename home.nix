@@ -68,7 +68,7 @@
   xsession.pointerCursor.size = 24;
 
   gtk.enable = true;
-  gtk.theme.package = pkgs.gnome.gnome_themes_standard;
+  gtk.theme.package = pkgs.gnome.gnome-themes-extra;
   gtk.theme.name = "Adwaita-dark";
 
   services.screen-locker = {

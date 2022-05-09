@@ -6,6 +6,7 @@
 
     interactiveShellInit = ''
     set fish_greeting ""
+    fish_config theme choose Dracula
     ${pkgs.starship}/bin/starship init fish | source
     '';
 
