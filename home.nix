@@ -15,6 +15,7 @@
     ./i3status.nix
     ./fish/fish.nix
     ./dunst.nix
+    ./kakoune.nix
   ];
 
   home.file = {
