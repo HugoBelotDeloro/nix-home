@@ -87,6 +87,8 @@
     rofi
     ripgrep
     fd
+    jq
+    entr
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
     emacs-all-the-icons-fonts
     texlive.combined.scheme-basic

@@ -25,7 +25,7 @@
       };
       showMatching = true;
       showWhitespace = {
-        enable = true;
+        enable = false;
         lineFeed = null;
         nonBreakingSpace = null;
         space = null;
@@ -42,7 +42,7 @@
         word = true;
       };
     };
-    extraConfig = "";
+    extraConfig = "add-highlighter global/ regex \\h+$ 0:Error";
     plugins = [ ];
   };
 }
