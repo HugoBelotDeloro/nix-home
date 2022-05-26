@@ -97,6 +97,10 @@
     keepassxc
 
     jetbrains.webstorm
+    jetbrains.idea-community
+    jetbrains.datagrip
+
+    postgresql
 
     pcmanfm
     networkmanagerapplet
