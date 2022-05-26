@@ -1,10 +1,12 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+  username = "hugo";
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "hugo";
-  home.homeDirectory = "/home/hugo";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.sessionVariables = {
     EDITOR = "kak";
     BROWSER = "firefox";
