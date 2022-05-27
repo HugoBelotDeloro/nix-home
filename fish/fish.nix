@@ -27,6 +27,9 @@
       clangpp = "clang++ -Wextra -Wall -Werror -std=c++17 -pedantic";
       icat = "kitty +kitten icat";
 
+      dcu = "docker compose up";
+      dcd = "docker compose down";
+
       untargz = "tar zxvf";
       targz = "tar zcvf";
       targz-list = "tar ztvf";
