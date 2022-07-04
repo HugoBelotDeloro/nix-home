@@ -54,6 +54,11 @@ in {
 
   programs.exa.enable = true;
 
+  programs.rofi = {
+    enable = true;
+    theme = "Monokai";
+  };
+
   programs.starship.enable = true;
   programs.starship.settings = {
     add_newline = false;
