@@ -90,7 +90,6 @@ in {
     fish
     kitty
     git
-    kakoune
     rofi
     ripgrep
     fd

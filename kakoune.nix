@@ -42,7 +42,13 @@
         word = true;
       };
     };
-    extraConfig = "add-highlighter global/ regex \\h+$ 0:Error";
-    plugins = [ ];
+    extraConfig = ''
+      add-highlighter global/ regex \h+$ 0:Error
+      eval %sh{kak-lsp --kakoune -s $kak_session}
+      hook global WinSetOption filetype=(typescript|javascript) %{
+        lsp-enable-window
+      }
+    '';
+    plugins = with pkgs.kakounePlugins; [ kak-lsp ];
   };
 }
