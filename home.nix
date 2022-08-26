@@ -52,6 +52,10 @@ in {
 
   programs.exa.enable = true;
 
+  programs.bat = {
+    enable = true;
+  };
+
   programs.rofi = {
     enable = true;
     theme = "Monokai";
@@ -93,6 +97,7 @@ in {
     fd
     jq
     entr
+    neofetch
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
     emacs-all-the-icons-fonts
     texlive.combined.scheme-basic
