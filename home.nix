@@ -29,6 +29,12 @@ in {
     };
   };
 
+  home.pointerCursor = {
+    package = pkgs.breeze-qt5;
+    name = "breeze_cursors";
+    size = 24;
+  };
+
   # See https://github.com/nix-community/home-manager/issues/2942
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -73,9 +79,6 @@ in {
   programs.emacs.enable = true;
 
   xsession.enable = true;
-  xsession.pointerCursor.package = pkgs.breeze-qt5;
-  xsession.pointerCursor.name = "breeze_cursors";
-  xsession.pointerCursor.size = 24;
 
   gtk.enable = true;
   gtk.theme.package = pkgs.gnome.gnome-themes-extra;
