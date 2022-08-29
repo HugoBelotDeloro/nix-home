@@ -56,6 +56,11 @@
       map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
       map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
       map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+
+      hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
+      hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
+      set-face global InlayHint cyan+di
     '';
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];
   };
