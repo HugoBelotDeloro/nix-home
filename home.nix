@@ -102,6 +102,7 @@ in {
     entr
     neofetch
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
+    victor-mono
     emacs-all-the-icons-fonts
     texlive.combined.scheme-basic
 
