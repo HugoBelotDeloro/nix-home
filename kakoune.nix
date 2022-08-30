@@ -62,6 +62,6 @@
 
       set-face global InlayHint cyan+di
     '';
-    plugins = with pkgs.kakounePlugins; [ kak-lsp ];
+    plugins = with pkgs.kakounePlugins; [ kak-lsp auto-pairs-kak ];
   };
 }
