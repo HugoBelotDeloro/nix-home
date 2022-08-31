@@ -122,6 +122,7 @@ in {
     libnotify
     lxappearance
     arandr
+    acpilight
     breeze-qt5
 
     tela-icon-theme
