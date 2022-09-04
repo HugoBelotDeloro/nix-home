@@ -18,6 +18,7 @@
       startup = [
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet"; notification = false; }
         { command = "${pkgs.pasystray}/bin/pasystray --volume-max=100 --volume-inc=1 --notify=all"; notification = false; }
+        { command = "${pkgs.nitrogen}/bin/nitrogen --restore"; notification = false; }
       ];
 
       gaps = {
