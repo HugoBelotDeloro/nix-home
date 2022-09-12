@@ -1,8 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, extraPackages, ... }:
 
-let
-  localConfig = import ./local-configuration.nix;
-in {
+{
   home.sessionVariables = {
     EDITOR = "kak";
     BROWSER = "firefox";
@@ -99,6 +97,7 @@ in {
     ripgrep
     fd
     jq
+    bc
     entr
     neofetch
     nitrogen
@@ -107,14 +106,7 @@ in {
     emacs-all-the-icons-fonts
     texlive.combined.scheme-basic
 
-    discord
     keepassxc
-
-    jetbrains.webstorm
-    jetbrains.idea-community
-    jetbrains.datagrip
-
-    postgresql
 
     pcmanfm
     networkmanagerapplet
@@ -127,7 +119,7 @@ in {
     breeze-qt5
 
     tela-icon-theme
-  ];
+  ] ++ (extraPackages pkgs);
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
