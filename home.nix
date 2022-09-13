@@ -12,6 +12,7 @@
     ./fish/fish.nix
     ./dunst.nix
     ./kakoune.nix
+    ./services.nix
   ];
 
   home.file = {
