@@ -5,5 +5,6 @@
     thunderbird
     teams
     calibre
+    jetbrains.idea-ultimate
   ];
 }
