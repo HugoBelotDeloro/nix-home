@@ -1,9 +1,13 @@
 { config, lib, pkgs, extraPackages, ... }:
 
 {
-  home.sessionVariables = {
-    EDITOR = "kak";
-    BROWSER = "firefox";
+  home = {
+    sessionVariables = {
+      EDITOR = "kak";
+      BROWSER = "firefox";
+    };
+
+    sessionPath = [ "~/.emacs.d/bin" "~/bin" ];
   };
 
   imports = [
