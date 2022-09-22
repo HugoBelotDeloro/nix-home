@@ -106,6 +106,7 @@
     jq
     bc
     entr
+    zip
     unzip
     neofetch
 
