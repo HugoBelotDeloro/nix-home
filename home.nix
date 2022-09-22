@@ -91,6 +91,8 @@
 
   # My usual packages
   home.packages = with pkgs; [
+
+    # Command-line tools
     fish
     kitty
     git
@@ -100,15 +102,20 @@
     jq
     bc
     entr
+    unzip
     neofetch
+
+    # Graphics
     nitrogen
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
     victor-mono
     emacs-all-the-icons-fonts
     texlive.combined.scheme-basic
+    breeze-qt5
+    tela-icon-theme
 
+    # Graphical tools
     keepassxc
-
     pcmanfm
     networkmanagerapplet
     pavucontrol
@@ -117,9 +124,6 @@
     lxappearance
     arandr
     acpilight
-    breeze-qt5
-
-    tela-icon-theme
   ] ++ (extraPackages pkgs);
 
   # Let Home Manager install and manage itself.
