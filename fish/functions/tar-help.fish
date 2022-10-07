@@ -7,5 +7,5 @@ function tar-help --description 'Prints help for the tar command'
   "tar xvf archive.tar" \
   "x: extract archive" \
   "tar tvf" \
-  "t: table of content (print archive contents)" \
+  "t: table of content (print archive contents)"
 end
