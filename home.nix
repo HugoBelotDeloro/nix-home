@@ -128,7 +128,7 @@
     libnotify
     lxappearance
     arandr
-    acpilight
+    gimp
   ] ++ (extraPackages pkgs);
 
   # Let Home Manager install and manage itself.
