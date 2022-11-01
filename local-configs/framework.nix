@@ -6,5 +6,6 @@
     teams
     calibre
     jetbrains.idea-ultimate
+    jetbrains.webstorm
   ];
 }
