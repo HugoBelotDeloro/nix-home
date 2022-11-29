@@ -30,6 +30,11 @@
       target = ".config/fish/functions";
       recursive = true;
     };
+
+    flake_base = {
+      source = ./resources/flake-example.nix;
+      target = "home-resources/flake-example.nix";
+    };
   };
 
   home.pointerCursor = {
