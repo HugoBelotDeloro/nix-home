@@ -8,5 +8,6 @@
     calibre
     jetbrains.idea-ultimate
     jetbrains.webstorm
+    gimp
   ];
 }

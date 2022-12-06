@@ -17,6 +17,7 @@
     ./dunst.nix
     ./kakoune.nix
     ./services.nix
+    ./gammastep.nix
   ];
 
   home.file = {
@@ -103,9 +104,7 @@
 
     # Command-line tools
     fish
-    kitty
     git
-    rofi
     ripgrep
     fd
     jq
@@ -115,25 +114,31 @@
     unzip
     neofetch
 
-    # Graphics
-    nitrogen
+    # Looks
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
     victor-mono
     emacs-all-the-icons-fonts
-    texlive.combined.scheme-basic
     breeze-qt5
     tela-icon-theme
 
-    # Graphical tools
-    keepassxc
-    pcmanfm
+    # Administration
+    nitrogen
     networkmanagerapplet
     pavucontrol
     pamixer
     libnotify
     lxappearance
     arandr
-    gimp
+    gammastep
+
+    # Graphical tools
+    kitty
+    rofi
+    keepassxc
+    pcmanfm
+
+    # Software
+    texlive.combined.scheme-basic
   ] ++ (extraPackages pkgs);
 
   # Let Home Manager install and manage itself.
