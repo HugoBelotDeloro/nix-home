@@ -30,6 +30,7 @@
 
       keybindings = let
         pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
+        light = "${pkgs.light}/bin/light";
       in lib.mkOptionDefault {
         "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${mod}+Shift+q" = "kill";
@@ -46,6 +47,9 @@
         "XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 5"}";
         "Shift+XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer "--decrease 1"}";
         "XF86AudioMute" = "exec --no-startup-id ${pamixer "--toggle-mute"}";
+
+        "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5";
+        "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5";
 
         "${mod}+Ctrl+Right" = "workspace next";
         "${mod}+Ctrl+Left" = "workspace prev";
