@@ -130,6 +130,7 @@
     lxappearance
     arandr
     gammastep
+    pciutils
 
     # Graphical tools
     kitty
