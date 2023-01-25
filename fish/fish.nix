@@ -17,7 +17,8 @@
       ls = "exa --classify";
       la = "exa --classify --all";
       lla = "exa --classify --all --long --header";
-      tree = "exa --classify --all --long --header --tree";
+      tree = "exa --classify --long --header --tree";
+      treea = "exa --classify --all --long --header --tree";
     };
 
     shellAbbrs = {
