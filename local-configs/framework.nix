@@ -9,5 +9,8 @@
     jetbrains.idea-ultimate
     jetbrains.webstorm
     gimp
+
+    # Stockly
+    _1password-gui
   ];
 }

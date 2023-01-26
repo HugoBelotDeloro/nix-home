@@ -53,6 +53,11 @@
       gd = "git diff";
       gdc = "git diff --cached";
       g = "git";
+
+      # Kubectl
+      k = "kubectl";
+      kaf = "kubectl apply -f";
+      kc = "kubectl create";
     };
   };
 }
