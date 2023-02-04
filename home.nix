@@ -132,6 +132,8 @@
     arandr
     gammastep
     pciutils
+    gparted
+    cryptsetup
 
     # Graphical tools
     kitty
