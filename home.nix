@@ -18,6 +18,7 @@
     ./kakoune.nix
     ./services.nix
     ./gammastep.nix
+    ./emacs.nix
   ];
 
   home.file = {
