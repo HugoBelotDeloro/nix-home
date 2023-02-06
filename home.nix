@@ -19,6 +19,7 @@
     ./services.nix
     ./gammastep.nix
     ./emacs.nix
+    ./vscode.nix
   ];
 
   home.file = {
