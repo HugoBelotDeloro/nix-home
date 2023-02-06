@@ -17,6 +17,7 @@
       usernamehw.errorlens
       zxh404.vscode-proto3
       github.vscode-pull-request-github
+      vadimcn.vscode-lldb
     ];
   };
 }
