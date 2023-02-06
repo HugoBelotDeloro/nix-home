@@ -12,5 +12,6 @@
 
     # Stockly
     _1password-gui
+    slack
   ];
 }
