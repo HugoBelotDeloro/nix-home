@@ -5,7 +5,9 @@
     enable = true;
     package = pkgs.vscodium;
 
-    extensions = [
+    mutableExtensionsDir = true;
+
+    extensions = with pkgs.vscode-extensions; [
       bungcip.better-toml
       eamodio.gitlens
       ms-vscode-remote.remote-ssh
