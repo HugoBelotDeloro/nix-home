@@ -14,5 +14,7 @@
     _1password-gui
     slack
     rustup
+    jetbrains.datagrip
+    bloomrpc
   ];
 }

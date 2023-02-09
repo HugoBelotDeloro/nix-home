@@ -115,6 +115,7 @@
     zip
     unzip
     neofetch
+    openssl
 
     # Looks
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
