@@ -142,6 +142,8 @@
     rofi
     keepassxc
     pcmanfm
+    firefox
+    google-chrome
 
     # Software
     texlive.combined.scheme-basic
