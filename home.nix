@@ -89,6 +89,8 @@
 
   programs.emacs.enable = true;
 
+  programs.autorandr.enable = true;
+
   xsession.enable = true;
 
   gtk.enable = true;
