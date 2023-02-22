@@ -20,6 +20,7 @@
     ./gammastep.nix
     ./emacs.nix
     ./vscode.nix
+    ./git.nix
   ];
 
   home.file = {
@@ -55,16 +56,6 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userEmail = "hugo.belot-deloro@epita.fr";
-    userName = "Hugo Belot-Deloro";
-
-    aliases = {
-      graph = "log --all --oneline --graph --decorate";
-    };
   };
 
   programs.exa.enable = true;
@@ -108,7 +99,6 @@
 
     # Command-line tools
     fish
-    git
     ripgrep
     fd
     jq
