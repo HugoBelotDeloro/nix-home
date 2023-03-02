@@ -99,6 +99,7 @@
 
     # Command-line tools
     fish
+    xsel
     ripgrep
     fd
     jq
