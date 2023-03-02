@@ -16,7 +16,7 @@
       numberLines = {
         enable = true;
         highlightCursor = true;
-        relative = true;
+        relative = false;
         separator = "|";
       };
       scrollOff = {
@@ -25,12 +25,12 @@
       };
       showMatching = true;
       showWhitespace = {
-        enable = false;
-        lineFeed = null;
-        nonBreakingSpace = null;
-        space = null;
-        tab = null;
-        tabStop = null;
+        enable = true;
+        lineFeed = " ";
+        nonBreakingSpace = "⍽";
+        space = " ";
+        tab = "→";
+        tabStop = "⋅";
       };
       tabStop = 2;
       ui = null;
@@ -43,7 +43,9 @@
       };
     };
     extraConfig = ''
-      add-highlighter global/ regex \h+$ 0:Error
+      add-highlighter global/ regex \h+$ 0:Error # Highlight trailing whitespace
+      # set-face global/ LineNumbersWrapped
+
       eval %sh{kak-lsp --kakoune -s $kak_session}
       hook global WinSetOption filetype=(typescript|javascript|rust) %{
         lsp-enable-window
