@@ -102,6 +102,7 @@
     xsel
     ripgrep
     fd
+    sd
     jq
     bc
     entr
