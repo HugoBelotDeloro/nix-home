@@ -4,7 +4,6 @@
     discord
     thunderbird
     libreoffice
-    teams
     calibre
     jetbrains.idea-ultimate
     jetbrains.webstorm

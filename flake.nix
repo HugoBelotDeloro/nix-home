@@ -2,9 +2,9 @@
   description = "Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
@@ -19,19 +19,24 @@
 
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs system username;
+      inherit pkgs;
 
-      homeDirectory = "/home/${username}";
+      modules = [
+        ./home.nix
+        nix-doom-emacs.hmModule
+        {
+          home = {
+            inherit username;
+            homeDirectory = "/home/${username}";
+            stateVersion = "21.11";
+          };
+        }
+      ];
+
 
       extraSpecialArgs = {
         extraPackages = localConfig.extraPackages;
       };
-
-      configuration = {
-        imports = [ ./home.nix nix-doom-emacs.hmModule ];
-      };
-
-      stateVersion = "21.11";
     };
   };
 
