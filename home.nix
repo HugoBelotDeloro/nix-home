@@ -5,6 +5,7 @@
     sessionVariables = {
       EDITOR = "kak";
       BROWSER = "firefox";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
     };
 
     sessionPath = [ "~/.emacs.d/bin" "~/bin" ];
