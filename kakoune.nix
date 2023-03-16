@@ -17,7 +17,7 @@
         enable = true;
         highlightCursor = true;
         relative = false;
-        separator = "|";
+        separator = "│";
       };
       scrollOff = {
         columns = 10;
