@@ -94,6 +94,14 @@
     lockCmd = "${pkgs.i3lock}/bin/i3lock -c 000000";
   };
 
+  programs.fzf = {
+    enable = true;
+    changeDirWidgetCommand = "fd --type d";
+    fileWidgetCommand = "fd --type f";
+    fileWidgetOptions = [ "--preview 'head {}'" ];
+    defaultOptions = [ "--height 40%" "--min-height 10" ];
+  };
+
   # My usual packages
   home.packages = with pkgs; [
 

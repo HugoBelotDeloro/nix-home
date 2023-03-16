@@ -47,6 +47,7 @@
       gcsm = "git commit -sm";
       gst = "git stash";
       gsw = "git switch";
+      gswi = "git switch-interactive";
       gcm = "git commit -m";
       gca = "git commit --amend";
       gcan = "git commit --amend --no-edit";
