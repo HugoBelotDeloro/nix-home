@@ -103,6 +103,8 @@
     defaultOptions = [ "--height 40%" "--min-height 10" ];
   };
 
+  programs.btop.enable = true;
+
   # My usual packages
   home.packages = with pkgs; [
 
@@ -119,6 +121,7 @@
     unzip
     neofetch
     openssl
+    bottom
 
     # Looks
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
