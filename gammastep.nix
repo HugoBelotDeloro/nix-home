@@ -3,12 +3,17 @@
 {
   services.gammastep = {
     enable = true;
-    provider = "geoclue2";
     tray = true;
+
+    dawnTime = "6:00-8:00";
+    duskTime = "20:00-22:00";
+    provider = "manual";
     settings = {
       general = {
         adjustment-method = "randr";
       };
     };
+    temperature.day = 6500;
+    temperature.night = 2000;
   };
 }
