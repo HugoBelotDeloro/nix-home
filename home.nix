@@ -1,7 +1,13 @@
 { config, lib, pkgs, extraPackages, ... }:
 
-{
+let
+  username = "hugobd";
+  homeDirectory = "/home/${username}";
+in {
   home = {
+    inherit username homeDirectory;
+    stateVersion = "21.11";
+
     sessionVariables = {
       EDITOR = "kak";
       BROWSER = "firefox";

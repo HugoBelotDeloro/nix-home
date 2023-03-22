@@ -24,13 +24,6 @@
       modules = [
         ./home.nix
         nix-doom-emacs.hmModule
-        {
-          home = {
-            inherit username;
-            homeDirectory = "/home/${username}";
-            stateVersion = "21.11";
-          };
-        }
       ];
 
 
