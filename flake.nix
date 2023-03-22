@@ -10,7 +10,7 @@
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs }:
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
