@@ -170,6 +170,7 @@
           command = "${pkgs.i3-gaps}/bin/i3bar";
           statusCommand = "${pkgs.i3status}/bin/i3status";
           position = "bottom";
+          trayOutput = "primary";
 
           fonts = {
             names = [ "JetBrains Mono" ];
