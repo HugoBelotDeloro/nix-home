@@ -44,6 +44,7 @@
       gf = "git fetch";
       gfp = "git fetch --prune";
       gg = "git graph";
+      ggi = "git graph-interactive";
       gcsm = "git commit -sm";
       gst = "git stash";
       gsw = "git switch";

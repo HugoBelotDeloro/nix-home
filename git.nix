@@ -9,6 +9,7 @@
     aliases = {
       graph = "log --all --oneline --graph --decorate";
       switch-interactive = "!fish -c 'git-switch-interactive'";
+      graph-interactive = "!fish -c 'git-graph-interactive'";
     };
 
     delta.enable = true;
