@@ -127,7 +127,8 @@ in {
     unzip
     neofetch
     openssl
-    bottom
+    k9s
+    kubectl
 
     # Looks
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
