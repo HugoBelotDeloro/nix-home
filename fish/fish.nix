@@ -28,6 +28,7 @@
       clangpp = "clang++ -Wextra -Wall -Werror -std=c++17 -pedantic";
       icat = "kitty +kitten icat";
 
+      dc = "docker compose";
       dcu = "docker compose up";
       dcd = "docker compose down";
 
