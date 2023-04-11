@@ -43,7 +43,7 @@ in {
     };
 
     flake_base = {
-      source = ./resources/flake-example.nix;
+      source = ../resources/flake-example.nix;
       target = "home-resources/flake-example.nix";
     };
   };

@@ -22,7 +22,7 @@
       inherit pkgs;
 
       modules = [
-        ./home.nix
+        ./home/home.nix
         nix-doom-emacs.hmModule
       ];
 
