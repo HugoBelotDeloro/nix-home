@@ -11,9 +11,10 @@
       url = "github:nix-community/nix-doom-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware }:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -33,6 +34,15 @@
       extraSpecialArgs = {
         extraPackages = localConfig.extraPackages;
       };
+    };
+
+    nixosConfigurations."framework-nixos" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./nixos/configuration.nix
+        # ./nixos/k3s.nix
+        nixos-hardware.nixosModules.framework-12th-gen-intel
+      ];
     };
   };
 
