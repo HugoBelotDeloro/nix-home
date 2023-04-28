@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./syncthing.nix
+      ./containers
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -95,6 +96,7 @@
     wget
     firefox
     git
+    k3s
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
