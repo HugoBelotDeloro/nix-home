@@ -1,6 +1,7 @@
+{ config, lib, pkgs, ... }:
+
 {
-  username = "hugobd";
-  extraPackages = pkgs: with pkgs; [
+  home.packages = with pkgs; [
     discord
     thunderbird
     libreoffice

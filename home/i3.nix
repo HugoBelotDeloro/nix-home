@@ -31,7 +31,7 @@
       keybindings = let
         pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
         light = "${pkgs.light}/bin/light";
-      in lib.mkOptionDefault {
+      in {
         "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";

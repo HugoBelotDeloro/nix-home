@@ -19,7 +19,7 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     localConfig = import ./local-configs/framework.nix;
-    username = localConfig.username;
+    username = "hugobd";
 
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
@@ -27,6 +27,7 @@
 
       modules = [
         ./home/home.nix
+        ./local-configs/framework.nix
         nix-doom-emacs.hmModule
       ];
 

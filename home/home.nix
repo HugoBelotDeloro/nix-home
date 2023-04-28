@@ -1,4 +1,4 @@
-{ config, lib, pkgs, extraPackages, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   username = "hugobd";
@@ -160,7 +160,7 @@ in {
 
     # Software
     texlive.combined.scheme-basic
-  ] ++ (extraPackages pkgs);
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
