@@ -30,11 +30,6 @@
         ./local-configs/framework.nix
         nix-doom-emacs.hmModule
       ];
-
-
-      extraSpecialArgs = {
-        extraPackages = localConfig.extraPackages;
-      };
     };
 
     nixosConfigurations."framework-nixos" = nixpkgs.lib.nixosSystem {
