@@ -18,6 +18,10 @@ let
           "asus"
         ];
         path = "/home/${username}/Documents/Perso";
+        versioning = {
+          type = "simple";
+          params.keep = "10";
+        };
       };
 
       "Shared" = {
@@ -26,6 +30,10 @@ let
           "asus"
         ];
         path = "/home/${username}/Shared";
+        versioning = {
+          type = "simple";
+          params.keep = "10";
+        };
       };
 
     };
