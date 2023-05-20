@@ -34,7 +34,7 @@
 
     nixosConfigurations.framework-nixos = import ./nomad {
       inherit nixpkgs nixos-hardware;
-      systemModules = [];
+      nixosModules = import ./nixosModules;
       homeModules = [];
     };
   };
