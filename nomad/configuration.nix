@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, username, hostname, ... }:
 
 {
   imports =
@@ -24,7 +24,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "framework-nixos"; # Define your hostname.
+  networking.hostName = hostname;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -79,7 +79,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.hugobd = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Hugo Belot-Deloro";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];

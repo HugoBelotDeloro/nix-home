@@ -23,7 +23,7 @@
 
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+      inherit nixpkgs;
 
       modules = [
         ./home/home.nix
@@ -32,18 +32,10 @@
       ];
     };
 
-    nixosConfigurations."framework-nixos" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./nixos/configuration.nix
-        # ./nixos/k3s.nix
-        nixos-hardware.nixosModules.framework-12th-gen-intel
-      ];
-
-      specialArgs = {
-        username = "hugobd";
-        hostname = "framework-nixos";
-      };
+    nixosConfigurations.framework-nixos = import ./nomad {
+      inherit nixpkgs nixos-hardware;
+      systemModules = [];
+      homeModules = [];
     };
   };
 
