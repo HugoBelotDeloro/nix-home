@@ -13,9 +13,10 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  boot.loader.grub.enable = false;
+  # Enables the generation of /boot/extlinux/extlinux.conf
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   networking.hostName = hostname;
 
@@ -42,7 +43,7 @@
   console.keyMap = "fr";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -89,7 +90,6 @@
     wget
     firefox
     git
-    k3s
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -100,17 +100,7 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
   programs.fish.enable = true;
-
-  programs.ssh = {
-    startAgent = true;
-  };
 
   virtualisation.docker = {
     enable = true;
@@ -125,19 +115,12 @@
 
   # Enable the OpenSSH daemon.
   services.openssh = {
-    enable = false;
+    enable = true;
     banner = "Authorized access only! If you are not authorized to access or use this system, disconnect now!\n";
     passwordAuthentication = false;
   };
 
-  services.fprintd.enable = true;
-
-  services.fwupd.enable = true;
-
   services.autorandr.enable = true;
-
-  # Enable Corsair keyboard/mouse drivers
-  hardware.ckb-next.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -154,3 +137,4 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
+
