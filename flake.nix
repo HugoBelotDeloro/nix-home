@@ -37,6 +37,12 @@
       nixosModules = import ./nixosModules;
       homeModules = [];
     };
+
+    nixosConfigurations.tartelette = import ./tartelette {
+      inherit nixpkgs nixos-hardware;
+      nixosModules = import ./nixosModules;
+      homeModules = [];
+    };
   };
 
 }

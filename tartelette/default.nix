@@ -5,7 +5,6 @@ nixpkgs.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
-    nixosModules.syncthing
     nixos-hardware.nixosModules."raspberry-pi-4"
   ];
 
