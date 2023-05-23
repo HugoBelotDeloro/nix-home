@@ -38,6 +38,7 @@
 
       # Git
       gs = "git status";
+      gss = "git status --short";
       ga = "git add";
       gap = "git add -p";
       gp = "git push";
