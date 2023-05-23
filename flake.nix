@@ -23,7 +23,7 @@
 
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit nixpkgs;
+      pkgs = nixpkgs.legacyPackages.${system};
 
       modules = [
         ./home/home.nix
