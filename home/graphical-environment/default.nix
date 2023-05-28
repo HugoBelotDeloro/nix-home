@@ -3,6 +3,7 @@ let
   gtk = import ./gtk.nix;
   i3 = import ./i3.nix;
   i3status = import ./i3status.nix;
+  kitty = import ./kitty.nix;
   pointerCursor = import ./pointer-cursor.nix;
   rofi = import ./rofi.nix;
   screen-locker = import ./screen-locker.nix;
@@ -14,6 +15,7 @@ let
       gtk
       i3
       i3status
+      kitty
       pointerCursor
       rofi
       screen-locker
@@ -32,5 +34,5 @@ let
     ];
   };
 in {
-  inherit i3 i3status pointerCursor rofi gtk module screen-locker dunst;
+  inherit i3 i3status pointerCursor rofi gtk module screen-locker dunst kitty;
 }

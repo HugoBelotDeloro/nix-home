@@ -29,11 +29,6 @@ in {
   ];
 
   home.file = {
-    kitty = {
-      source = ./kitty.conf;
-      target = ".config/kitty/kitty.conf";
-    };
-
     fish_functions = {
       source = ./fish/functions;
       target = ".config/fish/functions";
