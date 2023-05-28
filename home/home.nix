@@ -18,16 +18,14 @@ in {
   };
 
   imports = [
-    ./i3.nix
-    ./i3status.nix
     ./fish/fish.nix
-    ./dunst.nix
     ./kakoune.nix
     ./services.nix
     ./gammastep.nix
     ./emacs.nix
     ./vscode.nix
     ./git.nix
+    (import ./graphical-environment).module
   ];
 
   home.file = {
@@ -48,17 +46,9 @@ in {
     };
   };
 
-  home.pointerCursor = {
-    package = pkgs.breeze-qt5;
-    name = "breeze_cursors";
-    size = 24;
-  };
-
   # See https://github.com/nix-community/home-manager/issues/2942
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
-
-  fonts.fontconfig.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -71,11 +61,6 @@ in {
     enable = true;
   };
 
-  programs.rofi = {
-    enable = true;
-    theme = "Monokai";
-  };
-
   programs.starship.enable = true;
   programs.starship.settings = {
     add_newline = false;
@@ -86,20 +71,6 @@ in {
   };
 
   programs.emacs.enable = true;
-
-  programs.autorandr.enable = true;
-
-  xsession.enable = true;
-
-  gtk.enable = true;
-  gtk.theme.package = pkgs.gnome.gnome-themes-extra;
-  gtk.theme.name = "Adwaita-dark";
-  gtk.iconTheme.name = "Tela"; # Worth trying: "Papirus-Adapta-Nokto-Maia" "Arc" "Pop"
-
-  services.screen-locker = {
-    enable = true;
-    lockCmd = "${pkgs.i3lock}/bin/i3lock -c 000000";
-  };
 
   programs.fzf = {
     enable = true;
@@ -134,8 +105,6 @@ in {
     (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
     victor-mono
     emacs-all-the-icons-fonts
-    breeze-qt5
-    tela-icon-theme
 
     # Administration
     nitrogen
@@ -152,10 +121,6 @@ in {
 
     # Graphical tools
     kitty
-    rofi
-    keepassxc
-    pcmanfm
-    firefox
     google-chrome
 
     # Software
