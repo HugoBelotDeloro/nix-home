@@ -1,6 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.file.fish_functions = {
+    source = ./functions;
+    target = ".config/fish/functions";
+    recursive = true;
+  };
+
   programs.fish = {
     enable = true;
 

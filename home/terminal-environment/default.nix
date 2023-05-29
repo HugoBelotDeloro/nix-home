@@ -1,12 +1,13 @@
 let
   bat = import ./bat.nix;
   direnv = import ./direnv.nix;
+  fish = import ./fish;
   fzf = import ./fzf.nix;
   git = import ./git.nix;
   kakoune = import ./kakoune.nix;
   starship = import ./starship.nix;
   module = { pkgs, ... }: {
-    imports = [ bat direnv fzf git kakoune starship ];
+    imports = [ bat direnv fish fzf git kakoune starship ];
 
     programs.exa.enable = true;
     programs.btop.enable = true;
@@ -15,7 +16,6 @@ let
       bc
       entr
       fd
-      fish
       jq
       neofetch
       ripgrep
@@ -25,5 +25,5 @@ let
     ];
   };
 in {
-  inherit module bat direnv fzf git kakoune starship;
+  inherit module bat direnv fish fzf git kakoune starship;
 }

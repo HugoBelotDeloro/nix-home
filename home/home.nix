@@ -16,7 +16,6 @@ in {
   };
 
   imports = [
-    ./fish/fish.nix
     ./services.nix
     ./gammastep.nix
     ./emacs.nix
@@ -25,17 +24,9 @@ in {
     (import ./terminal-environment).module
   ];
 
-  home.file = {
-    fish_functions = {
-      source = ./fish/functions;
-      target = ".config/fish/functions";
-      recursive = true;
-    };
-
-    flake_base = {
-      source = ../resources/flake-example.nix;
-      target = "home-resources/flake-example.nix";
-    };
+  home.file.flake_base = {
+    source = ../resources/flake-example.nix;
+    target = "home-resources/flake-example.nix";
   };
 
   # See https://github.com/nix-community/home-manager/issues/2942
