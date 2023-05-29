@@ -39,7 +39,6 @@ in {
   home.packages = with pkgs; [
 
     # Command-line tools
-    xsel
     openssl
     k9s
     kubectl
@@ -49,16 +48,9 @@ in {
     emacs-all-the-icons-fonts
 
     # Administration
-    nitrogen
-    networkmanagerapplet
-    pavucontrol
-    pamixer
     libnotify
-    lxappearance
-    arandr
     gammastep
     pciutils
-    gparted
     cryptsetup
 
     # Graphical tools

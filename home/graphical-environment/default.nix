@@ -28,11 +28,18 @@ let
     xsession.enable = true;
 
     services.flameshot.enable = true;
+    #services.pasystray.enable = true;
+    services.network-manager-applet.enable = true;
 
     home.packages = with pkgs; [
       keepassxc
       pcmanfm
       firefox
+      xsel
+      pavucontrol
+      gparted
+      arandr
+      lxappearance
     ];
   };
 in {

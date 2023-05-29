@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = [
+    (pkgs.nerdfonts.override { fonts = ["JetBrainsMono"]; })
+    pkgs.nitrogen
+  ];
+
   xsession.windowManager.i3 =
   let
     mod = "Mod4";
@@ -16,7 +21,6 @@
       workspaceAutoBackAndForth = true;
 
       startup = [
-        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet"; notification = false; }
         { command = "${pkgs.pasystray}/bin/pasystray --volume-max=100 --volume-inc=1 --notify=all"; notification = false; }
         { command = "${pkgs.nitrogen}/bin/nitrogen --restore"; notification = false; }
       ];
