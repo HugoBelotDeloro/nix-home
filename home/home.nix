@@ -7,18 +7,18 @@ in {
   home = {
     inherit username homeDirectory;
     stateVersion = "21.11";
-
-    sessionVariables = {
-      BROWSER = "firefox";
-    };
-
-    sessionPath = [ "~/.emacs.d/bin" "~/bin" ];
   };
 
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  # See https://github.com/nix-community/home-manager/issues/2942
+  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
+
   imports = [
-    ./services.nix
-    ./gammastep.nix
     ./emacs
+    ./gammastep.nix
     ./vscode.nix
     (import ./graphical-environment).module
     (import ./terminal-environment).module
@@ -28,10 +28,6 @@ in {
     source = ../resources/flake-example.nix;
     target = "home-resources/flake-example.nix";
   };
-
-  # See https://github.com/nix-community/home-manager/issues/2942
-  # nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
 
   # My usual packages
   home.packages = with pkgs; [
@@ -56,7 +52,4 @@ in {
     # Software
     texlive.combined.scheme-basic
   ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
