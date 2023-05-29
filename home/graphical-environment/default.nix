@@ -27,6 +27,8 @@ let
 
     xsession.enable = true;
 
+    services.flameshot.enable = true;
+
     home.packages = with pkgs; [
       keepassxc
       pcmanfm
