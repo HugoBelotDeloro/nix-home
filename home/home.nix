@@ -18,7 +18,7 @@ in {
   imports = [
     ./services.nix
     ./gammastep.nix
-    ./emacs.nix
+    ./emacs
     ./vscode.nix
     (import ./graphical-environment).module
     (import ./terminal-environment).module
@@ -33,8 +33,6 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  programs.emacs.enable = true;
-
   # My usual packages
   home.packages = with pkgs; [
 
@@ -45,7 +43,6 @@ in {
 
     # Looks
     (nerdfonts.override { fonts = ["JetBrainsMono"]; })
-    emacs-all-the-icons-fonts
 
     # Administration
     libnotify
