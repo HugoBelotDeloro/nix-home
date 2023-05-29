@@ -9,9 +9,7 @@ in {
     stateVersion = "21.11";
 
     sessionVariables = {
-      EDITOR = "kak";
       BROWSER = "firefox";
-      MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
     };
 
     sessionPath = [ "~/.emacs.d/bin" "~/bin" ];
@@ -19,13 +17,12 @@ in {
 
   imports = [
     ./fish/fish.nix
-    ./kakoune.nix
     ./services.nix
     ./gammastep.nix
     ./emacs.nix
     ./vscode.nix
-    ./git.nix
     (import ./graphical-environment).module
+    (import ./terminal-environment).module
   ];
 
   home.file = {
@@ -45,53 +42,13 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.exa.enable = true;
-
-  programs.bat = {
-    enable = true;
-  };
-
-  programs.starship.enable = true;
-  programs.starship.settings = {
-    add_newline = false;
-
-    status = {
-      disabled = false;
-    };
-  };
-
   programs.emacs.enable = true;
-
-  programs.fzf = {
-    enable = true;
-    changeDirWidgetCommand = "fd --type d";
-    fileWidgetCommand = "fd --type f";
-    fileWidgetOptions = [ "--preview 'bat -n --color=always --paging=never -r :\\$FZF_PREVIEW_LINES {}'" ];
-    defaultOptions = [ "--height 40%" "--min-height 10" ];
-  };
-
-  programs.btop.enable = true;
 
   # My usual packages
   home.packages = with pkgs; [
 
     # Command-line tools
-    fish
     xsel
-    ripgrep
-    fd
-    sd
-    jq
-    bc
-    entr
-    zip
-    unzip
-    neofetch
     openssl
     k9s
     kubectl

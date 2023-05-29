@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.sessionVariables.EDITOR = "kak";
+
   programs.kakoune = {
     enable = true;
 
