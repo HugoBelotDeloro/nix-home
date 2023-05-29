@@ -97,8 +97,7 @@ in {
     kubectl
 
     # Looks
-    (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono"]; })
-    victor-mono
+    (nerdfonts.override { fonts = ["JetBrainsMono"]; })
     emacs-all-the-icons-fonts
 
     # Administration
@@ -115,7 +114,6 @@ in {
     cryptsetup
 
     # Graphical tools
-    kitty
     google-chrome
 
     # Software
