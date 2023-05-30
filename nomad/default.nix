@@ -1,17 +1,31 @@
-{ nixpkgs, nixos-hardware, nixosModules, homeModules }:
+{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules }:
 
-nixpkgs.lib.nixosSystem {
+let
   system = "x86_64-linux";
-  modules = [
-    ./configuration.nix
-    ./hardware-configuration.nix
-    ./containers
-    nixosModules.syncthing
-    nixos-hardware.nixosModules.framework-12th-gen-intel
-  ];
+in
+{
+  nixosConfiguration = nixpkgs.lib.nixosSystem {
+    inherit system;
 
-  specialArgs = {
-    username = "hugobd";
-    hostname = "framework-nixos";
+    modules = [
+      ./system
+      nixosModules.syncthing
+      nixos-hardware.nixosModules.framework-12th-gen-intel
+    ];
+
+    specialArgs = {
+      username = "hugobd";
+      hostname = "framework-nixos";
+    };
+  };
+
+  homeConfiguration = home-manager.lib.homeManagerConfiguration {
+    pkgs = nixpkgs.legacyPackages.${system};
+
+    modules = [
+      ../home/home.nix
+      ../local-configs/framework.nix
+      homeModules.nix-doom-emacs
+    ];
   };
 }

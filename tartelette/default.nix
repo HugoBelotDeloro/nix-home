@@ -1,15 +1,21 @@
-{ nixpkgs, nixos-hardware, nixosModules, homeModules }:
+{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules }:
 
-nixpkgs.lib.nixosSystem {
-  system = "aarch64-linux";
-  modules = [
-    ./configuration.nix
-    ./hardware-configuration.nix
-    nixos-hardware.nixosModules."raspberry-pi-4"
-  ];
+let
+  system = "aarch64-linux"
+in
+{
+  nixosConfiguration = nixpkgs.lib.nixosSystem {
+    inherit system;
 
-  specialArgs = {
-    username = "hugobd";
-    hostname = "tartelette";
+    modules = [
+      ./configuration.nix
+      ./hardware-configuration.nix
+      nixos-hardware.nixosModules."raspberry-pi-4"
+    ];
+
+    specialArgs = {
+      username = "hugobd";
+      hostname = "tartelette";
+    };
   };
 }

@@ -16,33 +16,22 @@
 
   outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware }:
   let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    localConfig = import ./local-configs/framework.nix;
-    username = "hugobd";
+
+    config = {
+      inherit nixpkgs nixos-hardware home-manager;
+      nixosModules = import ./nixosModules;
+      homeModules = {
+        nix-doom-emacs = nix-doom-emacs.hmModule;
+      };
+    };
+
+    nomad = (import ./nomad) config;
+    tartelette = (import ./tartelette) config;
 
   in {
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
+    nixosConfigurations.nomad = nomad.nixosConfiguration;
+    nixosConfigurations.tartelette = tartelette.nixosConfiguration;
 
-      modules = [
-        ./home/home.nix
-        ./local-configs/framework.nix
-        nix-doom-emacs.hmModule
-      ];
-    };
-
-    nixosConfigurations.framework-nixos = import ./nomad {
-      inherit nixpkgs nixos-hardware;
-      nixosModules = import ./nixosModules;
-      homeModules = [];
-    };
-
-    nixosConfigurations.tartelette = import ./tartelette {
-      inherit nixpkgs nixos-hardware;
-      nixosModules = import ./nixosModules;
-      homeModules = [];
-    };
+    homeConfigurations.nomad = nomad.homeConfiguration;
   };
-
 }
