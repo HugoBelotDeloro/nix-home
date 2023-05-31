@@ -35,6 +35,7 @@
       keybindings = let
         pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
         light = "${pkgs.light}/bin/light";
+        flameshot = "${pkgs.flameshot}/bin/flameshot";
       in {
         "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${mod}+Shift+q" = "kill";
@@ -54,6 +55,10 @@
 
         "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5";
         "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5";
+
+        "Print" = "exec --no-startup-id ${flameshot} full --clipboard";
+        "${mod}+Shift+Print" = "exec --no-startup-id ${flameshot} gui";
+        "${mod}+Ctrl+Print" = "exec --no-startup-id ${flameshot} launcher";
 
         "${mod}+Ctrl+Right" = "workspace next";
         "${mod}+Ctrl+Left" = "workspace prev";
@@ -86,7 +91,7 @@
        "${mod}+6" = "workspace 6";
        "${mod}+7" = "workspace 7";
        "${mod}+8" = "workspace 8";
-      
+
        "${mod}+Ctrl+1" = "move container to workspace 1";
        "${mod}+Ctrl+2" = "move container to workspace 2";
        "${mod}+Ctrl+3" = "move container to workspace 3";
@@ -95,7 +100,7 @@
        "${mod}+Ctrl+6" = "move container to workspace 6";
        "${mod}+Ctrl+7" = "move container to workspace 7";
        "${mod}+Ctrl+8" = "move container to workspace 8";
-      
+
        "${mod}+Shift+1" = "move container to workspace 1; workspace 1";
        "${mod}+Shift+2" = "move container to workspace 2; workspace 2";
        "${mod}+Shift+3" = "move container to workspace 3; workspace 3";
