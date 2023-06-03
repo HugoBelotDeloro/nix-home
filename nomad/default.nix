@@ -23,7 +23,7 @@ in
     pkgs = nixpkgs.legacyPackages.${system};
 
     modules = [
-      ../home/home.nix
+      ./home.nix
       ../local-configs/framework.nix
       homeModules.nix-doom-emacs
     ];
