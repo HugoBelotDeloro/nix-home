@@ -28,4 +28,8 @@ in
       homeModules.nix-doom-emacs
     ];
   };
+
+  specialArgs = {
+    inherit homeModules;
+  };
 }

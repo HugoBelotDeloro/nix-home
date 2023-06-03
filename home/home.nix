@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, homeModules, ... }:
 
 let
   username = "hugobd";
@@ -16,12 +16,12 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  imports = [
-    ./emacs
-    ./gammastep.nix
-    ./vscode.nix
-    (import ./graphical-environment).module
-    (import ./terminal-environment).module
+  imports = with homeModules; [
+    emacs
+    gammastep
+    vscode
+    graphicalEnvironment
+    terminalEnvironment
   ];
 
   home.file.flake_base = {

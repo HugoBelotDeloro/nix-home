@@ -22,7 +22,7 @@
       nixosModules = import ./nixosModules;
       homeModules = {
         nix-doom-emacs = nix-doom-emacs.hmModule;
-      };
+      } // import ./home;
     };
 
     nomad = (import ./nomad) config;
