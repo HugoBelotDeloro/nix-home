@@ -52,16 +52,18 @@
       gf = "git fetch";
       gfp = "git fetch --prune";
       gg = "git graph";
-      ggi = "git graph-interactive";
+      ggi = "git-graph-interactive";
       gcsm = "git commit -sm";
       gst = "git stash";
       gsw = "git switch";
-      gswi = "git switch-interactive";
+      gswi = "git-switch-interactive";
       gcm = "git commit -m";
       gca = "git commit --amend";
       gcan = "git commit --amend --no-edit";
       gd = "git diff";
       gdc = "git diff --cached";
+      gfh = "git-file-history";
+      gr = "cd (git rev-parse --show-toplevel)";
       g = "git";
 
       # Kubectl
