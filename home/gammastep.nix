@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = [ pkgs.gammastep ];
+
   services.gammastep = {
     enable = true;
     tray = true;

@@ -42,7 +42,6 @@ in {
 
     # Administration
     libnotify
-    gammastep
     pciutils
     cryptsetup
 
