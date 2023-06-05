@@ -20,9 +20,9 @@
     config = {
       inherit nixpkgs nixos-hardware home-manager;
       nixosModules = import ./nixosModules;
-      homeModules = {
+      homeModules = (import ./home) // {
         nix-doom-emacs = nix-doom-emacs.hmModule;
-      } // import ./home;
+      };
     };
 
     nomad = (import ./nomad) config;

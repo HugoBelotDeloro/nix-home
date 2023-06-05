@@ -17,11 +17,11 @@ in {
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   imports = with homeModules; [
-    emacs
-    gammastep
-    vscode
-    graphicalEnvironment
-    terminalEnvironment
+    ../home/emacs
+    ../home/gammastep.nix
+    (import ../home/graphical-environment).module
+    (import ../home/terminal-environment).module
+    ../home/vscode.nix
   ];
 
   home.file.flake_base = {
