@@ -132,7 +132,7 @@
   services.openssh = {
     enable = false;
     banner = "Authorized access only! If you are not authorized to access or use this system, disconnect now!\n";
-    passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
 
   services.fprintd.enable = true;
