@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (pkgs.nerdfonts.override { fonts = ["JetBrainsMono"]; })
+    pkgs.jetbrains-mono
     pkgs.nitrogen
   ];
 

@@ -43,6 +43,7 @@ let
       gparted
       arandr
       lxappearance
+      fontpreview
     ];
   };
 in {

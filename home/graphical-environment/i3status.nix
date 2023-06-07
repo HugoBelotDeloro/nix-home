@@ -59,7 +59,7 @@
       memory = {
         position = 6;
         settings = {
-          format = " %used | %available";
+          format = " %used | %total";
           threshold_degraded = "1G";
           format_degraded = "MEMORY < %available";
         };

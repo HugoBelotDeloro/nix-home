@@ -37,9 +37,6 @@ in {
     k9s
     kubectl
 
-    # Looks
-    (nerdfonts.override { fonts = ["JetBrainsMono"]; })
-
     # Administration
     libnotify
     pciutils
