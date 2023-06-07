@@ -31,6 +31,7 @@ let
     #services.pasystray.enable = true; one day i need to make a pr
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
+    services.syncthing.tray.enable = true;
 
     home.sessionVariables.BROWSER = "firefox";
 
