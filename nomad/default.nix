@@ -27,9 +27,9 @@ in
       ../local-configs/framework.nix
       homeModules.nix-doom-emacs
     ];
-  };
 
-  specialArgs = {
-    inherit homeModules;
+    extraSpecialArgs = {
+      inherit homeModules;
+    };
   };
 }
