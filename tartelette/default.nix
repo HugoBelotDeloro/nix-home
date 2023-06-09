@@ -8,8 +8,7 @@ in
     inherit system;
 
     modules = [
-      ./configuration.nix
-      ./hardware-configuration.nix
+      ./system
       nixos-hardware.nixosModules."raspberry-pi-4"
     ];
 

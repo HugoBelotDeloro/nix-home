@@ -5,6 +5,10 @@
 { config, pkgs, username, hostname, ... }:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
     automatic = true;
