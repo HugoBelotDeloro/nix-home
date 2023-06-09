@@ -43,12 +43,12 @@
       "battery all" = {
         position = 5;
         settings = {
-          format = " %status  %percentage ";
+          format = " %status %percentage ";
           format_down = "No battery";
           last_full_capacity = true;
           integer_battery_capacity = true;
           status_chr = "⚡";
-          status_bat = "";
+          status_bat = " ";
           status_unk = "";
           status_full = "☻";
           low_threshold = 15;
@@ -59,9 +59,9 @@
       memory = {
         position = 6;
         settings = {
-          format = " %used | %total";
+          format = " %used | %total ";
           threshold_degraded = "1G";
-          format_degraded = "MEMORY < %available";
+          format_degraded = " MEMORY < %available ";
         };
       };
 
