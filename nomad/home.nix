@@ -43,9 +43,24 @@ in {
     cryptsetup
 
     # Graphical tools
+    thunderbird
+    libreoffice
+    gimp
+    calibre
     google-chrome
+    discord
+    jetbrains.idea-ultimate
+    jetbrains.webstorm
 
     # Software
     texlive.combined.scheme-basic
+
+    # Stockly
+    _1password-gui
+    slack
+    rustup
+    jetbrains.datagrip
+    bloomrpc
+    postgresql_15
   ];
 }

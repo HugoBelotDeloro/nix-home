@@ -24,7 +24,6 @@ in
 
     modules = [
       ./home.nix
-      ../local-configs/framework.nix
       homeModules.nix-doom-emacs
     ];
 
