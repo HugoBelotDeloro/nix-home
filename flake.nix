@@ -19,6 +19,8 @@
 
     config = {
       inherit nixpkgs nixos-hardware home-manager;
+
+      username = "hugobd";
       nixosModules = import ./nixosModules;
       homeModules = (import ./homeModules) // {
         nix-doom-emacs = nix-doom-emacs.hmModule;

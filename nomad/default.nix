@@ -1,9 +1,15 @@
-{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules }:
+{
+  nixpkgs,
+  nixos-hardware,
+  home-manager,
+  nixosModules,
+  homeModules,
+  username
+}:
 
 let
   system = "x86_64-linux";
   hostname = "framework-nixos";
-  username = "hugobd";
 in
 {
   nixosConfiguration = nixpkgs.lib.nixosSystem {
