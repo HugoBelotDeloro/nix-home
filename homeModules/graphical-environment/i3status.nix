@@ -43,7 +43,7 @@
       "battery all" = {
         position = 5;
         settings = {
-          format = " %status %percentage";
+          format = " %status  %percentage ";
           format_down = "No battery";
           last_full_capacity = true;
           integer_battery_capacity = true;
