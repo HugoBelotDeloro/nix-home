@@ -2,6 +2,8 @@
 
 let
   system = "x86_64-linux";
+  hostname = "framework-nixos";
+  username = "hugobd";
 in
 {
   nixosConfiguration = nixpkgs.lib.nixosSystem {
@@ -14,8 +16,7 @@ in
     ];
 
     specialArgs = {
-      username = "hugobd";
-      hostname = "framework-nixos";
+      inherit username hostname;
     };
   };
 
@@ -28,7 +29,7 @@ in
     ];
 
     extraSpecialArgs = {
-      inherit homeModules;
+      inherit homeModules username;
     };
   };
 }

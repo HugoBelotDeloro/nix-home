@@ -2,6 +2,8 @@
 
 let
   system = "aarch64-linux"
+  hostname = "tartelette";
+  username = "hugobd";
 in
 {
   nixosConfiguration = nixpkgs.lib.nixosSystem {
@@ -13,8 +15,7 @@ in
     ];
 
     specialArgs = {
-      username = "hugobd";
-      hostname = "tartelette";
+      inherit username hostname;
     };
   };
 }
