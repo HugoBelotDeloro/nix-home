@@ -24,4 +24,17 @@ in
       inherit username hostname;
     };
   };
+
+  homeConfiguration = home-manager.lib.homeManagerConfiguration {
+    pkgs = nixpkgs.legacyPackages.${system};
+
+    modules = [
+      ./home.nix
+      homeModules.nix-doom-emacs
+    ];
+
+    extraSpecialArgs = {
+      inherit homeModules username;
+    };
+  };
 }
