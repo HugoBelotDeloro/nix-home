@@ -24,8 +24,3 @@ At time of writing, Home Manager is used in standalone mode, even on NixOS syste
 The reason for this is that I want to keep home and system environments strictly separate in order to be able to install my home setup on non-NixOS machines.
 I might however in the future switch to using Home Manager as a NixOS module for the ease of upgrade and rollback capabilities.
 I will however keep both independant enough that I can use one without the other with no modifications.
-
-# Manual setup needed on installation
-- Setup Syncthing-tray
-- Setup auth on [Syncthing GUI](localhost:8384)
-- Disable Syncthing Global Discovery and Enable Relaying under Settings > Connections
