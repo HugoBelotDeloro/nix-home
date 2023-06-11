@@ -14,10 +14,25 @@ let
         devices = {
           framework-nixos = {
             path = "/home/${username}/Documents/Perso";
+            watchDelay = 60;
             versioning = {
               type = "simple";
-              params.keep = "10";
+              params.keep = "5";
             };
+            rescanInterval = 3600;
+          };
+          tartelette = {
+            path = "/var/lib/syncthing/Perso";
+            watchDelay = 3600;
+            versioning = {
+              type = "staggered";
+              params = {
+                cleanInterval = "3600";
+                maxAge = "0";
+              };
+            };
+            rescanInterval = 3600;
+            type = "receiveonly";
           };
           asus = {};
         };
@@ -27,10 +42,25 @@ let
         devices = {
           framework-nixos = {
             path = "/home/${username}/Shared";
+            watchDelay = 3600;
             versioning = {
               type = "simple";
-              params.keep = "10";
+              params.keep = "5";
             };
+            rescanInterval = 3600;
+          };
+          tartelette = {
+            path = "/var/lib/syncthing/Shared";
+            watchDelay = 3600;
+            versioning = {
+              type = "staggered";
+              params = {
+                cleanInterval = "3600";
+                maxAge = "0";
+              };
+            };
+            rescanInterval = 3600;
+            type = "receiveonly";
           };
           asus = {};
         };
