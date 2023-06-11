@@ -1,18 +1,25 @@
 { config, pkgs, lib, hostname, username, ... }:
 
 let
-  devices = {
-    framework-nixos.id = "XIQYERO-26LTWQK-WPBCUPF-AZCHTK3-3PYTFCI-BRTEOXG-6UV3GM6-AF23PA6";
-    tartelette.id = "P3XFVIV-JEJHOZ3-SLL767M-CXJT6RX-6WF6YSY-5ILHHZX-SFCOYP5-R2M3RAA";
-    asus.id = "ZCKMKCR-OLUKBI6-AHSYE4X-JBXGWPX-6B76U4Y-CLEUU3Q-OITQYHB-EF252AT";
-  };
+  devices = builtins.mapAttrs (deviceName: deviceConfig: { inherit (deviceConfig) id; }) cfg;
 
-  folders = builtins.mapAttrs (folderName: folderConfig:
-    folderConfig.devices.${hostname} // { devices = (builtins.attrNames folderConfig.devices); })
-    {
-      "Perso" = {
-        devices = {
-          framework-nixos = {
+  folders = builtins.mapAttrs (folderName: folderConfig: folderConfig // { devices = folderDevices folderName; }) cfg.${hostname}.folders;
+
+  # Get the list of all devices declaring folder `folderName`
+  folderDevices = folderName:
+    builtins.filter (value: value != null)
+      (lib.mapAttrsToList (deviceName: hasFolder: if hasFolder then deviceName else null)
+        (builtins.mapAttrs
+          (deviceName: deviceConfig: (builtins.hasAttr folderName deviceConfig.folders))
+          cfg
+        )
+      );
+
+  cfg = {
+      "framework-nixos" = {
+        id = "XIQYERO-26LTWQK-WPBCUPF-AZCHTK3-3PYTFCI-BRTEOXG-6UV3GM6-AF23PA6";
+        folders = {
+          "Perso" = {
             path = "/home/${username}/Documents/Perso";
             watchDelay = 60;
             versioning = {
@@ -21,7 +28,22 @@ let
             };
             rescanInterval = 3600;
           };
-          tartelette = {
+          "Shared" = {
+            path = "/home/${username}/Shared";
+            watchDelay = 3600;
+            versioning = {
+              type = "simple";
+              params.keep = "5";
+            };
+            rescanInterval = 3600;
+          };
+        };
+      };
+
+      "tartelette" = {
+        id = "P3XFVIV-JEJHOZ3-SLL767M-CXJT6RX-6WF6YSY-5ILHHZX-SFCOYP5-R2M3RAA";
+        folders = {
+          "Perso" = {
             path = "/var/lib/syncthing/Perso";
             watchDelay = 3600;
             versioning = {
@@ -34,22 +56,7 @@ let
             rescanInterval = 3600;
             type = "receiveonly";
           };
-          asus = {};
-        };
-      };
-
-      "Shared" = {
-        devices = {
-          framework-nixos = {
-            path = "/home/${username}/Shared";
-            watchDelay = 3600;
-            versioning = {
-              type = "simple";
-              params.keep = "5";
-            };
-            rescanInterval = 3600;
-          };
-          tartelette = {
+          "Shared" = {
             path = "/var/lib/syncthing/Shared";
             watchDelay = 3600;
             versioning = {
@@ -62,7 +69,14 @@ let
             rescanInterval = 3600;
             type = "receiveonly";
           };
-          asus = {};
+        };
+      };
+
+      "asus" = {
+        id = "ZCKMKCR-OLUKBI6-AHSYE4X-JBXGWPX-6B76U4Y-CLEUU3Q-OITQYHB-EF252AT";
+        folders = {
+          "Perso" = {};
+          "Shared" = {};
         };
       };
 
