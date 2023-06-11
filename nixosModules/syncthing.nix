@@ -7,33 +7,32 @@ let
     asus.id = "ZCKMKCR-OLUKBI6-AHSYE4X-JBXGWPX-6B76U4Y-CLEUU3Q-OITQYHB-EF252AT";
   };
 
-  folders = hostname: builtins.mapAttrs
-    (n: v: {
-      # Only enable if current host uses device
-      enable = builtins.elem hostname v.devices;
-    } // v) {
-
+  folders = builtins.mapAttrs (folderName: folderConfig:
+    folderConfig.devices.${hostname} // { devices = (builtins.attrNames folderConfig.devices); })
+    {
       "Perso" = {
-        devices = [
-          "framework-nixos"
-          "asus"
-        ];
-        path = "/home/${username}/Documents/Perso";
-        versioning = {
-          type = "simple";
-          params.keep = "10";
+        devices = {
+          framework-nixos = {
+            path = "/home/${username}/Documents/Perso";
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+          };
+          asus = {};
         };
       };
 
       "Shared" = {
-        devices = [
-          "framework-nixos"
-          "asus"
-        ];
-        path = "/home/${username}/Shared";
-        versioning = {
-          type = "simple";
-          params.keep = "10";
+        devices = {
+          framework-nixos = {
+            path = "/home/${username}/Shared";
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+          };
+          asus = {};
         };
       };
 
@@ -49,8 +48,7 @@ in
     group = "users";
     guiAddress = "localhost:8384";
 
-    folders = folders hostname;
-    inherit devices;
+    inherit devices folders;
 
     overrideDevices = true;
     overrideFolders = true;
