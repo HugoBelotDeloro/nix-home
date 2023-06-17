@@ -1,0 +1,3 @@
+{
+  syncthingDevices = import ./syncthing.nix;
+}

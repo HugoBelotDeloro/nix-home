@@ -19,6 +19,10 @@ Machine-specific configuration is stored in that directory.
 - Nomad (Framework laptop): NixOS + Home Manager
 - Tartelette (Raspberry Pi 400 used as a server): NixOS + Home Manager
 
+## Data
+The `data/` directory contains generic data for use in either NixOS or Home Manager.
+Similarly to the module directories, its contents are exported through `data/default.nix` and read by `flake.nix`, which in turn passes it to the configurations.
+
 # Home Manager usage
 At time of writing, Home Manager is used in standalone mode, even on NixOS systems.
 The reason for this is that I want to keep home and system environments strictly separate in order to be able to install my home setup on non-NixOS machines.

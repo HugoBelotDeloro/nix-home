@@ -8,6 +8,7 @@
   imports = [
     ./containers
     ./hardware-configuration.nix
+    ./syncthing.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

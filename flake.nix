@@ -25,6 +25,7 @@
       homeModules = (import ./homeModules) // {
         nix-doom-emacs = nix-doom-emacs.hmModule;
       };
+      data = import ./data;
     };
 
     nomad = (import ./nomad) config;

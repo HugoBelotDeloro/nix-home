@@ -4,7 +4,8 @@
   home-manager,
   nixosModules,
   homeModules,
-  username
+  username,
+  data
 }:
 
 let
@@ -21,7 +22,7 @@ in
     ];
 
     specialArgs = {
-      inherit username hostname;
+      inherit username hostname data;
     };
   };
 
