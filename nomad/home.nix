@@ -59,7 +59,6 @@ in {
     # Stockly
     _1password-gui
     slack
-    rustup
     jetbrains.datagrip
     bloomrpc
     postgresql_15
