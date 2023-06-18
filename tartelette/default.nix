@@ -9,7 +9,7 @@
 }:
 
 let
-  system = "aarch64-linux"
+  system = "aarch64-linux";
   hostname = "tartelette";
 in
 {
