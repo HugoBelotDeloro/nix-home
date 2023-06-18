@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, hostname, ... }:
+{ config, pkgs, username, hostname, data, ... }:
 
 {
   imports = [
@@ -82,6 +82,7 @@
     description = "Hugo Belot-Deloro";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = builtins.attrValues data.sshKeys;
   };
 
   # Allow unfree packages
