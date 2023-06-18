@@ -36,7 +36,7 @@ in
     ];
 
     extraSpecialArgs = {
-      inherit homeModules username;
+      inherit homeModules username nixpkgs;
     };
   };
 }
