@@ -207,4 +207,5 @@ in
       };
     };
   });
+  config.networking.firewall.allowedTCPPorts = lib.mkIf (cfg.enable && cfg.remoteAccess) [ 8384 ];
 }
