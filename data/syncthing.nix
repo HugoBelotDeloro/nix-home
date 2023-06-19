@@ -37,8 +37,8 @@ username: {
           type = "receiveonly";
       };
     in builtins.mapAttrs (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
-      "Perso".path = "/var/lib/syncthing/Perso";
-      "Shared".path = "/var/lib/syncthing/Shared";
+      "Perso".path = "/home/hugobd/syncthing/Perso";
+      "Shared".path = "/home/hugobd/syncthing/Shared";
     };
   };
 
