@@ -18,6 +18,7 @@ in
 
     modules = [
       ./system
+      nixosModules.syncthing
       nixos-hardware.nixosModules."raspberry-pi-4"
     ];
 
