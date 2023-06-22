@@ -36,5 +36,6 @@
     nixosConfigurations.tartelette = tartelette.nixosConfiguration;
 
     homeConfigurations.nomad = nomad.homeConfiguration;
+    homeConfigurations.tartelette = tartelette.homeConfiguration;
   };
 }
