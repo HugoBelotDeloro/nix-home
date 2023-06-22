@@ -16,7 +16,6 @@ in {
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   imports = with homeModules; [
-    graphicalEnvironment
     terminalEnvironment
   ];
 
