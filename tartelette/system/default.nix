@@ -35,10 +35,10 @@
   i18n.defaultLocale = "fr_FR.utf8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
   services.xserver.windowManager.i3.enable = true;
 
   # Configure keymap in X11
@@ -51,11 +51,11 @@
   services.printing.enable = false;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  sound.enable = false;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  security.rtkit.enable = false;
   services.pipewire = {
-    enable = true;
+    enable = false;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
@@ -68,11 +68,11 @@
   };
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = false;
   hardware.bluetooth.powerOnBoot = false;
-  services.blueman.enable = true;
+  services.blueman.enable = false;
 
-  programs.light.enable = true;
+  programs.light.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -94,7 +94,6 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    firefox
     git
   ];
 
@@ -126,7 +125,7 @@
     settings.PasswordAuthentication = false;
   };
 
-  services.autorandr.enable = true;
+  services.autorandr.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
