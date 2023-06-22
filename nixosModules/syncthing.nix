@@ -196,7 +196,7 @@ in
       gui = {
         value = {
           user = lib.mkIf cfg.remoteAccess "hugobd";
-          password = lib.mkIf cfg.remoteAccess "$2a$10$ZKhH1.a..GHsSeP51T3a.eC9zrgF0NnfgqgyXwiqs8yq.N05BLjbS";
+          password = lib.mkIf cfg.remoteAccess "$2a$10$DRbUG8mK2jS4jIhX8hprGOwpFOI30fVwR1IxaI06y//UVMk1zBgju";
         };
         tls = true;
       };
