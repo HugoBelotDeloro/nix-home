@@ -5,11 +5,7 @@
 { config, pkgs, username, hostname, data, ... }:
 
 {
-  imports = [
-    ./containers
-    ./hardware-configuration.nix
-    ./syncthing.nix
-  ];
+  imports = [ ./containers ./hardware-configuration.nix ./syncthing.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
@@ -109,15 +105,15 @@
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
   };
 
   programs.fish.enable = true;
 
-  programs.ssh = {
-    startAgent = true;
-  };
+  programs.ssh = { startAgent = true; };
 
   virtualisation.docker = {
     enable = true;
@@ -133,7 +129,9 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = false;
-    banner = "Authorized access only! If you are not authorized to access or use this system, disconnect now!\n";
+    banner = ''
+      Authorized access only! If you are not authorized to access or use this system, disconnect now!
+    '';
     settings.PasswordAuthentication = false;
   };
 

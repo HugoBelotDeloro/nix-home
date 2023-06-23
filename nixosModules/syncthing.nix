@@ -7,7 +7,9 @@ let
     options = {
       path = lib.mkOption {
         type = lib.types.str // {
-          check = x: lib.types.str.check x && (lib.substring 0 1 x == "/" || lib.substring 0 2 x == "~/");
+          check = x:
+            lib.types.str.check x
+            && (lib.substring 0 1 x == "/" || lib.substring 0 2 x == "~/");
           description = lib.types.str.description + " starting with / or ~/";
         };
         default = name;
@@ -62,33 +64,34 @@ let
             }
           ]
         '';
-        type = with lib.types; nullOr (submodule {
-          options = {
-            type = lib.mkOption {
-              type = enum [ "external" "simple" "staggered" "trashcan" ];
-              description = lib.mdDoc ''
-                The type of versioning.
-                See <https://docs.syncthing.net/users/versioning.html>.
-              '';
+        type = with lib.types;
+          nullOr (submodule {
+            options = {
+              type = lib.mkOption {
+                type = enum [ "external" "simple" "staggered" "trashcan" ];
+                description = lib.mdDoc ''
+                  The type of versioning.
+                  See <https://docs.syncthing.net/users/versioning.html>.
+                '';
+              };
+              fsPath = lib.mkOption {
+                default = "";
+                type = either str path;
+                description = lib.mdDoc ''
+                  Path to the versioning folder.
+                  See <https://docs.syncthing.net/users/versioning.html>.
+                '';
+              };
+              params = lib.mkOption {
+                type = attrsOf (either str path);
+                description = lib.mdDoc ''
+                  The parameters for versioning. Structure depends on
+                  [versioning.type](#opt-services.syncthing.folders._name_.versioning.type).
+                  See <https://docs.syncthing.net/users/versioning.html>.
+                '';
+              };
             };
-            fsPath = lib.mkOption {
-              default = "";
-              type = either str path;
-              description = lib.mdDoc ''
-                Path to the versioning folder.
-                See <https://docs.syncthing.net/users/versioning.html>.
-              '';
-            };
-            params = lib.mkOption {
-              type = attrsOf (either str path);
-              description = lib.mdDoc ''
-                The parameters for versioning. Structure depends on
-                [versioning.type](#opt-services.syncthing.folders._name_.versioning.type).
-                See <https://docs.syncthing.net/users/versioning.html>.
-              '';
-            };
-          };
-        });
+          });
       };
 
       rescanInterval = lib.mkOption {
@@ -100,7 +103,12 @@ let
       };
 
       type = lib.mkOption {
-        type = lib.types.enum [ "sendreceive" "sendonly" "receiveonly" "receiveencrypted" ];
+        type = lib.types.enum [
+          "sendreceive"
+          "sendonly"
+          "receiveonly"
+          "receiveencrypted"
+        ];
         default = "sendreceive";
         description = lib.mdDoc ''
           Whether to only send changes for this folder, only receive them
@@ -119,16 +127,15 @@ let
     };
   }));
 
-in
-{
+in {
   options.iridescent.services.syncthing = {
 
     enable = lib.mkEnableOption "syncthing custom module";
 
     devices = lib.mkOption {
-      default = {};
+      default = { };
       description = ''
-      The configuration of the devices and folders for each machine.
+        The configuration of the devices and folders for each machine.
       '';
       type = lib.types.attrsOf (lib.types.submodule ({ deviceName, ... }: {
         options = {
@@ -145,8 +152,9 @@ in
 
           folders = lib.mkOption {
             type = folderConfigType;
-            default = {};
-            description = "The configuration of each folder that should be shared with that machine";
+            default = { };
+            description =
+              "The configuration of each folder that should be shared with that machine";
           };
         };
       }));
@@ -165,13 +173,10 @@ in
 
     # Get the list of all devices declaring folder `folderName`
     folderDevices = folderName:
-      builtins.filter (value: value != null)
-        (lib.mapAttrsToList (deviceName: hasFolder: if hasFolder then deviceName else null)
-          (builtins.mapAttrs
-            (deviceName: deviceConfig: (builtins.hasAttr folderName deviceConfig.folders))
-            cfg.devices
-          )
-        );
+      builtins.filter (value: value != null) (lib.mapAttrsToList
+        (deviceName: hasFolder: if hasFolder then deviceName else null)
+        (builtins.mapAttrs (deviceName: deviceConfig:
+          (builtins.hasAttr folderName deviceConfig.folders)) cfg.devices));
 
   in {
     enable = true;
@@ -184,10 +189,12 @@ in
 
     guiAddress = if cfg.remoteAccess then "0.0.0.0:8384" else "localhost:8384";
 
-    devices = builtins.mapAttrs (deviceName: deviceConfig: { inherit (deviceConfig) id; }) cfg.devices;
-    folders = builtins.mapAttrs
-      (folderName: folderConfig: folderConfig // { devices = folderDevices folderName; } )
-      cfg.devices.${hostname}.folders;
+    devices = builtins.mapAttrs
+      (deviceName: deviceConfig: { inherit (deviceConfig) id; }) cfg.devices;
+    folders = builtins.mapAttrs (folderName: folderConfig:
+      folderConfig // {
+        devices = folderDevices folderName;
+      }) cfg.devices.${hostname}.folders;
 
     overrideDevices = true;
     overrideFolders = true;
@@ -196,7 +203,8 @@ in
       gui = {
         value = {
           user = lib.mkIf cfg.remoteAccess "hugobd";
-          password = lib.mkIf cfg.remoteAccess "$2a$10$DRbUG8mK2jS4jIhX8hprGOwpFOI30fVwR1IxaI06y//UVMk1zBgju";
+          password = lib.mkIf cfg.remoteAccess
+            "$2a$10$DRbUG8mK2jS4jIhX8hprGOwpFOI30fVwR1IxaI06y//UVMk1zBgju";
         };
         tls = true;
       };
@@ -207,5 +215,6 @@ in
       };
     };
   });
-  config.networking.firewall.allowedTCPPorts = lib.mkIf (cfg.enable && cfg.remoteAccess) [ 8384 ];
+  config.networking.firewall.allowedTCPPorts =
+    lib.mkIf (cfg.enable && cfg.remoteAccess) [ 8384 ];
 }

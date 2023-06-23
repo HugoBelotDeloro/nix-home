@@ -1,18 +1,10 @@
-{
-  nixpkgs,
-  nixos-hardware,
-  home-manager,
-  nixosModules,
-  homeModules,
-  username,
-  data
-}:
+{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules, username
+, data }:
 
 let
   system = "aarch64-linux";
   hostname = "tartelette";
-in
-{
+in {
   nixosConfiguration = nixpkgs.lib.nixosSystem {
     inherit system;
 
@@ -22,21 +14,14 @@ in
       nixos-hardware.nixosModules."raspberry-pi-4"
     ];
 
-    specialArgs = {
-      inherit username hostname data;
-    };
+    specialArgs = { inherit username hostname data; };
   };
 
   homeConfiguration = home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.${system};
 
-    modules = [
-      ./home.nix
-      homeModules.nix-doom-emacs
-    ];
+    modules = [ ./home.nix homeModules.nix-doom-emacs ];
 
-    extraSpecialArgs = {
-      inherit homeModules username;
-    };
+    extraSpecialArgs = { inherit homeModules username; };
   };
 }

@@ -11,7 +11,8 @@ username: {
         };
         rescanInterval = 3600;
       };
-    in builtins.mapAttrs (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
+    in builtins.mapAttrs
+    (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
       "Perso" = {
         path = "/home/${username}/Documents/Perso";
         watchDelay = 60;
@@ -25,18 +26,19 @@ username: {
 
     folders = let
       folderDefaultConfig = {
-          watchDelay = 3600;
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "0";
-            };
+        watchDelay = 3600;
+        versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "0";
           };
-          rescanInterval = 3600;
-          type = "receiveonly";
+        };
+        rescanInterval = 3600;
+        type = "receiveonly";
       };
-    in builtins.mapAttrs (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
+    in builtins.mapAttrs
+    (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
       "Perso".path = "/home/hugobd/syncthing/Perso";
       "Shared".path = "/home/hugobd/syncthing/Shared";
     };
@@ -46,8 +48,8 @@ username: {
     id = "ZCKMKCR-OLUKBI6-AHSYE4X-JBXGWPX-6B76U4Y-CLEUU3Q-OITQYHB-EF252AT";
 
     folders = {
-      "Perso" = {};
-      "Shared" = {};
+      "Perso" = { };
+      "Shared" = { };
     };
   };
 }

@@ -1,7 +1,6 @@
 { config, lib, pkgs, homeModules, username, nixpkgs, ... }:
 
-let
-  homeDirectory = "/home/${username}";
+let homeDirectory = "/home/${username}";
 in {
   home = {
     inherit username homeDirectory;

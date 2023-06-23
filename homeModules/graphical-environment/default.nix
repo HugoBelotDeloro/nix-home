@@ -10,16 +10,7 @@ let
 
   module = { pkgs, ... }: {
 
-    imports = [
-      dunst
-      gtk
-      i3
-      i3status
-      kitty
-      pointerCursor
-      rofi
-      screen-locker
-    ];
+    imports = [ dunst gtk i3 i3status kitty pointerCursor rofi screen-locker ];
 
     fonts.fontconfig.enable = true;
 

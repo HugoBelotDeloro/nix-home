@@ -1,7 +1,6 @@
 { config, lib, pkgs, homeModules, username, ... }:
 
-let
-  homeDirectory = "/home/${username}";
+let homeDirectory = "/home/${username}";
 in {
   home = {
     inherit username homeDirectory;
@@ -15,9 +14,7 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  imports = with homeModules; [
-    terminalEnvironment
-  ];
+  imports = with homeModules; [ terminalEnvironment ];
 
   home.file.flake_base = {
     source = ../resources/flake-example.nix;

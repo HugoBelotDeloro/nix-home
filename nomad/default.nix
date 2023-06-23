@@ -1,18 +1,10 @@
-{
-  nixpkgs,
-  nixos-hardware,
-  home-manager,
-  nixosModules,
-  homeModules,
-  username,
-  data
-}:
+{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules, username
+, data }:
 
 let
   system = "x86_64-linux";
   hostname = "framework-nixos";
-in
-{
+in {
   nixosConfiguration = nixpkgs.lib.nixosSystem {
     inherit system;
 
@@ -22,21 +14,14 @@ in
       nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
 
-    specialArgs = {
-      inherit username hostname data;
-    };
+    specialArgs = { inherit username hostname data; };
   };
 
   homeConfiguration = home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.${system};
 
-    modules = [
-      ./home.nix
-      homeModules.nix-doom-emacs
-    ];
+    modules = [ ./home.nix homeModules.nix-doom-emacs ];
 
-    extraSpecialArgs = {
-      inherit homeModules username nixpkgs;
-    };
+    extraSpecialArgs = { inherit homeModules username nixpkgs; };
   };
 }

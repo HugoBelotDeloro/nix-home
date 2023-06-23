@@ -5,10 +5,7 @@
 { config, pkgs, username, hostname, data, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./syncthing.nix
-  ];
+  imports = [ ./hardware-configuration.nix ./syncthing.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
@@ -121,7 +118,9 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    banner = "Authorized access only! If you are not authorized to access or use this system, disconnect now!\n";
+    banner = ''
+      Authorized access only! If you are not authorized to access or use this system, disconnect now!
+    '';
     settings.PasswordAuthentication = false;
   };
 

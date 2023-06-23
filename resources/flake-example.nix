@@ -5,17 +5,9 @@
 
   outputs = { self, nixpkgs, utils }:
 
-    utils.lib.eachDefaultSystem
-    (system:
+    utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        buildInputs = with pkgs; [
-        ];
-      in
-      {
-        devShell = pkgs.mkShell {
-          inherit buildInputs;
-        };
-      }
-    );
+        buildInputs = with pkgs; [ ];
+      in { devShell = pkgs.mkShell { inherit buildInputs; }; });
 }

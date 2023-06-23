@@ -12,18 +12,6 @@ let
     programs.exa.enable = true;
     programs.btop.enable = true;
 
-    home.packages = with pkgs; [
-      bc
-      entr
-      fd
-      jq
-      neofetch
-      ripgrep
-      sd
-      unzip
-      zip
-    ];
+    home.packages = with pkgs; [ bc entr fd jq neofetch ripgrep sd unzip zip ];
   };
-in {
-  inherit module bat direnv fish fzf git kakoune starship;
-}
+in { inherit module bat direnv fish fzf git kakoune starship; }

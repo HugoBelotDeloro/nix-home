@@ -11,20 +11,20 @@
     enable = true;
 
     interactiveShellInit = ''
-    set fish_greeting ""
-    set CDPATH . ~/QuickAccess/
-    fish_config theme choose Dracula
-    bind \ce __fuzzy_find_and_open
-    ${pkgs.starship}/bin/starship init fish | source
+      set fish_greeting ""
+      set CDPATH . ~/QuickAccess/
+      fish_config theme choose Dracula
+      bind \ce __fuzzy_find_and_open
+      ${pkgs.starship}/bin/starship init fish | source
     '';
 
     functions = {
       __fuzzy_find_and_open = ''
-      set FILENAME (fd --type f --color=always | fzf --ansi)
-      if test -n "$FILENAME"
-        $EDITOR $FILENAME
-      end
-      commandline -f repaint
+        set FILENAME (fd --type f --color=always | fzf --ansi)
+        if test -n "$FILENAME"
+          $EDITOR $FILENAME
+        end
+        commandline -f repaint
       '';
     };
 
@@ -39,7 +39,8 @@
     };
 
     shellAbbrs = {
-      vgr = "valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --leak-resolution=high";
+      vgr =
+        "valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --leak-resolution=high";
       gccc = "gcc -Wextra -Wall -Werror -std=c99 -pedantic -g -ggdb3";
       "g+++" = "g++ -Wextra -Wall -Werror -std=c++17 -pedantic";
       clangpp = "clang++ -Wextra -Wall -Werror -std=c++17 -pedantic";

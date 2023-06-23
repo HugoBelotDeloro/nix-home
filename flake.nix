@@ -15,27 +15,29 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware }:
-  let
+    let
 
-    config = {
-      inherit nixpkgs nixos-hardware home-manager;
+      config = {
+        inherit nixpkgs nixos-hardware home-manager;
 
-      username = "hugobd";
-      nixosModules = import ./nixosModules;
-      homeModules = (import ./homeModules) // {
-        nix-doom-emacs = nix-doom-emacs.hmModule;
+        username = "hugobd";
+        nixosModules = import ./nixosModules;
+        homeModules = (import ./homeModules) // {
+          nix-doom-emacs = nix-doom-emacs.hmModule;
+        };
+        data = import ./data;
       };
-      data = import ./data;
+
+      nomad = (import ./nomad) config;
+      tartelette = (import ./tartelette) config;
+
+    in {
+      nixosConfigurations.nomad = nomad.nixosConfiguration;
+      nixosConfigurations.tartelette = tartelette.nixosConfiguration;
+
+      homeConfigurations.nomad = nomad.homeConfiguration;
+      homeConfigurations.tartelette = tartelette.homeConfiguration;
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
     };
-
-    nomad = (import ./nomad) config;
-    tartelette = (import ./tartelette) config;
-
-  in {
-    nixosConfigurations.nomad = nomad.nixosConfiguration;
-    nixosConfigurations.tartelette = tartelette.nixosConfiguration;
-
-    homeConfigurations.nomad = nomad.homeConfiguration;
-    homeConfigurations.tartelette = tartelette.homeConfiguration;
-  };
 }

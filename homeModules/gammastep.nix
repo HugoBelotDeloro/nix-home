@@ -10,11 +10,7 @@
     dawnTime = "6:00-8:00";
     duskTime = "20:00-22:00";
     provider = "manual";
-    settings = {
-      general = {
-        adjustment-method = "randr";
-      };
-    };
+    settings = { general = { adjustment-method = "randr"; }; };
     temperature.day = 6500;
     temperature.night = 2000;
   };
