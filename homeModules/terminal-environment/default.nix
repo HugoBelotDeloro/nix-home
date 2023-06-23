@@ -21,7 +21,6 @@ let
       ripgrep
       sd
       unzip
-      xclip
       zip
     ];
   };

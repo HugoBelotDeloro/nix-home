@@ -38,6 +38,7 @@ let
       keepassxc
       pcmanfm
       firefox
+      xclip
       xsel
       pavucontrol
       gparted
