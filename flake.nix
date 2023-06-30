@@ -16,6 +16,7 @@
 
   outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware }:
     let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
       config = {
         inherit nixpkgs nixos-hardware home-manager;
@@ -39,5 +40,13 @@
       homeConfigurations.tartelette = tartelette.homeConfiguration;
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          deploy-rs
+          nixfmt
+          nil
+        ];
+      };
     };
 }

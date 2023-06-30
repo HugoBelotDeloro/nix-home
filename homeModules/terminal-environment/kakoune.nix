@@ -3,6 +3,11 @@
 {
   home.sessionVariables.EDITOR = "kak";
 
+  home.file.kak-lsp = {
+    source = ./kak-lsp.toml;
+    target = ".config/kak-lsp/kak-lsp.toml";
+  };
+
   programs.kakoune = {
     enable = true;
 
