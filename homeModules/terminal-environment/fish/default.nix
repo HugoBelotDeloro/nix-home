@@ -18,16 +18,6 @@
       ${pkgs.starship}/bin/starship init fish | source
     '';
 
-    functions = {
-      __fuzzy_find_and_open = ''
-        set FILENAME (fd --type f --color=always | fzf --ansi)
-        if test -n "$FILENAME"
-          $EDITOR $FILENAME
-        end
-        commandline -f repaint
-      '';
-    };
-
     shellAliases = {
 
       # Exa
