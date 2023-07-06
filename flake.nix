@@ -12,9 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware }:
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware, deploy-rs }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
@@ -43,7 +44,7 @@
 
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          deploy-rs
+          pkgs.deploy-rs
           nixfmt
           nil
         ];
