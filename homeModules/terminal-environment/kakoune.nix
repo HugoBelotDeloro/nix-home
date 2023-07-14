@@ -54,7 +54,7 @@
       # set-face global/ LineNumbersWrapped
 
       eval %sh{kak-lsp --kakoune -s $kak_session}
-      hook global WinSetOption filetype=(typescript|javascript|rust) %{
+      hook global WinSetOption filetype=(typescript|javascript|rust|zig) %{
         lsp-enable-window
       }
 
