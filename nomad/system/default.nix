@@ -113,7 +113,10 @@
 
   programs.fish.enable = true;
 
-  programs.ssh = { startAgent = true; };
+  programs.ssh = {
+    startAgent = true;
+    knownHosts = data.sshHosts;
+  };
 
   virtualisation.docker = {
     enable = true;
