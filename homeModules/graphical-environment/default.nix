@@ -36,6 +36,7 @@ let
       arandr
       lxappearance
       fontpreview
+      rofimoji
     ];
   };
 in {

@@ -46,6 +46,7 @@
         "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
         "${mod}+q" = "split toggle";
         "${mod}+f" = "fullscreen toggle";
+        "${mod}+Shift+o" = "exec ${pkgs.rofimoji}/bin/rofimoji";
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+e" = ''
           exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
