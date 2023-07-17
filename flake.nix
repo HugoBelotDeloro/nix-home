@@ -49,5 +49,28 @@
           nil
         ];
       };
+
+      deploy = {
+        nodes = {
+          tartelette = {
+            sshUser = "hugobd";
+            hostname = "tartelette";
+            remoteBuild = true;
+            profilesOrder = [ "system" "home" ];
+
+            profiles = {
+              system = {
+                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tartelette;
+              };
+
+              home = {
+                path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.tartelette;
+              };
+            };
+          };
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
