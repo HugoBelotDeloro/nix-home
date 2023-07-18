@@ -55,7 +55,6 @@
           tartelette = {
             sshUser = "hugobd";
             hostname = "tartelette";
-            remoteBuild = true;
             profilesOrder = [ "system" "home" ];
 
             profiles = {

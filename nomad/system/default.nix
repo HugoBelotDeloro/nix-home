@@ -147,6 +147,8 @@
   # Enable Corsair keyboard/mouse drivers
   hardware.ckb-next.enable = true;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

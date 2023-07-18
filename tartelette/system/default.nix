@@ -14,6 +14,8 @@
     options = "--delete-older-than 14d";
   };
 
+  nix.settings.trusted-users = [ username ];
+
   # Bootloader.
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
