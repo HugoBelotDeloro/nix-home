@@ -67,11 +67,16 @@
       gfh = "git-file-history";
       gr = "cd (git rev-parse --show-toplevel)";
       g = "git";
+      lg = "lazygit";
 
       # Kubectl
       k = "kubectl";
       kaf = "kubectl apply -f";
       kc = "kubectl create";
     };
+
+    plugins = [
+      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+    ];
   };
 }
