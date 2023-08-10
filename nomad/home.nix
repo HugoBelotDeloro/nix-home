@@ -54,12 +54,5 @@ in {
 
     # Software
     texlive.combined.scheme-basic
-
-    # Stockly
-    _1password-gui
-    slack
-    jetbrains.datagrip
-    bloomrpc
-    postgresql_15
   ];
 }
