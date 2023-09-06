@@ -1,5 +1,12 @@
-{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules, username
-, data }:
+{
+  nixpkgs,
+  nixos-hardware,
+  home-manager,
+  nixosModules,
+  homeModules,
+  username,
+  data,
+}:
 
 let
   system = "x86_64-linux";

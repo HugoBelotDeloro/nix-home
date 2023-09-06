@@ -15,7 +15,14 @@
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, nixos-hardware, deploy-rs }:
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-hardware,
+    home-manager,
+    deploy-rs,
+    nix-doom-emacs,
+  }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
