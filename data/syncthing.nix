@@ -18,6 +18,9 @@ username: {
         watchDelay = 60;
       };
       "Shared".path = "/home/${username}/Shared";
+      "Pictures".path = "/home/${username}/Pictures";
+      "Videos".path = "/home/${username}/Videos";
+      "Music".path = "/home/${username}/Music";
     };
   };
 
@@ -50,6 +53,9 @@ username: {
     folders = {
       "Perso" = { };
       "Shared" = { };
+      "Pictures" = { };
+      "Videos" = { };
+      "Music" = { };
     };
   };
 }
