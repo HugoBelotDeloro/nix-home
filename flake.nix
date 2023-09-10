@@ -13,6 +13,10 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     deploy-rs.url = "github:serokell/deploy-rs";
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -22,6 +26,7 @@
     home-manager,
     deploy-rs,
     nix-doom-emacs,
+    aagl,
   }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -30,7 +35,9 @@
         inherit nixpkgs nixos-hardware home-manager;
 
         username = "hugobd";
-        nixosModules = import ./nixosModules;
+        nixosModules = (import ./nixosModules) // {
+          aagl = aagl.nixosModules.default;
+        };
         homeModules = (import ./homeModules) // {
           nix-doom-emacs = nix-doom-emacs.hmModule;
         };

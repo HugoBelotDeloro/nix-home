@@ -18,6 +18,7 @@ in {
     modules = [
       ./system
       nixosModules.syncthing
+      nixosModules.aagl
       nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
 

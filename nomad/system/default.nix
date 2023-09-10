@@ -144,8 +144,7 @@
 
   services.autorandr.enable = true;
 
-  # Enable Corsair keyboard/mouse drivers
-  hardware.ckb-next.enable = true;
+  programs.honkers-railway-launcher.enable = false;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
