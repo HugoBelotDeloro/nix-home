@@ -4,7 +4,7 @@ verbosity = 2
 [server]
 # exit session if no requests were received during given period in seconds
 # set to 0 to disable
-timeout = 1800 # seconds = 30 minutes
+timeout = 900 # seconds = 15 minutes
 
 [language.bash]
 filetypes = ["sh"]
@@ -319,43 +319,16 @@ settings_section = "_"
 # See https://github.com/castwide/solargraph/blob/master/lib/solargraph/language_server/host.rb
 # diagnostics = false
 
-# [language.rust]
-# filetypes = ["rust"]
-# roots = ["Cargo.toml"]
-# command = "sh"
-# args = [
-#     "-c",
-#     """
-#         if path=$(rustup which rls 2>/dev/null); then
-#             "$path"
-#         else
-#             rls
-#         fi
-#     """,
-# ]
-# [language.rust.settings.rust]
-# # See https://github.com/rust-lang/rls#configuration
-# # features = []
-
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "sh"
-args = [
-    "-c",
-    """
-        if path=$(rustup which rust-analyzer 2>/dev/null); then
-            "$path"
-        else
-            rust-analyzer
-        fi
-    """,
-]
+command = "rust-analyzer"
 settings_section = "rust-analyzer"
 [language.rust.settings.rust-analyzer]
 # See https://rust-analyzer.github.io/manual.html#configuration
 hoverActions.enable = false # kak-lsp doesn't support this at the moment
-# cargo.features = []
+cargo.loadOutDirsFromCheck = true
+procMacro.enable = true
 
 [language.terraform]
 filetypes = ["terraform"]

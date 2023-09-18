@@ -4,7 +4,7 @@ let
   fish = import ./fish;
   fzf = import ./fzf.nix;
   git = import ./git.nix;
-  kakoune = import ./kakoune.nix;
+  kakoune = import ./kakoune;
   starship = import ./starship.nix;
   module = { pkgs, ... }: {
     imports = [ bat direnv fish fzf git kakoune starship ];
