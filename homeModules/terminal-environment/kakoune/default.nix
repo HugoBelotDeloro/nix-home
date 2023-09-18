@@ -50,6 +50,8 @@
       add-highlighter global/ regex \h+$ 0:Error # Highlight trailing whitespace
 
       set-face global InlayHint cyan+di
+
+      enable-auto-pairs
     '';
     plugins = with pkgs.kakounePlugins; [ auto-pairs-kak smarttab-kak ];
   };
