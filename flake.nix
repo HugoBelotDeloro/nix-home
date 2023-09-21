@@ -19,15 +19,8 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixos-hardware,
-    home-manager,
-    deploy-rs,
-    nix-doom-emacs,
-    aagl,
-  }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, deploy-rs
+    , nix-doom-emacs, aagl, }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
@@ -57,11 +50,7 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
 
       devShells.x86_64-linux.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          pkgs.deploy-rs
-          nixfmt
-          nil
-        ];
+        buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
       };
 
       deploy = {
@@ -73,17 +62,20 @@
 
             profiles = {
               system = {
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tartelette;
+                path = deploy-rs.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations.tartelette;
               };
 
               home = {
-                path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.tartelette;
+                path = deploy-rs.lib.x86_64-linux.activate.home-manager
+                  self.homeConfigurations.tartelette;
               };
             };
           };
         };
       };
 
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }

@@ -75,8 +75,9 @@
       kc = "kubectl create";
     };
 
-    plugins = [
-      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
-    ];
+    plugins = [{
+      name = "forgit";
+      src = pkgs.fishPlugins.forgit.src;
+    }];
   };
 }
