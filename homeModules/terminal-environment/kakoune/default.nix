@@ -52,7 +52,9 @@
       set-face global InlayHint cyan+di
 
       enable-auto-pairs
+
+      map global user f ': fzf-mode<ret>' -docstring "fzf commands"
     '';
-    plugins = with pkgs.kakounePlugins; [ auto-pairs-kak smarttab-kak ];
+    plugins = with pkgs.kakounePlugins; [ auto-pairs-kak smarttab-kak fzf-kak ];
   };
 }
