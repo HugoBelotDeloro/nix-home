@@ -49,8 +49,7 @@ in {
     calibre
     google-chrome
     discord
-    jetbrains.idea-ultimate
-    jetbrains.webstorm
+    logseq
 
     # Software
     texlive.combined.scheme-basic
