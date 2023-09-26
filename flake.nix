@@ -47,7 +47,7 @@
       homeConfigurations.nomad = nomad.homeConfiguration;
       homeConfigurations.tartelette = tartelette.homeConfiguration;
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      formatter.x86_64-linux = pkgs.nixfmt;
 
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
