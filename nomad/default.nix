@@ -1,5 +1,5 @@
-{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules, username
-, data, }:
+{ nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, nixosModules
+, homeModules, username, data, }:
 
 let
   system = "x86_64-linux";
@@ -23,6 +23,8 @@ in {
 
     modules = [ ./home.nix homeModules.nix-doom-emacs ];
 
-    extraSpecialArgs = { inherit homeModules username nixpkgs; };
+    extraSpecialArgs = {
+      inherit homeModules username nixpkgs nixpkgs-unstable;
+    };
   };
 }

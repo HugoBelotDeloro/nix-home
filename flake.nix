@@ -3,29 +3,38 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-doom-emacs = {
       url = "github:nix-community/nix-doom-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     deploy-rs.url = "github:serokell/deploy-rs";
+
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, deploy-rs
-    , nix-doom-emacs, aagl, }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager
+    , deploy-rs, nix-doom-emacs, aagl }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
 
       config = {
-        inherit nixpkgs nixos-hardware home-manager;
+        inherit nixpkgs nixpkgs-unstable nixos-hardware home-manager;
 
         username = "hugobd";
         nixosModules = (import ./nixosModules) // {
