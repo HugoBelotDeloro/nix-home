@@ -23,6 +23,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.insertNameservers = [
+    "1.1.1.1"
+    "193.138.218.74"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
