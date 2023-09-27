@@ -27,22 +27,16 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager
-    , deploy-rs, nix-doom-emacs, aagl }:
+  outputs = { self, nixpkgs, deploy-rs, ... } @ flake-inputs:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
 
       config = {
-        inherit nixpkgs nixpkgs-unstable nixos-hardware home-manager;
+        inherit nixpkgs flake-inputs;
 
         username = "hugobd";
-        nixosModules = (import ./nixosModules) // {
-          aagl = aagl.nixosModules.default;
-        };
-        homeModules = (import ./homeModules) // {
-          nix-doom-emacs = nix-doom-emacs.hmModule;
-        };
+        nixosModules = import ./nixosModules;
+        homeModules = import ./homeModules;
         data = import ./data;
       };
 

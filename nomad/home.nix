@@ -1,4 +1,4 @@
-{ config, lib, pkgs, homeModules, username, nixpkgs, nixpkgs-unstable, ... }:
+{ config, lib, pkgs, homeModules, username, flake-inputs, ... }:
 
 let homeDirectory = "/home/${username}";
 in {
@@ -14,8 +14,8 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  nix.registry.nixpkgs.flake = nixpkgs;
-  nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
+  nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
+  nix.registry.nixpkgs-unstable.flake = flake-inputs.nixpkgs-unstable;
 
   imports = with homeModules; [
     emacs

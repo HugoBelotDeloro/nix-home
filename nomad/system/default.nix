@@ -5,7 +5,7 @@
 { config, pkgs, username, hostname, data, ... }:
 
 {
-  imports = [ ./containers ./hardware-configuration.nix ./syncthing.nix ];
+  imports = [ ./containers ./hardware-configuration.nix ./syncthing.nix ./aagl.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
@@ -147,8 +147,6 @@
   services.fwupd.enable = true;
 
   services.autorandr.enable = true;
-
-  programs.honkers-railway-launcher.enable = false;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

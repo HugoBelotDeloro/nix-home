@@ -1,5 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, nixosModules
-, homeModules, username, data, }:
+{ nixpkgs, nixosModules, homeModules, username, data, flake-inputs }:
 
 let
   system = "x86_64-linux";
@@ -11,20 +10,20 @@ in {
     modules = [
       ./system
       nixosModules.syncthing
-      nixosModules.aagl
-      nixos-hardware.nixosModules.framework-12th-gen-intel
+      flake-inputs.aagl.nixosModules.default
+      flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
 
-    specialArgs = { inherit username hostname data; };
+    specialArgs = { inherit username hostname data flake-inputs; };
   };
 
-  homeConfiguration = home-manager.lib.homeManagerConfiguration {
+  homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.${system};
 
-    modules = [ ./home.nix homeModules.nix-doom-emacs ];
+    modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
 
     extraSpecialArgs = {
-      inherit homeModules username nixpkgs nixpkgs-unstable;
+      inherit homeModules username flake-inputs;
     };
   };
 }

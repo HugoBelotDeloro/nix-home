@@ -1,5 +1,4 @@
-{ nixpkgs, nixos-hardware, home-manager, nixosModules, homeModules, username
-, data, }:
+{ nixpkgs, nixosModules, homeModules, username, data, flake-inputs }:
 
 let
   system = "aarch64-linux";
@@ -11,17 +10,17 @@ in {
     modules = [
       ./system
       nixosModules.syncthing
-      nixos-hardware.nixosModules."raspberry-pi-4"
+      flake-inputs.nixos-hardware.nixosModules."raspberry-pi-4"
     ];
 
-    specialArgs = { inherit username hostname data; };
+    specialArgs = { inherit username hostname data flake-inputs; };
   };
 
-  homeConfiguration = home-manager.lib.homeManagerConfiguration {
+  homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.${system};
 
-    modules = [ ./home.nix homeModules.nix-doom-emacs ];
+    modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
 
-    extraSpecialArgs = { inherit homeModules username; };
+    extraSpecialArgs = { inherit homeModules username flake-inputs; };
   };
 }
