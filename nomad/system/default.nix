@@ -145,6 +145,7 @@
   services.fprintd.enable = true;
 
   services.fwupd.enable = true;
+  services.fwupd.extraRemotes = [ "lvfs-testing" ];
 
   services.autorandr.enable = true;
 
