@@ -42,6 +42,7 @@ in {
     libnotify
     pciutils
     cryptsetup
+    rpi-imager
 
     # Graphical tools
     thunderbird
