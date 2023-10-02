@@ -35,8 +35,6 @@
         inherit nixpkgs flake-inputs;
 
         username = "hugobd";
-        nixosModules = import ./nixosModules;
-        homeModules = import ./homeModules;
         data = import ./data;
       };
 
@@ -55,6 +53,9 @@
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
       };
+
+      nixosModules = import ./nixosModules;
+      hmModules = import ./homeModules;
 
       deploy = {
         nodes = {

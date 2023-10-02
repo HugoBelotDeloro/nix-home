@@ -1,4 +1,4 @@
-{ config, lib, pkgs, homeModules, username, flake-inputs, ... }:
+{ config, lib, pkgs, username, flake-inputs, ... }:
 
 let homeDirectory = "/home/${username}";
 in {
@@ -17,7 +17,7 @@ in {
   nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
   nix.registry.nixpkgs-unstable.flake = flake-inputs.nixpkgs-unstable;
 
-  imports = with homeModules; [
+  imports = with flake-inputs.self.homeModules; [
     emacs
     gammastep
     graphicalEnvironment

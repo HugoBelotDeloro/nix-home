@@ -1,4 +1,4 @@
-{ config, lib, pkgs, homeModules, username, ... }:
+{ config, lib, pkgs, flake-inputs, username, ... }:
 
 let homeDirectory = "/home/${username}";
 in {
@@ -14,7 +14,7 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  imports = with homeModules; [ terminalEnvironment ];
+  imports = with flake-inputs.self.homeModules; [ terminalEnvironment ];
 
   home.file.flake_base = {
     source = ../resources/flake-example.nix;

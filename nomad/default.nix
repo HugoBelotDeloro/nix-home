@@ -1,4 +1,4 @@
-{ nixpkgs, nixosModules, homeModules, username, data, flake-inputs }:
+{ nixpkgs, username, data, flake-inputs }:
 
 let
   system = "x86_64-linux";
@@ -9,7 +9,7 @@ in {
 
     modules = [
       ./system
-      nixosModules.syncthing
+      flake-inputs.self.nixosModules.syncthing
       flake-inputs.aagl.nixosModules.default
       flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
@@ -23,7 +23,7 @@ in {
     modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
 
     extraSpecialArgs = {
-      inherit homeModules username flake-inputs;
+      inherit username flake-inputs;
     };
   };
 }
