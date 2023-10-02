@@ -17,7 +17,7 @@ in {
   nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
   nix.registry.nixpkgs-unstable.flake = flake-inputs.nixpkgs-unstable;
 
-  imports = with flake-inputs.self.homeModules; [
+  imports = with flake-inputs.self.hmModules; [
     emacs
     gammastep
     graphicalEnvironment
