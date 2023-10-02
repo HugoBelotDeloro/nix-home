@@ -27,12 +27,12 @@
 
   };
 
-  outputs = { self, nixpkgs, deploy-rs, ... } @ flake-inputs:
+  outputs = { self, deploy-rs, ... } @ flake-inputs:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
 
       config = {
-        inherit nixpkgs flake-inputs;
+        inherit flake-inputs;
 
         username = "hugobd";
         data = import ./data;

@@ -1,10 +1,10 @@
-{ nixpkgs, username, data, flake-inputs }:
+{ username, data, flake-inputs }:
 
 let
   system = "aarch64-linux";
   hostname = "tartelette";
 in {
-  nixosConfiguration = nixpkgs.lib.nixosSystem {
+  nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem {
     inherit system;
 
     modules = [
@@ -17,7 +17,7 @@ in {
   };
 
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = flake-inputs.nixpkgs.legacyPackages.${system};
 
     modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
 
