@@ -1,4 +1,4 @@
-{ username, data, flake-inputs }:
+{ username, flake-inputs }:
 
 let
   system = "x86_64-linux";
@@ -14,7 +14,7 @@ in {
       flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
 
-    specialArgs = { inherit username hostname data flake-inputs; };
+    specialArgs = { inherit username hostname flake-inputs; };
   };
 
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, hostname, data, ... }:
+{ config, pkgs, username, hostname, flake-inputs, ... }:
 
 {
   imports = [ ./containers ./hardware-configuration.nix ./syncthing.nix ./aagl.nix ];
@@ -83,7 +83,7 @@
     description = "Hugo Belot-Deloro";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = builtins.attrValues data.sshKeys;
+    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
   };
 
   # Allow unfree packages
@@ -119,7 +119,7 @@
 
   programs.ssh = {
     startAgent = true;
-    knownHosts = data.sshHosts;
+    knownHosts = flake-inputs.self.data.sshHosts;
   };
 
   virtualisation.docker = {

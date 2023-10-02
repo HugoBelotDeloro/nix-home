@@ -1,4 +1,4 @@
-{ username, data, flake-inputs }:
+{ username, flake-inputs }:
 
 let
   system = "aarch64-linux";
@@ -13,7 +13,7 @@ in {
       flake-inputs.nixos-hardware.nixosModules."raspberry-pi-4"
     ];
 
-    specialArgs = { inherit username hostname data flake-inputs; };
+    specialArgs = { inherit username hostname flake-inputs; };
   };
 
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {

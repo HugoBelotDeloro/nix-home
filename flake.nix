@@ -35,13 +35,14 @@
         inherit flake-inputs;
 
         username = "hugobd";
-        data = import ./data;
       };
 
       nomad = (import ./nomad) config;
       tartelette = (import ./tartelette) config;
 
     in {
+      data = import ./data;
+
       nixosConfigurations.nomad = nomad.nixosConfiguration;
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
 
