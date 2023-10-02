@@ -3,7 +3,7 @@ The home for my NixOS and Home Manager setups.
 
 # Structure
 ## Modules
-Modules shared between NixOS or Home Manager setups are stored under `./nixosModules` and `./homeModules`.
+Modules shared between NixOS or Home Manager setups are stored under `./nixosModules` and `./hmModules`.
 Both contain a `default.nix` to aggregate all contained modules into an attribute set.
 
 Modules should only be imported through `default.nix` and not by path!

@@ -42,7 +42,7 @@
 
     in {
       nixosModules = import ./nixosModules;
-      hmModules = import ./homeModules;
+      hmModules = import ./hmModules;
 
       data = import ./data;
 

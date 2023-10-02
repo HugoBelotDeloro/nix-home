@@ -14,5 +14,5 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  imports = with flake-inputs.self.homeModules; [ terminalEnvironment ];
+  imports = with flake-inputs.self.hmModules; [ terminalEnvironment ];
 }
