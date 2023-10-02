@@ -5,7 +5,11 @@
 { config, pkgs, username, hostname, flake-inputs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ./syncthing.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./syncthing.nix
+    flake-inputs.nixos-hardware.nixosModules."raspberry-pi-4"
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {

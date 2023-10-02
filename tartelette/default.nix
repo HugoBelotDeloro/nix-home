@@ -7,11 +7,7 @@ in {
   nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem {
     inherit system;
 
-    modules = [
-      ./system
-      flake-inputs.self.nixosModules.syncthing
-      flake-inputs.nixos-hardware.nixosModules."raspberry-pi-4"
-    ];
+    modules = [ ./system ];
 
     specialArgs = { inherit username hostname flake-inputs; };
   };
@@ -19,7 +15,7 @@ in {
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = flake-inputs.nixpkgs.legacyPackages.${system};
 
-    modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
+    modules = [ ./home.nix ];
 
     extraSpecialArgs = { inherit username flake-inputs; };
   };

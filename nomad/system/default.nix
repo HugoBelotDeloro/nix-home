@@ -5,8 +5,13 @@
 { config, pkgs, username, hostname, flake-inputs, ... }:
 
 {
-  imports =
-    [ ./containers ./hardware-configuration.nix ./syncthing.nix ./aagl.nix ];
+  imports = [
+    ./containers
+    ./hardware-configuration.nix
+    ./syncthing.nix
+    ./aagl.nix
+    flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {

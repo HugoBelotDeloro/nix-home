@@ -15,9 +15,4 @@ in {
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   imports = with flake-inputs.self.homeModules; [ terminalEnvironment ];
-
-  home.file.flake_base = {
-    source = ../resources/flake-example.nix;
-    target = "home-resources/flake-example.nix";
-  };
 }

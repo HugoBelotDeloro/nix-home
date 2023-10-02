@@ -23,6 +23,7 @@ in {
     graphicalEnvironment
     terminalEnvironment
     vscode
+    flake-inputs.nix-doom-emacs.hmModule
   ];
 
   home.file.flake_base = {

@@ -1,6 +1,8 @@
 { username, flake-inputs, ... }:
 
 {
+  imports = [ flake-inputs.self.nixosModules.syncthing ];
+
   config.iridescent.services.syncthing = {
     enable = true;
     remoteAccess = false;

@@ -41,6 +41,9 @@
       tartelette = (import ./tartelette) config;
 
     in {
+      nixosModules = import ./nixosModules;
+      hmModules = import ./homeModules;
+
       data = import ./data;
 
       nixosConfigurations.nomad = nomad.nixosConfiguration;
@@ -54,9 +57,6 @@
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
       };
-
-      nixosModules = import ./nixosModules;
-      hmModules = import ./homeModules;
 
       deploy = {
         nodes = {
