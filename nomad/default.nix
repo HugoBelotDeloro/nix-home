@@ -22,8 +22,6 @@ in {
 
     modules = [ ./home.nix flake-inputs.nix-doom-emacs.hmModule ];
 
-    extraSpecialArgs = {
-      inherit username flake-inputs;
-    };
+    extraSpecialArgs = { inherit username flake-inputs; };
   };
 }

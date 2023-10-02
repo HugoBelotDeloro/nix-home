@@ -82,7 +82,8 @@
     description = "Hugo Belot-Deloro";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
+    openssh.authorizedKeys.keys =
+      builtins.attrValues flake-inputs.self.data.sshKeys;
   };
 
   # Allow unfree packages

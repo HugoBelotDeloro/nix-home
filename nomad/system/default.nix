@@ -5,7 +5,8 @@
 { config, pkgs, username, hostname, flake-inputs, ... }:
 
 {
-  imports = [ ./containers ./hardware-configuration.nix ./syncthing.nix ./aagl.nix ];
+  imports =
+    [ ./containers ./hardware-configuration.nix ./syncthing.nix ./aagl.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
@@ -23,10 +24,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.insertNameservers = [
-    "1.1.1.1"
-    "193.138.218.74"
-  ];
+  networking.networkmanager.insertNameservers = [ "1.1.1.1" "193.138.218.74" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -83,7 +81,8 @@
     description = "Hugo Belot-Deloro";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
+    openssh.authorizedKeys.keys =
+      builtins.attrValues flake-inputs.self.data.sshKeys;
   };
 
   # Allow unfree packages

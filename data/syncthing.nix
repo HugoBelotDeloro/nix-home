@@ -52,10 +52,10 @@ username: {
 
     folders = {
       "Perso" = { };
-      "Shared"= { };
-      "Pictures"= { };
-      "Videos"= { };
-      "Music"= { };
+      "Shared" = { };
+      "Pictures" = { };
+      "Videos" = { };
+      "Music" = { };
     };
   };
 }
