@@ -6,6 +6,11 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +32,7 @@
 
   };
 
-  outputs = { self, deploy-rs, ... } @ flake-inputs:
+  outputs = { self, deploy-rs, nixos-generators, ... } @ flake-inputs:
     let
       pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
 
@@ -50,7 +55,8 @@
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
 
       homeConfigurations.nomad = nomad.homeConfiguration;
-      homeConfigurations.tartelette = tartelette.homeConfiguration;
+
+      packages.aarch64-linux.tarteletteSDImage = tartelette.nixosSDImage;
 
       formatter.x86_64-linux = pkgs.nixfmt;
 

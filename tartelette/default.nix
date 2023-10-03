@@ -3,20 +3,33 @@
 let
   system = "aarch64-linux";
   hostname = "tartelette";
-in {
-  nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem {
+
+  nixosConfigurationParameters = {
     inherit system;
 
-    modules = [ ./system ];
+    modules = [
+      ./system
+      flake-inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${username} = ./home.nix;
+        home-manager.extraSpecialArgs = { inherit username flake-inputs; };
+      }
+    ];
 
     specialArgs = { inherit username hostname flake-inputs; };
   };
 
-  homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = flake-inputs.nixpkgs.legacyPackages.${system};
+in {
+  nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem nixosConfigurationParameters;
 
-    modules = [ ./home.nix ];
-
-    extraSpecialArgs = { inherit username flake-inputs; };
-  };
+  nixosSDImage = flake-inputs.nixos-generators.nixosGenerate (nixosConfigurationParameters // {
+    format = "sd-aarch64";
+    modules = [{
+      # At time of writing, the zfs-kernel package is broken which prevents building.
+      # Somehow removing compression avoids the need for zfs.
+      sdImage.compressImage = false;
+    }];
+  });
 }
