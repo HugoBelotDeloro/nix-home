@@ -29,10 +29,6 @@ in {
 
     format = "sd-aarch64";
 
-    modules = modules ++ [{
-      # At time of writing, the zfs-kernel package is broken which prevents building.
-      # Somehow removing compression avoids the need for zfs.
-      sdImage.compressImage = false;
-    }];
+    modules = modules ++ [{ sdImage.compressImage = false; }];
   };
 }
