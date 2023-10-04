@@ -32,7 +32,7 @@
 
   };
 
-  outputs = { self, deploy-rs, nixos-generators, ... } @ flake-inputs:
+  outputs = { self, deploy-rs, ... } @ flake-inputs:
     let
       pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
 

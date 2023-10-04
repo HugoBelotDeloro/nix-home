@@ -29,6 +29,13 @@ in {
 
     format = "sd-aarch64";
 
-    modules = modules ++ [{ sdImage.compressImage = false; }];
+    modules = modules ++ [{
+      sdImage.compressImage = false;
+
+      # Do not rely on the HDD containing a nix store and the required packages since we are only flashing the SD card.
+      tartelette.mountHDD = false;
+
+      users.users.${username}.password = username;
+    }];
   };
 }

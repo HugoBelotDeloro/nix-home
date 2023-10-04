@@ -3,27 +3,48 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
+let
+  cfg = config.tartelette.mountHDD;
+in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  fileSystems."/" = lib.mkForce {
-    device = "/dev/disk/by-label/main";
-    fsType = "ext4";
+  options.tartelette.mountHDD = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = """
+    Whether to mount the HDD's partitions.
+    Disabled on the SD card image, because the store on the HDD might not have been created yet.
+    """;
   };
 
-  fileSystems."/home/hugobd/syncthing" = {
-    device = "/dev/disk/by-label/syncthing";
-    depends = [ "/home/hugobd" ];
-    fsType = "ext4";
+  config = {
+
+    fileSystems = lib.mkIf cfg {
+
+      "/" = {
+        device = "/dev/disk/by-label/main";
+        fsType = "ext4";
+        neededForBoot = true;
+      };
+
+      "/home/hugobd/syncthing" = {
+        device = "/dev/disk/by-label/syncthing";
+        depends = [ "/home/hugobd" ];
+        fsType = "ext4";
+      };
+
+    };
+
+    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+    # (the default) this is the recommended approach. When using systemd-networkd it's
+    # still possible to use this option, but it's recommended to use it in conjunction
+    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+    networking.useDHCP = lib.mkDefault true;
+    # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
+
+    powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+
   };
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }
