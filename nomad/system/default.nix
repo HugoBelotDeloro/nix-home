@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ./syncthing.nix
     ./aagl.nix
+    ./virtualisation.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
 

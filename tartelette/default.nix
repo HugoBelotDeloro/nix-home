@@ -17,12 +17,11 @@ let
 
   specialArgs = { inherit username hostname flake-inputs; };
 
-  nixosConfigurationParameters = {
-    inherit system modules specialArgs;
-  };
+  nixosConfigurationParameters = { inherit system modules specialArgs; };
 
 in {
-  nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem nixosConfigurationParameters;
+  nixosConfiguration =
+    flake-inputs.nixpkgs.lib.nixosSystem nixosConfigurationParameters;
 
   nixosSDImage = flake-inputs.nixos-generators.nixosGenerate {
     inherit system specialArgs;

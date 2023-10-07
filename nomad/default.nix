@@ -15,7 +15,7 @@ in {
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = flake-inputs.nixpkgs.legacyPackages.${system};
 
-    modules = [ ./home.nix ];
+    modules = [ ./home ];
 
     extraSpecialArgs = { inherit username flake-inputs; };
   };

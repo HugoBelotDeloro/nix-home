@@ -3,19 +3,16 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
-let
-  cfg = config.tartelette.mountHDD;
-in
-{
+let cfg = config.tartelette.mountHDD;
+in {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   options.tartelette.mountHDD = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = """
-    Whether to mount the HDD's partitions.
-    Disabled on the SD card image, because the store on the HDD might not have been created yet.
-    """;
+    description = ""
+      "\n    Whether to mount the HDD's partitions.\n    Disabled on the SD card image, because the store on the HDD might not have been created yet.\n    "
+      "";
   };
 
   config = {
