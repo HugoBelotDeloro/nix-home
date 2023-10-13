@@ -11,6 +11,7 @@
     ./syncthing.nix
     ./aagl.nix
     ./virtualisation.nix
+    ./gpu.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
 
