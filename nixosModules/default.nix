@@ -1,1 +1,4 @@
-{ syncthing = import ./syncthing.nix; }
+{
+  syncthing = import ./syncthing.nix;
+  virtualisation = import ./virtualisation;
+}
