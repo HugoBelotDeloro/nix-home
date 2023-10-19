@@ -20,8 +20,8 @@ in {
   imports = with flake-inputs.self.hmModules; [
     emacs
     gammastep
-    graphicalEnvironment
-    terminalEnvironment
+    graphicalEnvironment.module
+    terminalEnvironment.module
     vscode
     flake-inputs.nix-doom-emacs.hmModule
     ./virtualisation.nix
