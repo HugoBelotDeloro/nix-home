@@ -10,13 +10,13 @@ in {
       description = "The CPU vendor";
       example = "intel";
     };
+
+    passthrough = mkEnableOption "IOMMU passthrough";
   };
 
   config = mkIf cfg.enable {
     assertions = [ ];
 
-    boot.kernelParams = [ "${cfg.cpu_type}_iommu=on" ];
+    boot.kernelParams = [ "${cfg.cpu_type}_iommu=on" ] ++ optionals cfg.passthrough [ "iommu=pt" ];
   };
 }
-
-# TODO iommu=pt

@@ -6,5 +6,6 @@
   virtualisation.iommu = {
     enable = true;
     cpu_type = "intel";
+    passthrough = true;
   };
 }
