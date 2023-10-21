@@ -1,4 +1,5 @@
 let
   iommu = import ./iommu.nix;
-  module = { imports = [ iommu ]; };
-in { inherit iommu module; }
+  vfio = import ./vfio.nix;
+  module = { imports = [ iommu vfio ]; };
+in { inherit iommu vfio module; }

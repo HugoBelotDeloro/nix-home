@@ -13,6 +13,7 @@
     ./virtualisation.nix
     ./gpu.nix
     ./iommu.nix
+    ./vfio.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
 

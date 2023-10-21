@@ -11,7 +11,7 @@
     "fbdev"
   ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "amdgpu" ];
 
   hardware.opengl = {
     enable = true; # Mesa
