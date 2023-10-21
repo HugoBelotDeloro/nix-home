@@ -15,8 +15,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    assertions = [ ];
-
     boot.kernelParams = [ "${cfg.cpu_type}_iommu=on" ] ++ optionals cfg.passthrough [ "iommu=pt" ];
   };
 }
