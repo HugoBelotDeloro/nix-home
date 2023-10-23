@@ -45,6 +45,7 @@ in {
     pciutils
     cryptsetup
     rpi-imager
+    dmidecode
 
     # Graphical tools
     thunderbird
