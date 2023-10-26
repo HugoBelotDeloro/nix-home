@@ -58,5 +58,5 @@ in {
 
     # Software
     texlive.combined.scheme-basic
-  ];
+  ] ++ (with flake-inputs.self.outputs.packages.x86_64-linux; [ pipewire-switch-sink ]);
 }

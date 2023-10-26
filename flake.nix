@@ -64,6 +64,8 @@
         buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
       };
 
+      packages.x86_64-linux = import ./packages flake-inputs;
+
       deploy = {
         nodes = {
           tartelette = {

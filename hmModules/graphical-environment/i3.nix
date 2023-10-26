@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ flake-inputs, config, lib, pkgs, ... }:
 
 {
   home.packages = [ pkgs.jetbrains-mono pkgs.nitrogen ];
@@ -37,7 +37,8 @@
       };
 
       keybindings = let
-        pamixer = command: "${pkgs.pamixer}/bin/pamixer ${command}";
+        pactl = command: "${pkgs.pulseaudio}/bin/pactl ${command}";
+        pipewire-switch-sink = "${flake-inputs.self.packages.x86_64-linux.pipewire-switch-sink}/bin/pipewire-switch-sink";
         light = "${pkgs.light}/bin/light";
         flameshot = "${pkgs.flameshot}/bin/flameshot";
       in {
@@ -54,14 +55,15 @@
         "${mod}+0" = ''mode "${mode_system}"'';
 
         "XF86AudioRaiseVolume" =
-          "exec --no-startup-id ${pamixer "--increase 5"}";
+          "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ +5%"}";
         "Shift+XF86AudioRaiseVolume" =
-          "exec --no-startup-id ${pamixer "--increase 1"}";
+          "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ +1%"}";
         "XF86AudioLowerVolume" =
-          "exec --no-startup-id ${pamixer "--decrease 5"}";
+          "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ -5%"}";
         "Shift+XF86AudioLowerVolume" =
-          "exec --no-startup-id ${pamixer "--decrease 1"}";
-        "XF86AudioMute" = "exec --no-startup-id ${pamixer "--toggle-mute"}";
+          "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ -1%"}";
+        "XF86AudioMute" = "exec --no-startup-id ${pactl "set-sink-mute @DEFAULT_SINK@ toggle"}";
+        "Shift+XF86AudioMute" = "exec --no-startup-id ${pipewire-switch-sink}";
 
         "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5";
         "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5";
