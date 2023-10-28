@@ -14,8 +14,11 @@ in {
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
-  nix.registry.nixpkgs-unstable.flake = flake-inputs.nixpkgs-unstable;
+  nix.registry = {
+    nixpkgs.flake = flake-inputs.nixpkgs;
+    nixpkgs-unstable.flake = flake-inputs.nixpkgs-unstable;
+    nix-home.flake = flake-inputs.self;
+  };
 
   imports = with flake-inputs.self.hmModules; [
     emacs
@@ -26,11 +29,6 @@ in {
     flake-inputs.nix-doom-emacs.hmModule
     ./virtualisation.nix
   ];
-
-  home.file.flake_base = {
-    source = ../../resources/flake-example.nix;
-    target = "home-resources/flake-example.nix";
-  };
 
   # My usual packages
   home.packages = with pkgs; [
