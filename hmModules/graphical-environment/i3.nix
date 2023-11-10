@@ -54,6 +54,8 @@
         "${mod}+9" = "exec --no-startup-id ${i3lock}";
         "${mod}+0" = ''mode "${mode_system}"'';
 
+        "${mod}+Shift+b" = "exec --no-startup-id ${pkgs.tlp}/bin/bluetooth toggle";
+
         "XF86AudioRaiseVolume" =
           "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ +5%"}";
         "Shift+XF86AudioRaiseVolume" =
