@@ -5,9 +5,10 @@ let
   fzf = import ./fzf.nix;
   git = import ./git.nix;
   kakoune = import ./kakoune;
+  ripgrep = import ./ripgrep.nix;
   starship = import ./starship.nix;
   module = { pkgs, ... }: {
-    imports = [ bat direnv fish fzf git kakoune starship ];
+    imports = [ bat direnv fish fzf git kakoune ripgrep starship ];
 
     programs.exa.enable = true;
     programs.btop.enable = true;
@@ -18,11 +19,10 @@ let
       fd
       jq
       neofetch
-      ripgrep
       sd
       unzip
       zip
       lazygit
     ];
   };
-in { inherit module bat direnv fish fzf git kakoune starship; }
+in { inherit module bat direnv fish fzf git kakoune ripgrep starship; }
