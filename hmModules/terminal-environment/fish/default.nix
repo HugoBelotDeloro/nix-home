@@ -20,12 +20,12 @@
 
     shellAliases = {
 
-      # Exa
-      ls = "exa --classify";
-      la = "exa --classify --all";
-      lla = "exa --classify --all --long --header";
-      tree = "exa --classify --long --header --tree --git-ignore";
-      treea = "exa --classify --long --header --tree --all";
+      # Eza
+      ls = "eza --classify";
+      la = "eza --classify --all";
+      lla = "eza --classify --all --long --header";
+      tree = "eza --classify --long --header --tree --git-ignore";
+      treea = "eza --classify --long --header --tree --all";
     };
 
     shellAbbrs = {

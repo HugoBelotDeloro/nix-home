@@ -4,18 +4,18 @@ username: {
 
     folders = let
       folderDefaultConfig = {
-        watchDelay = 3600;
+        fsWatcherDelays = 3600;
         versioning = {
           type = "simple";
           params.keep = "5";
         };
-        rescanInterval = 3600;
+        rescanIntervals = 3600;
       };
     in builtins.mapAttrs
     (_deviceName: deviceConfig: folderDefaultConfig // deviceConfig) {
       "Perso" = {
         path = "/home/${username}/Documents/Perso";
-        watchDelay = 60;
+        fsWatcherDelays = 60;
       };
       "Shared".path = "/home/${username}/Shared";
       "Pictures".path = "/home/${username}/Pictures";
@@ -29,7 +29,7 @@ username: {
 
     folders = let
       folderDefaultConfig = {
-        watchDelay = 3600;
+        fsWatcherDelays = 3600;
         versioning = {
           type = "staggered";
           params = {
@@ -37,7 +37,7 @@ username: {
             maxAge = "0";
           };
         };
-        rescanInterval = 3600;
+        rescanIntervals = 3600;
         type = "receiveonly";
       };
     in builtins.mapAttrs

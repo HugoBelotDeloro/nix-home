@@ -86,7 +86,7 @@ let
                 type = attrsOf (either str path);
                 description = lib.mdDoc ''
                   The parameters for versioning. Structure depends on
-                  [versioning.type](#opt-services.syncthing.folders._name_.versioning.type).
+                  [versioning.type](#opt-services.syncthing.settings.folders._name_.versioning.type).
                   See <https://docs.syncthing.net/users/versioning.html>.
                 '';
               };
@@ -94,7 +94,7 @@ let
           });
       };
 
-      rescanInterval = lib.mkOption {
+      rescanIntervals = lib.mkOption {
         type = lib.types.int;
         default = 3600;
         description = lib.mdDoc ''
@@ -117,7 +117,7 @@ let
         '';
       };
 
-      watchDelay = lib.mkOption {
+      fsWatcherDelays = lib.mkOption {
         type = lib.types.int;
         default = 10;
         description = lib.mdDoc ''
@@ -189,9 +189,9 @@ in {
 
     guiAddress = if cfg.remoteAccess then "0.0.0.0:8384" else "localhost:8384";
 
-    devices = builtins.mapAttrs
+    settings.devices = builtins.mapAttrs
       (deviceName: deviceConfig: { inherit (deviceConfig) id; }) cfg.devices;
-    folders = builtins.mapAttrs (folderName: folderConfig:
+    settings.folders = builtins.mapAttrs (folderName: folderConfig:
       folderConfig // {
         devices = folderDevices folderName;
       }) cfg.devices.${hostname}.folders;
@@ -199,7 +199,7 @@ in {
     overrideDevices = true;
     overrideFolders = true;
 
-    extraOptions = {
+    settings.extraOptions = {
       gui = {
         value = {
           user = lib.mkIf cfg.remoteAccess "hugobd";

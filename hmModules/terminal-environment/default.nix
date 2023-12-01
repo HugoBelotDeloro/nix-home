@@ -10,7 +10,7 @@ let
   module = { pkgs, ... }: {
     imports = [ bat direnv fish fzf git kakoune ripgrep starship ];
 
-    programs.exa.enable = true;
+    programs.eza.enable = true;
     programs.btop.enable = true;
 
     home.packages = with pkgs; [
