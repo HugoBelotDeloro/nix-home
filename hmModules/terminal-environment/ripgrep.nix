@@ -1,10 +1,7 @@
 { pkgs, username, ...}: {
-  home.packages = [ pkgs.ripgrep ];
 
-  home.file.ripgreprc = {
-    source = ./ripgreprc;
-    target = ".config/ripgrep/ripgreprc";
+  programs.ripgrep = {
+    enable = true;
+    arguments = [ "--smart-case" ];
   };
-
-  home.sessionVariables.RIPGREP_CONFIG_PATH = "/home/${username}/.config/ripgrep/ripgreprc";
 }
