@@ -30,12 +30,13 @@ in {
     ./virtualisation.nix
   ];
 
+  programs.k9s.enable = true;
+
   # My usual packages
   home.packages = with pkgs; [
 
     # Command-line tools
     openssl
-    k9s
     kubectl
 
     # Administration
