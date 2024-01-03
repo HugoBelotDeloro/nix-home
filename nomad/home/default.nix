@@ -53,7 +53,6 @@ in {
     calibre
     google-chrome
     discord
-    logseq
 
     # Software
     texlive.combined.scheme-basic
