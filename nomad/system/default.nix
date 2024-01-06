@@ -161,6 +161,8 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  services.hardware.bolt.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
