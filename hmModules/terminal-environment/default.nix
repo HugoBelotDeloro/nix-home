@@ -23,6 +23,7 @@ let
       unzip
       zip
       lazygit
+      usbutils
     ];
   };
 in { inherit module bat direnv fish fzf git kakoune ripgrep starship; }

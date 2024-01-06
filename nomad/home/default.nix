@@ -45,6 +45,7 @@ in {
     cryptsetup
     rpi-imager
     dmidecode
+    nvtop
 
     # Graphical tools
     thunderbird

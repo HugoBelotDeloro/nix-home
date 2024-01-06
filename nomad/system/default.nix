@@ -14,6 +14,7 @@
     ./gpu.nix
     ./iommu.nix
     ./vfio.nix
+    ./egpu.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
 
