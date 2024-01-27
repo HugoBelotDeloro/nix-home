@@ -1,0 +1,4 @@
+[package]
+name = "change_me_in_cargo_toml"
+version = "0.1.0"
+edition = "2021"
