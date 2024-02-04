@@ -26,6 +26,8 @@
 
       projectName = (craneLib.crateNameFromCargoToml { src = dirtySrc; }).pname;
 
+      dynamicLibaries = with pkgs; [ ];
+
       commonArgs = {
         src = cleanedSrc;
 
@@ -65,9 +67,9 @@
 
         packages = [ pkgs.just fenixPkgs.rust-analyzer ];
 
-        LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${
+        LD_LIBRARY_PATH = "${
             with pkgs;
-            lib.makeLibraryPath [ ]
+            lib.makeLibraryPath dynamicLibaries
           }";
       };
 
