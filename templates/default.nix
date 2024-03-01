@@ -6,6 +6,11 @@
 
   rust = {
     path = ./rust;
-    description = (import ./rust/flake.nix).descrition;
+    description = (import ./rust/flake.nix).description;
+  };
+
+  python = {
+    path = ./python;
+    description = (import ./python/flake.nix).description;
   };
 }
