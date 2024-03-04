@@ -24,20 +24,18 @@ in {
     emacs
     gammastep
     graphicalEnvironment.module
+    k8s
     terminalEnvironment.module
     vscode
     flake-inputs.nix-doom-emacs.hmModule
     ./virtualisation.nix
   ];
 
-  programs.k9s.enable = true;
-
   # My usual packages
   home.packages = with pkgs; [
 
     # Command-line tools
     openssl
-    kubectl
 
     # Administration
     libnotify

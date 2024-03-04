@@ -106,7 +106,6 @@
     wget
     firefox
     git
-    k3s
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
