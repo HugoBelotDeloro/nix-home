@@ -9,7 +9,6 @@
     ./containers
     ./hardware-configuration.nix
     ./syncthing.nix
-    ./aagl.nix
     ./virtualisation.nix
     ./gpu.nix
     ./iommu.nix

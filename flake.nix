@@ -25,11 +25,6 @@
 
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs = { self, deploy-rs, ... } @ flake-inputs:
