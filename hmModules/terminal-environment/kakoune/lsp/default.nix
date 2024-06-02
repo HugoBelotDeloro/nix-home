@@ -38,6 +38,6 @@
       map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
     '';
 
-    plugins = [ pkgs.kakounePlugins.kak-lsp ];
+    plugins = [ pkgs.kakounePlugins.kakoune-lsp ];
   };
 }

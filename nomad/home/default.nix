@@ -21,13 +21,13 @@ in {
   };
 
   imports = with flake-inputs.self.hmModules; [
-    emacs
+    # emacs # see nix-doom-emacs below
     gammastep
     graphicalEnvironment.module
     k8s
     terminalEnvironment.module
     vscode
-    flake-inputs.nix-doom-emacs.hmModule
+    # flake-inputs.nix-doom-emacs.hmModule # project currently broken
     ./virtualisation.nix
   ];
 
@@ -43,7 +43,7 @@ in {
     cryptsetup
     rpi-imager
     dmidecode
-    nvtop
+    nvtopPackages.full
 
     # Graphical tools
     thunderbird

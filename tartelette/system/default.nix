@@ -45,7 +45,7 @@
   services.xserver.windowManager.i3.enable = true;
 
   # Configure keymap in X11
-  services.xserver.layout = "fr";
+  services.xserver.xkb.layout = "fr";
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -78,7 +78,7 @@
   programs.light.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # services.libinput.enable = true;
 
   users.users.${username} = {
     isNormalUser = true;

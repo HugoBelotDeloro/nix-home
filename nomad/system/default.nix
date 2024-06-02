@@ -52,7 +52,7 @@
   services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
-  services.xserver.layout = "fr";
+  services.xserver.xkb.layout = "fr";
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -85,7 +85,7 @@
   programs.light.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
