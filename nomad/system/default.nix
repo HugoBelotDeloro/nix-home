@@ -8,6 +8,7 @@
   imports = [
     ./containers
     ./hardware-configuration.nix
+    ./network.nix
     ./syncthing.nix
     ./virtualisation.nix
     ./gpu.nix
@@ -29,14 +30,6 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  networking.hostName = hostname;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.networkmanager.insertNameservers = [ "1.1.1.1" "193.138.218.74" ];
-
-  networking.extraHosts = "127.0.0.1 home";
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -164,12 +157,6 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.hardware.bolt.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
