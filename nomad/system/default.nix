@@ -91,7 +91,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "Hugo Belot-Deloro";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "wireshark" ];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys =
       builtins.attrValues flake-inputs.self.data.sshKeys;
@@ -131,6 +131,8 @@
     startAgent = true;
     knownHosts = flake-inputs.self.data.sshHosts;
   };
+
+  programs.wireshark.enable = true;
 
   virtualisation.docker = {
     enable = true;
