@@ -25,6 +25,7 @@ in {
     gammastep
     graphicalEnvironment.module
     k8s
+    minecraft
     terminalEnvironment.module
     vscode
     # flake-inputs.nix-doom-emacs.hmModule # project currently broken
