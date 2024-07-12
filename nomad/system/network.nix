@@ -27,6 +27,9 @@
       ipv6_servers = true;
 
       server_names = [ "cloudflare" "quad9-doh-ip4-port443-filter-pri" ];
+
+      cloaking_rules = "/etc/nixos/cloaking_rules.txt";
+      forwarding_rules = "/etc/nixos/forwarding_rules.txt";
     };
   };
 
