@@ -23,6 +23,9 @@ let
       unzip
       zip
       lazygit
+      lazydocker
+      gitui
+      doggo
       usbutils
     ];
   };

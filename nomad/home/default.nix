@@ -53,6 +53,9 @@ in {
     calibre
     google-chrome
     discord
+    insomnia
+    obsidian
+    vlc
 
     # Software
     texlive.combined.scheme-basic
