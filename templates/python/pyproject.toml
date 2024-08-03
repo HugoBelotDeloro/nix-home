@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "replace_me"
+version = "0.1.0"
+description = "replace me"
+authors = ["Hugo Belot-Deloro <hugo.belot-deloro@proton.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.scripts]
+replace-me = 'replace_me.main:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include = ["replace_me"]
