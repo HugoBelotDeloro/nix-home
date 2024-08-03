@@ -7,8 +7,9 @@ let
   kakoune = import ./kakoune;
   ripgrep = import ./ripgrep.nix;
   starship = import ./starship.nix;
+  yazi = import ./yazi.nix;
   module = { pkgs, ... }: {
-    imports = [ bat direnv fish fzf git kakoune ripgrep starship ];
+    imports = [ bat direnv fish fzf git kakoune ripgrep starship yazi ];
 
     programs.eza.enable = true;
     programs.btop.enable = true;

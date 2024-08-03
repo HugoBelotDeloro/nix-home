@@ -15,7 +15,6 @@
       set CDPATH . ~/QuickAccess/
       fish_config theme choose Dracula
       bind \ce __fuzzy_find_and_open
-      ${pkgs.starship}/bin/starship init fish | source
     '';
 
     shellAliases = {
