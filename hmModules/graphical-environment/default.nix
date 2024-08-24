@@ -1,5 +1,6 @@
 let
   dunst = import ./dunst.nix;
+  firefox = import ./firefox.nix;
   gtk = import ./gtk.nix;
   i3 = import ./i3.nix;
   i3status = import ./i3status.nix;
@@ -10,7 +11,7 @@ let
 
   module = { pkgs, ... }: {
 
-    imports = [ dunst gtk i3 i3status kitty pointerCursor rofi screen-locker ];
+    imports = [ dunst firefox gtk i3 i3status kitty pointerCursor rofi screen-locker ];
 
     fonts.fontconfig.enable = true;
 
@@ -23,12 +24,9 @@ let
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
 
-    home.sessionVariables.BROWSER = "firefox";
-
     home.packages = with pkgs; [
       keepassxc
       pcmanfm
-      firefox
       xclip
       xsel
       pavucontrol
@@ -40,5 +38,5 @@ let
     ];
   };
 in {
-  inherit i3 i3status pointerCursor rofi gtk module screen-locker dunst kitty;
+  inherit dunst firefox gtk i3 i3status kitty module pointerCursor rofi screen-locker;
 }
