@@ -19,7 +19,7 @@
       fenixPkgs = fenix.packages.${system};
 
       craneLib =
-        crane.lib.${system}.overrideToolchain fenixPkgs.default.toolchain;
+        (crane.mkLib pkgs).overrideToolchain fenixPkgs.default.toolchain;
 
       dirtySrc = craneLib.path ./.;
       cleanedSrc = craneLib.cleanCargoSource dirtySrc;
