@@ -13,7 +13,7 @@
       {
         group = "global";
         name = "WinSetOption";
-        option = "filetype=(rust)";
+        option = "filetype=(rust,zig)";
         commands = ''
           lsp-enable-window
         '';

@@ -3,7 +3,7 @@
 {
   home.sessionVariables.EDITOR = "kak";
 
-  imports = [ ./lsp ];
+  imports = [ ./lsp ./editorconfig.nix ];
 
   programs.kakoune = {
     enable = true;
