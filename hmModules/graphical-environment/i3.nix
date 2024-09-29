@@ -38,7 +38,8 @@
 
       keybindings = let
         pactl = command: "${pkgs.pulseaudio}/bin/pactl ${command}";
-        pipewire-switch-sink = "${flake-inputs.self.packages.x86_64-linux.pipewire-switch-sink}/bin/pipewire-switch-sink";
+        pipewire-switch-sink =
+          "${flake-inputs.self.packages.x86_64-linux.pipewire-switch-sink}/bin/pipewire-switch-sink";
         light = "${pkgs.light}/bin/light";
         flameshot = "${pkgs.flameshot}/bin/flameshot";
       in {
@@ -54,7 +55,8 @@
         "${mod}+9" = "exec --no-startup-id ${i3lock}";
         "${mod}+0" = ''mode "${mode_system}"'';
 
-        "${mod}+Shift+b" = "exec --no-startup-id ${pkgs.tlp}/bin/bluetooth toggle";
+        "${mod}+Shift+b" =
+          "exec --no-startup-id ${pkgs.tlp}/bin/bluetooth toggle";
 
         "XF86AudioRaiseVolume" =
           "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ +5%"}";
@@ -64,7 +66,8 @@
           "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ -5%"}";
         "Shift+XF86AudioLowerVolume" =
           "exec --no-startup-id ${pactl "set-sink-volume @DEFAULT_SINK@ -1%"}";
-        "XF86AudioMute" = "exec --no-startup-id ${pactl "set-sink-mute @DEFAULT_SINK@ toggle"}";
+        "XF86AudioMute" =
+          "exec --no-startup-id ${pactl "set-sink-mute @DEFAULT_SINK@ toggle"}";
         "Shift+XF86AudioMute" = "exec --no-startup-id ${pipewire-switch-sink}";
 
         "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5";

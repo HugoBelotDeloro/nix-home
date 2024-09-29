@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./rust.nix ];
+  imports = [ ./rust.nix ./zig.nix ];
 
   home.file.kak-lsp = {
     source = ./kak-lsp.toml;
@@ -13,7 +13,7 @@
       {
         group = "global";
         name = "WinSetOption";
-        option = "filetype=(rust,zig)";
+        option = "filetype=(rust|zig)";
         commands = ''
           lsp-enable-window
         '';

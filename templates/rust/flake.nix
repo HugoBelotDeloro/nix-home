@@ -31,8 +31,7 @@
       commonArgs = {
         src = cleanedSrc;
 
-        buildInputs = with pkgs; [
-        ];
+        buildInputs = with pkgs; [ ];
 
         nativeBuildInputs = with pkgs; [ ];
 
@@ -49,8 +48,7 @@
         cargoClippyExtraArgs = "--all-targets -- --deny-warnings";
       });
 
-      rustFmt =
-        craneLib.cargoFmt (commonArgs // { inherit cargoArtifacts; });
+      rustFmt = craneLib.cargoFmt (commonArgs // { inherit cargoArtifacts; });
 
     in {
       checks.${system} = { inherit rustBinary rustClippy rustFmt; };
@@ -67,10 +65,7 @@
 
         packages = [ pkgs.just fenixPkgs.rust-analyzer ];
 
-        LD_LIBRARY_PATH = "${
-            with pkgs;
-            lib.makeLibraryPath dynamicLibaries
-          }";
+        LD_LIBRARY_PATH = "${with pkgs; lib.makeLibraryPath dynamicLibaries}";
       };
 
       formatter.${system} = pkgs.nixfmt;

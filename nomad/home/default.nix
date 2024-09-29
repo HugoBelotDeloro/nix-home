@@ -33,31 +33,33 @@ in {
   ];
 
   # My usual packages
-  home.packages = with pkgs; [
+  home.packages = with pkgs;
+    [
 
-    # Command-line tools
-    openssl
+      # Command-line tools
+      openssl
 
-    # Administration
-    libnotify
-    pciutils
-    cryptsetup
-    rpi-imager
-    dmidecode
-    nvtopPackages.full
+      # Administration
+      libnotify
+      pciutils
+      cryptsetup
+      rpi-imager
+      dmidecode
+      nvtopPackages.full
 
-    # Graphical tools
-    thunderbird
-    libreoffice
-    gimp
-    calibre
-    google-chrome
-    discord
-    insomnia
-    obsidian
-    vlc
+      # Graphical tools
+      thunderbird
+      libreoffice
+      gimp
+      calibre
+      google-chrome
+      discord
+      insomnia
+      obsidian
+      vlc
 
-    # Software
-    texlive.combined.scheme-basic
-  ] ++ (with flake-inputs.self.outputs.packages.x86_64-linux; [ pipewire-switch-sink ]);
+      # Software
+      texlive.combined.scheme-basic
+    ] ++ (with flake-inputs.self.outputs.packages.x86_64-linux;
+      [ pipewire-switch-sink ]);
 }

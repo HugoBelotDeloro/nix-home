@@ -14,14 +14,12 @@
       autoInfo = [ "command" "onkey" ];
       autoReload = "ask";
       colorScheme = "default";
-      hooks = [
-        {
-          commands = "set-option global fzf_file_command fd";
-          once = true;
-          name = "ModuleLoaded";
-          option = "fzf-file";
-        }
-      ];
+      hooks = [{
+        commands = "set-option global fzf_file_command fd";
+        once = true;
+        name = "ModuleLoaded";
+        option = "fzf-file";
+      }];
       incrementalSearch = true;
       indentWidth = 2;
       numberLines = {

@@ -11,7 +11,8 @@ let
 
   module = { pkgs, ... }: {
 
-    imports = [ dunst firefox gtk i3 i3status kitty pointerCursor rofi screen-locker ];
+    imports =
+      [ dunst firefox gtk i3 i3status kitty pointerCursor rofi screen-locker ];
 
     fonts.fontconfig.enable = true;
 
@@ -38,5 +39,6 @@ let
     ];
   };
 in {
-  inherit dunst firefox gtk i3 i3status kitty module pointerCursor rofi screen-locker;
+  inherit dunst firefox gtk i3 i3status kitty module pointerCursor rofi
+    screen-locker;
 }
