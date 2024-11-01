@@ -29,6 +29,7 @@
       DisplayMenuBar = "never";
       SearchBar = "unified";
       PictureInPicture = lock-false;
+      OfferToSaveLogins = false;
 
       ExtensionSettings = {
         # uBlock Origin
