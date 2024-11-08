@@ -46,6 +46,8 @@
 
       data = import ./data;
 
+      lib = import ./lib flake-inputs;
+
       nixosConfigurations.nomad = nomad.nixosConfiguration;
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
 
@@ -86,6 +88,6 @@
       checks = builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
-      templates = import ./templates;
+      templates = import ./templates flake-inputs;
     };
 }
