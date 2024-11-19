@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-let jdks = with pkgs; [ temurin-bin-8 temurin-bin-21 ];
+let jdks = with pkgs; [ temurin-bin-8 temurin-bin-17 temurin-bin-21 ];
 in {
   home.packages = with pkgs; [ prismlauncher ];
 
