@@ -53,8 +53,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  # Enable sound with pipewire.
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = false;
   services.pipewire = {
@@ -147,4 +145,3 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-
