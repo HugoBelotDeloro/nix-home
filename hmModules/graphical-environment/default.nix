@@ -4,6 +4,7 @@ let
   gtk = import ./gtk.nix;
   i3 = import ./i3.nix;
   i3status = import ./i3status.nix;
+  i3status-rust = import ./i3status-rust.nix;
   kitty = import ./kitty.nix;
   pointerCursor = import ./pointer-cursor.nix;
   rofi = import ./rofi.nix;
@@ -12,7 +13,7 @@ let
   module = { pkgs, ... }: {
 
     imports =
-      [ dunst firefox gtk i3 i3status kitty pointerCursor rofi screen-locker ];
+      [ dunst firefox gtk i3 i3status-rust kitty pointerCursor rofi screen-locker ];
 
     fonts.fontconfig.enable = true;
 
@@ -39,6 +40,6 @@ let
     ];
   };
 in {
-  inherit dunst firefox gtk i3 i3status kitty module pointerCursor rofi
+  inherit dunst firefox gtk i3 i3status i3status-rust kitty module pointerCursor rofi
     screen-locker;
 }

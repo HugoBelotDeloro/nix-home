@@ -1,13 +1,18 @@
 { flake-inputs, config, lib, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.jetbrains-mono pkgs.nitrogen ];
+  home.packages = with pkgs; [
+    jetbrains-mono
+    nitrogen
+    font-awesome
+  ];
 
   xsession.windowManager.i3 = let
     mod = "Mod4";
     mode_system =
       "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown";
     i3lock = "${pkgs.i3lock}/bin/i3lock -c 000000";
+    colourScheme = import ./colour-scheme.nix;
   in {
     enable = true;
 
@@ -195,17 +200,17 @@
       };
 
       bars = [{
-        command = "${pkgs.i3-gaps}/bin/i3bar";
-        statusCommand = "${pkgs.i3status}/bin/i3status";
+        command = "${pkgs.i3}/bin/i3bar";
+        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
         position = "bottom";
         trayOutput = "primary";
 
         fonts = {
-          names = [ "JetBrains Mono" ];
-          size = 11.0;
+          names = [ "JetBrains Mono" "Font Awesome 6 Free Solid" ];
+          size = 16.0;
         };
 
-        colors = {
+        colors = with colourScheme.bottomBar; {
           activeWorkspace = {
             border = "#595B5B";
             background = "#353836";
@@ -215,18 +220,18 @@
           bindingMode = {
             border = "#16A085";
             background = "#2C2C2C";
-            text = "#F9FAF9";
+            text = fg;
           };
 
           focusedWorkspace = {
-            border = "#F9FAF9";
+            border = fg;
             background = "#16A085";
             text = "#29F34";
           };
 
           inactiveWorkspace = {
             border = "#595B5B";
-            background = "#222D31";
+            background = bg;
             text = "#EEE8D5";
           };
 
@@ -236,9 +241,9 @@
             text = "#E5201D";
           };
 
-          background = "#222D31";
-          separator = "#454947";
-          statusline = "#F9FAF9";
+          background = bg;
+          separator = separator;
+          statusline = fg;
           # focusedBackground = "";
           # focusedSeparator = "";
           # focusedStatusline = "";
@@ -251,7 +256,7 @@
       default_border pixel 1
       default_floating_border normal
 
-      hide_edge_borders none
+      hide_edge_borders smart
     '';
   };
 
