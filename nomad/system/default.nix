@@ -156,6 +156,9 @@
 
   services.hardware.bolt.enable = true;
 
+  hardware.keyboard.qmk.enable = true;
+  services.udev.packages = [ pkgs.via ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
