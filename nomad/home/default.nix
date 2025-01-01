@@ -28,6 +28,7 @@ in {
     minecraft
     terminalEnvironment.module
     vscode
+    mpd
     # flake-inputs.nix-doom-emacs.hmModule # project currently broken
     ./virtualisation.nix
   ];
