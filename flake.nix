@@ -27,9 +27,10 @@
 
   };
 
-  outputs = { self, deploy-rs, ... } @ flake-inputs:
+  outputs = { self, deploy-rs, ... }@flake-inputs:
     let
-      pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      forAllSupportedSystems = self.lib.forAllSystems supportedSystems;
 
       config = {
         inherit flake-inputs;
@@ -55,11 +56,13 @@
 
       packages.aarch64-linux.tarteletteSDImage = tartelette.nixosSDImage;
 
-      formatter.x86_64-linux = pkgs.nixfmt;
+      formatter = forAllSupportedSystems ({ pkgs, ... }: pkgs.nixfmt);
 
-      devShells.x86_64-linux.default = pkgs.mkShell {
-        buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
-      };
+      devShells = forAllSupportedSystems ({ pkgs, ... }: {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
+        };
+      });
 
       packages.x86_64-linux = import ./packages flake-inputs;
 
