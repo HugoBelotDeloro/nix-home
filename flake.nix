@@ -40,6 +40,7 @@
 
       nomad = (import ./nomad) config;
       tartelette = (import ./tartelette) config;
+      herta = (import ./herta) flake-inputs;
 
     in {
       nixosModules = import ./nixosModules;
@@ -51,6 +52,7 @@
 
       nixosConfigurations.nomad = nomad.nixosConfiguration;
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
+      nixosConfigurations.herta = herta;
 
       homeConfigurations.nomad = nomad.homeConfiguration;
 

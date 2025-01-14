@@ -20,8 +20,10 @@ For each machine there is a top-level directory containing a `default.nix` file 
 Machine-specific configuration is stored in that directory.
 
 - Nomad (Framework laptop 12th gen Intel): NixOS + Home Manager (separate)
-- Tartelette (Raspberry Pi 400 used as a server): NixOS + Home Manager (using hm's NixOS module)
+- Tartelette (Raspberry Pi 400 used as a server): NixOS with builtin Home Manager
   An external HDD containing several partitions is attached.
+- Herta: virtual machine template.
+  It is not meant to be deployed as is, but built through `nix build .#nixosConfigurations.herta.config.system.build.vm`
 
 ## Data
 The `data/` directory contains generic data for use in either NixOS or Home Manager.
@@ -29,8 +31,9 @@ The `data/` directory contains generic data for use in either NixOS or Home Mana
 # Home Manager usage
 At time of writing, Home Manager is used in standalone mode for my laptop (`nomad`) and as a NixOS module on my server (`tartelette`).
 I want to keep my home and system environments strictly separate in order to be able to install my home setup on non-NixOS machines.
-It is however more practical to simply install NixOS with the Home Manager module baked in, and the home environment changes much less often on the server. It is also easier to upgrade since there is no need to handle Home Manager manually.
-I will however keep system and home independent enough that I can use one without the other with no modifications.
+I also want to keep home-manager switch fast on my laptop, as this is where I experiment and build my configuration so build times are a concern.
+It is however more practical to install NixOS with the Home Manager module already baked in, and to upgrade since there is no need to handle Home Manager separately.
+I will however keep system and home independent enough that I can use one without the other with no modifications to the configuration itself.
 
 # Tartelette SD Image setup
 For ease of setup, I have an output `packages.aarch64-linux.tarteletteSDImage` created using `nixos-generators` which can be directly flashed onto an SD card.
