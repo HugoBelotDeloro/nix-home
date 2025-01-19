@@ -24,9 +24,13 @@
     microvm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, deploy-rs, ... }@flake-inputs:
+  outputs =
+    { self, deploy-rs, ... }@flake-inputs:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       forAllSupportedSystems = self.lib.forAllSystems supportedSystems;
 
       config = {
@@ -39,7 +43,8 @@
       tartelette = (import ./tartelette) config;
       herta = (import ./herta) { inherit flake-inputs; };
 
-    in {
+    in
+    {
       nixosModules = import ./nixosModules;
       hmModules = import ./hmModules;
 
@@ -55,13 +60,20 @@
 
       packages.aarch64-linux.tarteletteSDImage = tartelette.nixosSDImage;
 
-      formatter = forAllSupportedSystems ({ pkgs, ... }: pkgs.nixfmt);
+      formatter = forAllSupportedSystems ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
 
-      devShells = forAllSupportedSystems ({ pkgs, ... }: {
-        default = pkgs.mkShell {
-          buildInputs = with pkgs; [ pkgs.deploy-rs nixfmt nil ];
-        };
-      });
+      devShells = forAllSupportedSystems (
+        { pkgs, ... }:
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              pkgs.deploy-rs
+              nixfmt-classic
+              nil
+            ];
+          };
+        }
+      );
 
       packages.x86_64-linux = import ./packages flake-inputs;
 
@@ -70,25 +82,25 @@
           tartelette = {
             sshUser = "hugobd";
             hostname = "tartelette";
-            profilesOrder = [ "system" "home" ];
+            profilesOrder = [
+              "system"
+              "home"
+            ];
 
             profiles = {
               system = {
-                path = deploy-rs.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.tartelette;
+                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tartelette;
               };
 
               home = {
-                path = deploy-rs.lib.x86_64-linux.activate.home-manager
-                  self.homeConfigurations.tartelette;
+                path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.tartelette;
               };
             };
           };
         };
       };
 
-      checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       templates = import ./templates flake-inputs;
     };

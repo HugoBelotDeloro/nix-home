@@ -6,6 +6,9 @@
     fileWidgetOptions = [
       "--preview 'bat -n --color=always --paging=never -r :\\$FZF_PREVIEW_LINES {}'"
     ];
-    defaultOptions = [ "--height 40%" "--min-height 10" ];
+    defaultOptions = [
+      "--height 40%"
+      "--min-height 10"
+    ];
   };
 }

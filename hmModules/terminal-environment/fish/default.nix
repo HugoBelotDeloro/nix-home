@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.file.fish_functions = {
@@ -69,9 +74,11 @@
       kc = "kubectl create";
     };
 
-    plugins = [{
-      name = "forgit";
-      src = pkgs.fishPlugins.forgit.src;
-    }];
+    plugins = [
+      {
+        name = "forgit";
+        src = pkgs.fishPlugins.forgit.src;
+      }
+    ];
   };
 }

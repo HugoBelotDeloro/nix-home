@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./rust.nix ./zig.nix ];
+  imports = [
+    ./rust.nix
+    ./zig.nix
+  ];
 
   home.file.kak-lsp = {
     source = ./kak-lsp.toml;

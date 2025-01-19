@@ -1,25 +1,41 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.sessionVariables.EDITOR = "kak";
 
-  imports = [ ./lsp ./editorconfig.nix ];
+  imports = [
+    ./lsp
+    ./editorconfig.nix
+  ];
 
   programs.kakoune = {
     enable = true;
 
     config = {
       alignWithTabs = false;
-      autoComplete = [ "insert" "prompt" ];
-      autoInfo = [ "command" "onkey" ];
+      autoComplete = [
+        "insert"
+        "prompt"
+      ];
+      autoInfo = [
+        "command"
+        "onkey"
+      ];
       autoReload = "ask";
       colorScheme = "default";
-      hooks = [{
-        commands = "set-option global fzf_file_command fd";
-        once = true;
-        name = "ModuleLoaded";
-        option = "fzf-file";
-      }];
+      hooks = [
+        {
+          commands = "set-option global fzf_file_command fd";
+          once = true;
+          name = "ModuleLoaded";
+          option = "fzf-file";
+        }
+      ];
       incrementalSearch = true;
       indentWidth = 2;
       numberLines = {
@@ -60,6 +76,10 @@
 
       map global user f ': fzf-mode<ret>' -docstring "fzf commands"
     '';
-    plugins = with pkgs.kakounePlugins; [ auto-pairs-kak smarttab-kak fzf-kak ];
+    plugins = with pkgs.kakounePlugins; [
+      auto-pairs-kak
+      smarttab-kak
+      fzf-kak
+    ];
   };
 }

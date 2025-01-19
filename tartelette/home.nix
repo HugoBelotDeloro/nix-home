@@ -1,7 +1,16 @@
-{ config, lib, pkgs, flake-inputs, username, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  flake-inputs,
+  username,
+  ...
+}:
 
-let homeDirectory = "/home/${username}";
-in {
+let
+  homeDirectory = "/home/${username}";
+in
+{
   home = {
     inherit username homeDirectory;
     stateVersion = "21.11";

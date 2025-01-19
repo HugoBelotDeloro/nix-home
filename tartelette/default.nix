@@ -11,30 +11,38 @@ let
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${username} = ./home.nix;
-      home-manager.extraSpecialArgs = { inherit username flake-inputs; };
+      home-manager.extraSpecialArgs = {
+        inherit username flake-inputs;
+      };
     }
   ];
 
-  specialArgs = { inherit username hostname flake-inputs; };
+  specialArgs = {
+    inherit username hostname flake-inputs;
+  };
 
-  nixosConfigurationParameters = { inherit system modules specialArgs; };
+  nixosConfigurationParameters = {
+    inherit system modules specialArgs;
+  };
 
-in {
-  nixosConfiguration =
-    flake-inputs.nixpkgs.lib.nixosSystem nixosConfigurationParameters;
+in
+{
+  nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem nixosConfigurationParameters;
 
   nixosSDImage = flake-inputs.nixos-generators.nixosGenerate {
     inherit system specialArgs;
 
     format = "sd-aarch64";
 
-    modules = modules ++ [{
-      sdImage.compressImage = false;
+    modules = modules ++ [
+      {
+        sdImage.compressImage = false;
 
-      # Do not rely on the HDD containing a nix store and the required packages since we are only flashing the SD card.
-      tartelette.mountHDD = false;
+        # Do not rely on the HDD containing a nix store and the required packages since we are only flashing the SD card.
+        tartelette.mountHDD = false;
 
-      users.users.${username}.password = username;
-    }];
+        users.users.${username}.password = username;
+      }
+    ];
   };
 }

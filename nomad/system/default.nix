@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, hostname, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  hostname,
+  flake-inputs,
+  ...
+}:
 
 {
   imports = [
@@ -18,7 +25,10 @@
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -82,10 +92,15 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "Hugo Belot-Deloro";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "wireshark" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
+      "wireshark"
+    ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys =
-      builtins.attrValues flake-inputs.self.data.sshKeys;
+    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
   };
 
   # Allow unfree packages
@@ -110,10 +125,8 @@
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   programs.fish.enable = true;

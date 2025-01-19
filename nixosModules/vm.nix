@@ -1,4 +1,9 @@
-{ flake-inputs, pkgs, username, ... }:
+{
+  flake-inputs,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   imports = [
@@ -11,8 +16,7 @@
     password = "";
     shell = pkgs.fish;
     extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys =
-      builtins.attrValues flake-inputs.self.data.sshKeys;
+    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
   };
   programs.fish.enable = true;
 
@@ -35,9 +39,10 @@
         }
       ];
     };
-    extraSpecialArgs = { inherit username flake-inputs; };
+    extraSpecialArgs = {
+      inherit username flake-inputs;
+    };
   };
-
 
   system.stateVersion = "24.05";
 }

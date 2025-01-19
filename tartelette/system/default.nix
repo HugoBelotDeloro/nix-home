@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, hostname, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  hostname,
+  flake-inputs,
+  ...
+}:
 
 {
   imports = [
@@ -11,7 +18,10 @@
     #flake-inputs.nixos-hardware.nixosModules."raspberry-pi-4"
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -81,10 +91,14 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "Hugo Belot-Deloro";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
+    ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys =
-      builtins.attrValues flake-inputs.self.data.sshKeys;
+    openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
   };
 
   # Allow unfree packages

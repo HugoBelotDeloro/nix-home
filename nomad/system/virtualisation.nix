@@ -1,4 +1,9 @@
-{ pkgs, username, modulesPath, ... }:
+{
+  pkgs,
+  username,
+  modulesPath,
+  ...
+}:
 
 {
   virtualisation.libvirtd = {

@@ -10,36 +10,59 @@ let
   rofi = import ./rofi.nix;
   screen-locker = import ./screen-locker.nix;
 
-  module = { pkgs, ... }: {
+  module =
+    { pkgs, ... }:
+    {
 
-    imports =
-      [ dunst firefox gtk i3 i3status-rust kitty pointerCursor rofi screen-locker ];
+      imports = [
+        dunst
+        firefox
+        gtk
+        i3
+        i3status-rust
+        kitty
+        pointerCursor
+        rofi
+        screen-locker
+      ];
 
-    fonts.fontconfig.enable = true;
+      fonts.fontconfig.enable = true;
 
-    programs.autorandr.enable = true;
+      programs.autorandr.enable = true;
 
-    xsession.enable = true;
+      xsession.enable = true;
 
-    services.flameshot.enable = true;
-    #services.pasystray.enable = true; one day i need to make a pr
-    services.network-manager-applet.enable = true;
-    services.blueman-applet.enable = true;
+      services.flameshot.enable = true;
+      #services.pasystray.enable = true; one day i need to make a pr
+      services.network-manager-applet.enable = true;
+      services.blueman-applet.enable = true;
 
-    home.packages = with pkgs; [
-      keepassxc
-      pcmanfm
-      xclip
-      xsel
-      pavucontrol
-      gparted
-      arandr
-      lxappearance
-      fontpreview
-      rofimoji
-    ];
-  };
-in {
-  inherit dunst firefox gtk i3 i3status i3status-rust kitty module pointerCursor rofi
-    screen-locker;
+      home.packages = with pkgs; [
+        keepassxc
+        pcmanfm
+        xclip
+        xsel
+        pavucontrol
+        gparted
+        arandr
+        lxappearance
+        fontpreview
+        rofimoji
+      ];
+    };
+in
+{
+  inherit
+    dunst
+    firefox
+    gtk
+    i3
+    i3status
+    i3status-rust
+    kitty
+    module
+    pointerCursor
+    rofi
+    screen-locker
+    ;
 }

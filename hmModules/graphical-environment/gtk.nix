@@ -8,9 +8,9 @@
     #"Tela"
     # Worth trying:
     "Papirus-Adapta-Nokto-Maia"
-    #"Arc"
-    #"Pop"
-    ;
+  #"Arc"
+  #"Pop"
+  ;
 
   home.packages = with pkgs; [
     #tela-icon-theme

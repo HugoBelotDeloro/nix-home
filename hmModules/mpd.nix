@@ -15,7 +15,10 @@
     settings = {
       directory = "~/Music";
       import.copy = false;
-      plugins = [ "fish" "info" ];
+      plugins = [
+        "fish"
+        "info"
+      ];
     };
   };
 }

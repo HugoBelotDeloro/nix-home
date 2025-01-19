@@ -1,7 +1,16 @@
-{ config, lib, pkgs, username, flake-inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  username,
+  flake-inputs,
+  ...
+}:
 
-let homeDirectory = "/home/${username}";
-in {
+let
+  homeDirectory = "/home/${username}";
+in
+{
   home = {
     inherit username homeDirectory;
     stateVersion = "21.11";
@@ -34,7 +43,8 @@ in {
   ];
 
   # My usual packages
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
 
       # Command-line tools
@@ -61,6 +71,6 @@ in {
 
       # Software
       texlive.combined.scheme-basic
-    ] ++ (with flake-inputs.self.outputs.packages.x86_64-linux;
-      [ pipewire-switch-sink ]);
+    ]
+    ++ (with flake-inputs.self.outputs.packages.x86_64-linux; [ pipewire-switch-sink ]);
 }

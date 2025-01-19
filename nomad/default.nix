@@ -3,13 +3,16 @@
 let
   system = "x86_64-linux";
   hostname = "framework-nixos";
-in {
+in
+{
   nixosConfiguration = flake-inputs.nixpkgs.lib.nixosSystem {
     inherit system;
 
     modules = [ ./system ];
 
-    specialArgs = { inherit username hostname flake-inputs; };
+    specialArgs = {
+      inherit username hostname flake-inputs;
+    };
   };
 
   homeConfiguration = flake-inputs.home-manager.lib.homeManagerConfiguration {
@@ -17,6 +20,8 @@ in {
 
     modules = [ ./home ];
 
-    extraSpecialArgs = { inherit username flake-inputs; };
+    extraSpecialArgs = {
+      inherit username flake-inputs;
+    };
   };
 }

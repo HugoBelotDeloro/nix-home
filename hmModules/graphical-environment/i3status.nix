@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.i3status = {
@@ -16,15 +21,21 @@
     modules = {
       cpu_usage = {
         position = 1;
-        settings = { format = " cpu %usage "; };
+        settings = {
+          format = " cpu %usage ";
+        };
       };
 
       "disk /" = {
         position = 2;
-        settings = { format = " ⛁ %avail "; };
+        settings = {
+          format = " ⛁ %avail ";
+        };
       };
 
-      "wireless _first_" = { position = 3; };
+      "wireless _first_" = {
+        position = 3;
+      };
 
       "ethernet _first_" = {
         position = 4;
@@ -61,7 +72,9 @@
 
       "tztime local" = {
         position = 7;
-        settings = { format = " %d.%m. %H:%M"; };
+        settings = {
+          format = " %d.%m. %H:%M";
+        };
       };
     };
   };
