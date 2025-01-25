@@ -25,8 +25,9 @@ let
         yazi
       ];
 
-    programs.eza.enable = true;
-    programs.btop.enable = true;
+      programs.eza.enable = true;
+      programs.btop.enable = true;
+      programs.btop.package = pkgs.btop-rocm;
 
       home.packages = with pkgs; [
         bc
