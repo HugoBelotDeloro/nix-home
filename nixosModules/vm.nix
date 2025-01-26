@@ -27,6 +27,7 @@
     banner = "testbanner";
     settings.PasswordAuthentication = false;
   };
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   home-manager = {
     useGlobalPkgs = true;

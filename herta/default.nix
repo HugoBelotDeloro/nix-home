@@ -12,33 +12,36 @@ nixosSystem {
 
   modules = [
     flake-inputs.self.nixosModules.vm
-    {
+    ({ config, ... }: {
       microvm = {
-        hypervisor = "qemu";
-        socket = "control.socket";
+        hypervisor = "cloud-hypervisor";
 
-        interfaces = [{
-          type = "user";
-          id = "vm-if";
-          mac = "02:00:00:00:00:01";
-        }];
+        shares = [
+          {
+            proto = "virtiofs";
+            tag = "ro-store";
+            source = "/nix/store";
+            mountPoint = "/nix/.ro-store";
+          }
+          {
+            proto = "virtiofs";
+            tag = "test";
+            source = "/home/hugobd/nix-home/virtiofstest";
+            mountPoint = "/state";
+          }
+        ];
 
-        shares = [{
-          proto = "9p";
-          tag = "ro-store";
-          source = "/nix/store";
-          mountPoint = "/nix/.ro-store";
-        }];
-
-        forwardPorts =  [{
-          from = "host";
-          host.port = 2222;
-          guest.port = 22;
-        }];
+        writableStoreOverlay = "/nix/.rw-store";
+        volumes = [
+          {
+            image = "rw-store-overlay.img";
+            label = "rw-store-overlay";
+            mountPoint = config.microvm.writableStoreOverlay;
+            size = 2048;
+          }
+        ];
       };
-      networking.firewall.allowedTCPPorts = [ 22 ];
-
-    }
+    })
   ];
 
   specialArgs = { inherit username hostname flake-inputs; };
