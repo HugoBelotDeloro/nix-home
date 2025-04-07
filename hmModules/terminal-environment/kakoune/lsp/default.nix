@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./python.nix
     ./rust.nix
     ./zig.nix
   ];
@@ -16,7 +17,7 @@
       {
         group = "global";
         name = "WinSetOption";
-        option = "filetype=(rust|zig)";
+        option = "filetype=(rust|zig|python)";
         commands = ''
           lsp-enable-window
         '';
