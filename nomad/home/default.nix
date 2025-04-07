@@ -42,6 +42,8 @@ in
     ./virtualisation.nix
   ];
 
+  services.home-manager.autoExpire.enable = true;
+
   # My usual packages
   home.packages =
     with pkgs;
