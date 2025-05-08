@@ -13,7 +13,6 @@
 
   users.users.${username} = {
     isNormalUser = true;
-    password = "";
     shell = pkgs.fish;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = builtins.attrValues flake-inputs.self.data.sshKeys;
@@ -21,10 +20,11 @@
   programs.fish.enable = true;
 
   services.getty.autologinUser = username;
+  security.sudo.wheelNeedsPassword = false;
 
   services.openssh = {
     enable = true;
-    banner = "testbanner";
+    banner = "Authorized access only!\nIf you are not authorized to access or use this system, disconnect now!\n";
     settings.PasswordAuthentication = false;
   };
   networking.firewall.allowedTCPPorts = [ 22 ];

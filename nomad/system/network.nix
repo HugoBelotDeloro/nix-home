@@ -1,54 +1,54 @@
-{ hostname, ... }:
+{ hostname, lib, flake-inputs, ... }:
+
 {
+  imports = [ flake-inputs.self.nixosModules.dnscrypt-proxy2 ];
+
   networking = {
     hostName = hostname;
 
-    nameservers = [
-      "127.0.0.1"
-      "::1"
-    ];
+    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+    # (the default) this is the recommended approach. When using systemd-networkd it's
+    # still possible to use this option, but it's recommended to use it in conjunction
+    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+    useDHCP = lib.mkDefault true;
+    # interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
     networkmanager = {
       enable = true;
-      dns = "none";
+      dns = lib.mkForce "none";
+      unmanaged = [ "interface-name:vm-tap*" ];
+    };
+    useNetworkd = true;
+
+    #useDHCP = false;
+    dhcpcd.enable = false;
+
+    nat = {
+      enable = true;
+      internalIPs = ["10.0.0.0/24"];
+      externalInterface = "wlp168s0";
     };
 
-    extraHosts = "127.0.0.1 home";
-
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # firewall.enable = false;
+    firewall.enable = true;
   };
 
-  services.dnscrypt-proxy2 = {
+  systemd.network = {
     enable = true;
+    wait-online.enable = false;
 
-    settings = {
-      require_dnssec = true;
-      ipv6_servers = true;
-
-      sources.public-resolvers = {
-        urls = [
-          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
-          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
-        ];
-        cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
-        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
-      };
-
-      server_names = [
-        "cloudflare"
-        "quad9-doh-ip4-port443-filter-pri"
-      ];
-
-      cloaking_rules = "/etc/nixos/cloaking_rules.txt";
-      forwarding_rules = "/etc/nixos/forwarding_rules.txt";
-    };
-  };
-
-  systemd.services.dnscrypt-proxy2.serviceConfig = {
-    StateDirectory = "dnscrypt-proxy";
+    networks = let
+      vmCount = 3;
+      seq = builtins.genList (i: i + 1) vmCount;
+      networks = map (i: { name = "3${toString i}-vm"; value = {
+        matchConfig.Name = ["vm-tap*"];
+        address = ["10.0.0.0/32"];
+        routes = [{
+          Destination = "10.0.0.${toString i}/32";
+        }];
+        networkConfig = {
+          IPv4Forwarding = true;
+        };
+      }; }) seq;
+    in builtins.listToAttrs networks;
   };
 }
