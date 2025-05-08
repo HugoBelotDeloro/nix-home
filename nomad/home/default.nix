@@ -58,7 +58,7 @@ in
       cryptsetup
       rpi-imager
       dmidecode
-      nvtopPackages.full
+      nvtopPackages.amd
 
       # Graphical tools
       thunderbird
@@ -70,6 +70,9 @@ in
       insomnia
       obsidian
       vlc
+      mpv
+      unrar
+      ffmpeg
 
       # Software
       texlive.combined.scheme-basic
