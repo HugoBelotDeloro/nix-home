@@ -18,8 +18,8 @@
     ./iommu.nix
     ./vfio.nix
     ./egpu.nix
+    ./homelab.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
-    flake-inputs.microvm.nixosModules.host
   ];
 
   nix.settings.experimental-features = [

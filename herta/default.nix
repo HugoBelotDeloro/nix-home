@@ -1,8 +1,8 @@
 {
   flake-inputs,
-  index ? 1,
+  index,
+  hostname,
   username ? "admin",
-  hostname ? "herta",
 }:
 
 let
@@ -13,9 +13,13 @@ nixosSystem {
 
   modules = [
     flake-inputs.self.nixosModules.vm
+    (import ../nixosModules/k3s.nix)
     ({ config, ... }: {
       microvm = {
         hypervisor = "cloud-hypervisor";
+
+        vcpu = 2;
+        mem = 2 * 1024;
 
         # Shared directories
         shares = [
@@ -26,12 +30,12 @@ nixosSystem {
             source = "/nix/store";
             mountPoint = "/nix/.ro-store";
           }
-          #{
-          #  proto = "virtiofs";
-          #  tag = "test";
-          #  source = "/home/hugobd/nix-home/virtiofstest";
-          #  mountPoint = "/state";
-          #}
+          {
+            proto = "virtiofs";
+            tag = "state";
+            source = "/home/hugobd/homelab-data/herta-${toString index}";
+            mountPoint = "/state";
+          }
         ];
 
         # Writable store overlay in case we need additional packages
@@ -47,16 +51,17 @@ nixosSystem {
 
         interfaces = [{
             type = "tap";
-            id = "vm-tap${index}";
-            mac = "00:00:00:00:00:0${index}";
+            id = "vm-tap${toString index}";
+            mac = "00:00:00:00:00:0${toString index}";
         }];
       };
 
+      networking.hostName = "herta-${toString index}";
       networking.useNetworkd = true;
       systemd.network.enable = true;
       systemd.network.networks."20-lan" = {
-        matchConfig.MACAddress = "00:00:00:00:00:0${index}";
-        address = ["10.0.0.${index}/32"];
+        matchConfig.MACAddress = "00:00:00:00:00:0${toString index}";
+        address = ["10.0.0.${toString index}/32"];
         routes = [{
           Destination = "10.0.0.0/32";
           GatewayOnLink = true;

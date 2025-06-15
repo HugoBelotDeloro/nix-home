@@ -41,7 +41,8 @@
 
       nomad = (import ./nomad) config;
       tartelette = (import ./tartelette) config;
-      herta = (import ./herta) { inherit flake-inputs; };
+      hertaModule = import ./herta;
+      mkHerta = i: (hertaModule { inherit flake-inputs; index = i; hostname = "herta-${toString i}"; });
 
     in
     {
@@ -54,7 +55,9 @@
 
       nixosConfigurations.nomad = nomad.nixosConfiguration;
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
-      nixosConfigurations.herta = herta;
+      nixosConfigurations.herta-1 = mkHerta 1;
+      nixosConfigurations.herta-2 = mkHerta 2;
+      nixosConfigurations.herta-3 = mkHerta 3;
 
       homeConfigurations.nomad = nomad.homeConfiguration;
 

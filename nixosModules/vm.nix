@@ -7,7 +7,7 @@
 
 {
   imports = [
-    flake-inputs.home-manager.nixosModules.home-manager
+    #flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.microvm.nixosModules.microvm
   ];
 
@@ -29,21 +29,21 @@
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.${username} = {
-      imports = [
-        flake-inputs.self.hmModules.terminalEnvironment.module
-        {
-          home.stateVersion = "21.11";
-        }
-      ];
-    };
-    extraSpecialArgs = {
-      inherit username flake-inputs;
-    };
-  };
+  #home-manager = {
+  #  useGlobalPkgs = true;
+  #  useUserPackages = true;
+  #  users.${username} = {
+  #    imports = [
+  #      flake-inputs.self.hmModules.terminalEnvironment.module
+  #      {
+  #        home.stateVersion = "21.11";
+  #      }
+  #    ];
+  #  };
+  #  extraSpecialArgs = {
+  #    inherit username flake-inputs;
+  #  };
+  #};
 
   system.stateVersion = "24.05";
 }
