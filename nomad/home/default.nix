@@ -29,6 +29,10 @@ in
     nix-home.flake = flake-inputs.self;
   };
 
+  services.easyeffects.enable = true;
+  services.easyeffects.extraPresets.fw13 = builtins.fromJSON
+    (builtins.readFile ./fw13-easy-effects.json);
+
   imports = with flake-inputs.self.hmModules; [
     # emacs # see nix-doom-emacs below
     gammastep

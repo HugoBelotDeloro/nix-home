@@ -1,5 +1,5 @@
-function tar-help --description 'Prints help for the tar command'
-  printf "\t%s\n" \
+# Prints help for the tar command
+printf "\t%s\n" \
   "tar cvf archive.tar file1 file2 file3" \
   "c: create archive" \
   "v: verbose (print file names)" \
@@ -8,4 +8,3 @@ function tar-help --description 'Prints help for the tar command'
   "x: extract archive" \
   "tar tvf" \
   "t: table of content (print archive contents)"
-end

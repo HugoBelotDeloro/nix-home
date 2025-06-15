@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     kitty
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    nerd-fonts.fira-code
     victor-mono
   ];
 }

@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   pkgs,
@@ -46,7 +42,7 @@
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "fr_FR.utf8";
+  i18n.defaultLocale = "fr_FR.UTF-8";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -64,7 +60,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -45,7 +45,7 @@
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "fr_FR.utf8";
+  i18n.defaultLocale = "fr_FR.UTF-8";
 
   # Enable the X11 windowing system.
   services.xserver.enable = false;
@@ -63,7 +63,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = false;
   services.pipewire = {
     enable = false;

@@ -32,6 +32,18 @@
       treea = "eza --classify --long --header --tree --all";
     };
 
+    functions = builtins.listToAttrs (builtins.map
+      (p: {name = p; value = builtins.readFile ( ./. + "/functions/${p}.fish");}) [
+        "__fuzzy_find_and_open"
+        "git-file-history"
+        "git-switch-interactive"
+        "rgf"
+        "fman"
+        "git-graph-interactive"
+        "tar-help"
+        "kitty-help"
+    ]);
+
     shellAbbrs = {
       icat = "kitty +kitten icat";
 

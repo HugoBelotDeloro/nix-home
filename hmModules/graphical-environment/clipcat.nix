@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  services.clipcat = {
+    enable = true;
+  };
+}

@@ -62,6 +62,7 @@
             "${mod}+f" = "fullscreen toggle";
             "${mod}+Shift+o" = "exec ${pkgs.rofimoji}/bin/rofimoji";
             "${mod}+Shift+c" = "reload";
+            "Ctrl+Shift+v" = "exec ${pkgs.clipcat}/bin/clipcat-menu";
             "${mod}+Shift+e" = ''exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
             "${mod}+9" = "exec --no-startup-id ${i3lock}";
             "${mod}+0" = ''mode "${mode_system}"'';

@@ -12,7 +12,7 @@
 
     mutableExtensionsDir = true;
 
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       bungcip.better-toml
       eamodio.gitlens
       rust-lang.rust-analyzer

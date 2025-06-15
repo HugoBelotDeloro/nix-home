@@ -2,10 +2,10 @@
 
 {
   home.pointerCursor = {
-    package = pkgs.breeze-qt5;
+    package = pkgs.kdePackages.breeze;
     name = "breeze_cursors";
     size = 32;
   };
 
-  home.packages = [ pkgs.breeze-qt5 ];
+  home.packages = [ pkgs.kdePackages.breeze ];
 }

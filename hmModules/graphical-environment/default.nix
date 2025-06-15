@@ -1,4 +1,5 @@
 let
+  clipcat = import ./clipcat.nix;
   dunst = import ./dunst.nix;
   firefox = import ./firefox.nix;
   gtk = import ./gtk.nix;
@@ -15,6 +16,7 @@ let
     {
 
       imports = [
+        clipcat
         dunst
         firefox
         gtk
