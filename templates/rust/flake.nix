@@ -10,7 +10,13 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, fenix, crane }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      fenix,
+      crane,
+    }:
 
     let
       system = "x86_64-linux";
@@ -18,8 +24,7 @@
 
       fenixPkgs = fenix.packages.${system};
 
-      craneLib =
-        (crane.mkLib pkgs).overrideToolchain fenixPkgs.default.toolchain;
+      craneLib = (crane.mkLib pkgs).overrideToolchain fenixPkgs.default.toolchain;
 
       dirtySrc = craneLib.path ./.;
       cleanedSrc = craneLib.cleanCargoSource dirtySrc;
@@ -40,17 +45,20 @@
 
       cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
-      rustBinary =
-        craneLib.buildPackage (commonArgs // { inherit cargoArtifacts; });
+      rustBinary = craneLib.buildPackage (commonArgs // { inherit cargoArtifacts; });
 
-      rustClippy = craneLib.cargoClippy (commonArgs // {
-        inherit cargoArtifacts;
-        cargoClippyExtraArgs = "--all-targets -- --deny-warnings";
-      });
+      rustClippy = craneLib.cargoClippy (
+        commonArgs
+        // {
+          inherit cargoArtifacts;
+          cargoClippyExtraArgs = "--all-targets -- --deny-warnings";
+        }
+      );
 
       rustFmt = craneLib.cargoFmt (commonArgs // { inherit cargoArtifacts; });
 
-    in {
+    in
+    {
       checks.${system} = { inherit rustBinary rustClippy rustFmt; };
 
       packages.${system}.default = rustBinary;
@@ -63,11 +71,14 @@
       devShells.${system}.default = craneLib.devShell {
         inputsFrom = [ rustBinary ];
 
-        packages = [ pkgs.just fenixPkgs.rust-analyzer ];
+        packages = [
+          pkgs.just
+          fenixPkgs.rust-analyzer
+        ];
 
         LD_LIBRARY_PATH = "${with pkgs; lib.makeLibraryPath dynamicLibaries}";
       };
 
-      formatter.${system} = pkgs.nixfmt;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }

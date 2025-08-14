@@ -17,5 +17,13 @@
     firewall.trustedInterfaces = [ "cni+" ];
   };
 
-  boot.kernelModules = [ "br_netfilter" "ip_conntrack" "ip_vs" "ip_vs_rr" "ip_vs_wrr" "ip_vs_sh" "overlay" ];
+  boot.kernelModules = [
+    "br_netfilter"
+    "ip_conntrack"
+    "ip_vs"
+    "ip_vs_rr"
+    "ip_vs_wrr"
+    "ip_vs_sh"
+    "overlay"
+  ];
 }

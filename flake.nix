@@ -76,7 +76,7 @@
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               pkgs.deploy-rs
-              nixfmt-classic
+              nixfmt-rfc-style
               nil
             ];
           };

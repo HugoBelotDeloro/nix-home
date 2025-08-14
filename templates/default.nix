@@ -3,13 +3,16 @@ let
   inherit (flake-inputs.self.lib.templating) templatifyRecursive symlinkTreeToRegularFiles;
   data = flake-inputs.self.data.me;
 
-  mkFlakeTemplate = path:
+  mkFlakeTemplate =
+    path:
     let
       symlinkedTemplate = templatifyRecursive { inherit path data; };
       regularFiles = symlinkTreeToRegularFiles (symlinkedTemplate);
-    in "${regularFiles}";
+    in
+    "${regularFiles}";
 
-in {
+in
+{
   default = {
     path = mkFlakeTemplate ./default;
     description = (import ./default/flake.nix).description;

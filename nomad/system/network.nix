@@ -1,4 +1,9 @@
-{ hostname, lib, flake-inputs, ... }:
+{
+  hostname,
+  lib,
+  flake-inputs,
+  ...
+}:
 
 {
   imports = [ flake-inputs.self.nixosModules.dnscrypt-proxy2 ];

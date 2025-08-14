@@ -3,17 +3,25 @@
 
   inputs.poetry2nix.url = "github:nix-community/poetry2nix";
 
-  outputs = { self, nixpkgs, poetry2nix, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      poetry2nix,
+      ...
+    }:
 
     let
       name = "replace_me";
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; })
-        mkPoetryApplication;
+        mkPoetryApplication
+        ;
       app = mkPoetryApplication { projectDir = ./.; };
 
-    in {
+    in
+    {
       inherit name;
 
       packages.${system} = {
@@ -28,9 +36,13 @@
 
       devShells.${system}.default = pkgs.mkShell {
         inputsFrom = [ self.packages.${system}.default ];
-        packages = with pkgs; [ pyright ruff poetry ];
+        packages = with pkgs; [
+          pyright
+          ruff
+          poetry
+        ];
       };
 
-      formatter.${system} = pkgs.nixfmt;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }
