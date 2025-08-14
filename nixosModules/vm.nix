@@ -9,6 +9,7 @@
   imports = [
     #flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.microvm.nixosModules.microvm
+    flake-inputs.self.nixosModules.openssh
   ];
 
   users.users.${username} = {
@@ -21,13 +22,6 @@
 
   services.getty.autologinUser = username;
   security.sudo.wheelNeedsPassword = false;
-
-  services.openssh = {
-    enable = true;
-    banner = "Authorized access only!\nIf you are not authorized to access or use this system, disconnect now!\n";
-    settings.PasswordAuthentication = false;
-  };
-  networking.firewall.allowedTCPPorts = [ 22 ];
 
   #home-manager = {
   #  useGlobalPkgs = true;

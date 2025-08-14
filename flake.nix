@@ -22,6 +22,9 @@
 
     microvm.url = "github:astro/microvm.nix";
     microvm.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -51,7 +54,9 @@
 
       data = import ./data;
 
-      lib = import ./lib flake-inputs;
+      lib = (import ./lib flake-inputs) // {
+        hetzner = import ./hetzner;
+      };
 
       nixosConfigurations.nomad = nomad.nixosConfiguration;
       nixosConfigurations.tartelette = tartelette.nixosConfiguration;
@@ -79,6 +84,8 @@
       );
 
       packages.x86_64-linux = import ./packages flake-inputs;
+
+      inherit flake-inputs;
 
       deploy = {
         nodes = {
