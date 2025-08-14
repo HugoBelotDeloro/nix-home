@@ -15,6 +15,13 @@
       graph = "log --all --oneline --graph --decorate";
     };
 
+    ignores = [
+      ".jj"
+      ".env"
+      ".envrc"
+      ".direnv"
+    ];
+
     delta.enable = true;
     delta.options =
       let
