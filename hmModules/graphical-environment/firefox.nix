@@ -69,6 +69,11 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/yt-azerty-shortcuts-fixer/latest.xpi";
             installation_mode = "force_installed";
           };
+          # YouTube No Translation
+          "{9a3104a2-02c2-464c-b069-82344e5ed4ec}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-no-translation/latest.xpi";
+            installation_mode = "force_installed";
+          };
         };
 
         Preferences = {
