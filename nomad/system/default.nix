@@ -20,6 +20,7 @@
     ./egpu.nix
     ./homelab.nix
     flake-inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+    flake-inputs.self.nixosModules.display-manager
   ];
 
   nix.settings.experimental-features = [
@@ -47,8 +48,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
   programs.i3lock.enable = true;
 

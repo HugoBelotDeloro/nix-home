@@ -54,6 +54,11 @@
 
       data = import ./data;
 
+      resources = flake-inputs.nixpkgs.legacyPackages.x86_64-linux.lib.fileset.toSource {
+        root = ./resources;
+        fileset = ./resources;
+      };
+
       lib = (import ./lib flake-inputs) // {
         hetzner = import ./hetzner;
       };
