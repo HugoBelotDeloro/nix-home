@@ -13,7 +13,8 @@ let
 in {
   services.displayManager.sddm = {
     enable = true;
-    package = pkgs.kdePackages.sddm;
+    package = pkgs.lib.mkForce pkgs.kdePackages.sddm;
+    wayland.enable = false;
     theme = "sddm-astronaut-theme";
     extraPackages = [ sddm-astronaut-custom ];
   };

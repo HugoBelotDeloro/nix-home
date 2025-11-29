@@ -12,6 +12,13 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
+
+    fakwin.url = "github:DMaroo/fakwin";
+    fakwin.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nix-doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
 

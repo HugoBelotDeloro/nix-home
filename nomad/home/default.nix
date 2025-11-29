@@ -36,7 +36,6 @@ in
 
   imports = with flake-inputs.self.hmModules; [
     # emacs # see nix-doom-emacs below
-    gammastep
     graphicalEnvironment.module
     k8s
     minecraft

@@ -29,16 +29,10 @@
         defaultWorkspace = "workspace 1";
         workspaceAutoBackAndForth = true;
 
-        startup = [
-          {
-            command = "${pkgs.pasystray}/bin/pasystray --volume-max=100 --volume-inc=1 --notify=all";
-            notification = false;
-          }
-          {
-            command = "${pkgs.nitrogen}/bin/nitrogen --restore";
-            notification = false;
-          }
-        ];
+        startup = [{
+          command = "${pkgs.nitrogen}/bin/nitrogen --restore";
+          notification = false;
+        }];
 
         gaps = {
           inner = 14;

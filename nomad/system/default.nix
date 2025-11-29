@@ -48,7 +48,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.desktopManager.xfce.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
   programs.i3lock.enable = true;
 
   # Configure keymap in X11
@@ -78,7 +79,7 @@
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
-  services.blueman.enable = true;
+  #services.blueman.enable = true;
 
   programs.light.enable = true;
 
@@ -124,6 +125,12 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  # KDE Connect
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
   programs.fish.enable = true;
