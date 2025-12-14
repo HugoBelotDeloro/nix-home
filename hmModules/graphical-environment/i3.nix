@@ -17,7 +17,7 @@
     let
       mod = "Mod4";
       mode_system = "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown";
-      i3lock = "${pkgs.i3lock}/bin/i3lock -c 000000";
+      loginctl = "${pkgs.systemd}/bin/loginctl";
       colourScheme = import ./colour-scheme.nix;
     in
     {
@@ -56,10 +56,7 @@
             "${mod}+f" = "fullscreen toggle";
             "${mod}+Shift+o" = "exec ${pkgs.rofimoji}/bin/rofimoji";
             "${mod}+Shift+c" = "reload";
-            "Ctrl+Shift+v" = "exec ${pkgs.clipcat}/bin/clipcat-menu";
-            "${mod}+Shift+e" =
-              ''exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
-            "${mod}+9" = "exec --no-startup-id ${i3lock}";
+            "${mod}+9" = "exec --no-startup-id ${loginctl} lock-session";
             "${mod}+0" = ''mode "${mode_system}"'';
 
             "${mod}+Shift+b" = "exec --no-startup-id ${pkgs.tlp}/bin/bluetooth toggle";
@@ -136,9 +133,9 @@
           lib.mkOptionDefault {
 
             ${mode_system} = {
-              l = "exec --no-startup-id ${i3lock}, mode default";
-              s = "exec --no-startup-id ${i3lock}; exec --no-startup-id ${systemctl} suspend, mode default";
-              h = "exec --no-startup-id ${i3lock}; exec --no-startup-id ${systemctl} hibernate, mode default";
+              l = "exec --no-startup-id ${loginctl} lock-session, mode default";
+              s = "exec --no-startup-id ${loginctl} lock-session; exec --no-startup-id ${systemctl} suspend, mode default";
+              h = "exec --no-startup-id ${loginctl} lock-session; exec --no-startup-id ${systemctl} hibernate, mode default";
               u = "exec --no-startup-id ${pkgs.lightdm}/bin/dm-tool switch-to-greeter, mode default";
               e = "exec --no-startup-id i3-msg exit, mode default";
               r = "exec --no-startup-id ${systemctl} reboot, mode default";
@@ -199,7 +196,7 @@
             command = "${pkgs.i3}/bin/i3bar";
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
             position = "bottom";
-            trayOutput = "primary";
+            trayOutput = "none";
 
             fonts = {
               names = [

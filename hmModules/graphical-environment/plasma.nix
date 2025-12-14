@@ -36,11 +36,20 @@
         criteria.class = "Plasmoidviewer";
         command = "floating enable, border none";
       }
+      {
+        criteria.class = "ksplash";
+        command = "kill";
+      }
     ];
 
     extraConfig = ''
       no_focus [class="plasmashell" window_type="notification"]
     '';
+  };
+
+  programs.firefox.policies.ExtensionSettings."plasma-browser-integration@kde.org" = {
+    install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+    installation_mode = "force_installed";
   };
 
   programs.plasma = {
@@ -76,6 +85,14 @@
       time.evening = "22:00";
       time.morning = "08:00";
       transitionTime = 120;
+    };
+
+    kscreenlocker = {
+      passwordRequiredDelay = 0;
+      timeout = 15;
+    };
+
+    powerdevil = {
     };
   };
 
