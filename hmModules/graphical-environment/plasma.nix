@@ -82,8 +82,10 @@
     kwin.nightLight = {
       enable = true;
       mode = "times";
-      time.evening = "22:00";
-      time.morning = "08:00";
+      time.evening = "20:00";
+      time.morning = "07:00";
+      temperature.day = 6500;
+      temperature.night = 2000;
       transitionTime = 120;
     };
 

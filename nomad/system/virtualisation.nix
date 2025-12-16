@@ -15,13 +15,6 @@
 
       # TPM is required for Windows VMs
       swtpm.enable = true;
-
-      ovmf = {
-        enable = true;
-
-        # Base package does not have secure boot
-        packages = [ pkgs.OVMFFull.fd ];
-      };
     };
   };
 
@@ -33,5 +26,5 @@
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 
   # Disk image for the virtio drivers, to be used when creating a vm
-  environment.systemPackages = with pkgs; [ win-virtio ];
+  environment.systemPackages = with pkgs; [ virtio-win ];
 }
