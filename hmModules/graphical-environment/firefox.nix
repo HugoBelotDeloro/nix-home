@@ -29,7 +29,18 @@
         DisablePocket = true;
         DontCheckDefaultBrowser = true;
         DisplayMenuBar = "never";
+        FirefoxHome = {
+          SponsoredStories = false;
+          SponsoredTopSites = false;
+          Stories = false;
+        };
+        GenerativeAI = {
+          Enabled = false;
+        };
         SearchBar = "unified";
+        SearchEngines = {
+          Remove = [ "Perplexity" ];
+        };
         PictureInPicture = lock-false;
         OfferToSaveLogins = false;
 
