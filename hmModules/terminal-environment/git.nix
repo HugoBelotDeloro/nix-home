@@ -27,6 +27,7 @@
 
   programs.delta = {
     enable = true;
+    enableGitIntegration = true;
     options =
     let
       green = "#2c3c2c";

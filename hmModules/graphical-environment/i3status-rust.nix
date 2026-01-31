@@ -22,7 +22,7 @@ in
       separator_bg = bg;
       separator_fg = fg;
       separator = "native";
-      end_separator = ""; # Creates an empty "block" at the end, forcing a draw of the native separator.
+      # end_separator = ""; # Creates an empty "block" at the end, forcing a draw of the native separator.
     };
     blocks =
       let
