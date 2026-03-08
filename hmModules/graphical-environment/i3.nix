@@ -208,38 +208,38 @@
 
             colors = with colourScheme.bottomBar; {
               activeWorkspace = {
-                border = "#595B5B";
-                background = "#353836";
-                text = "#FDF6E3";
+                border = text;
+                background = highlight;
+                text = text;
               };
 
               bindingMode = {
-                border = "#16A085";
-                background = "#2C2C2C";
-                text = fg;
+                border = highlight;
+                background = background;
+                text = text;
               };
 
               focusedWorkspace = {
-                border = fg;
-                background = "#16A085";
-                text = "#29F34";
+                border = text;
+                background = highlight;
+                text = text;
               };
 
               inactiveWorkspace = {
-                border = "#595B5B";
-                background = bg;
-                text = "#EEE8D5";
+                border = dimmed;
+                background = background;
+                text = text;
               };
 
               urgentWorkspace = {
-                border = "#16A085";
-                background = "#FDF6E3";
-                text = "#E5201D";
+                border = highlight;
+                background = background;
+                text = text;
               };
 
-              background = bg;
-              separator = separator;
-              statusline = fg;
+              background = background;
+              separator = dimmed;
+              statusline = text;
               # focusedBackground = "";
               # focusedSeparator = "";
               # focusedStatusline = "";
